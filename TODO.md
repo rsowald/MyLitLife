@@ -1,8 +1,4 @@
-# BOOK CLUB or RUBRIC PORTAL
-
-* [ ] Uses React.js & Express.js
-* [ ] Has two technologies not used before
-* [ ] Has a database using SQL or MongoDB
+# "My Lit Life" - A Book App
 
 ### Book Club User Story
 
@@ -14,13 +10,35 @@
 
 ///
 
+### Team Members & Responsibilities (Big Picture)
 
-### Ruberic Portal User Story
+* Cristina Acosta - React & MonogoDB?
+* Victor Codrean - API
+* Cameron Harvey - Database
+* Ingrid Lyublinsky - Autherization & React as needed
+* Renae Sowald - React
 
-///
+### Week One Deliverable Responsibilities
 
-* AS A teacher
-* I WANT TO alert students for direct feedback
-* SO THAT my students get timely, concise feeback.
+* Cristina Acosta - Plan, Toasts Research
+* Victor Codrean - Plan, Google Books API Research
+* Cameron Harvey - Plan, Design Mockup, Chart.js Research
+* Ingrid Lyublinsky - Plan, React Native Research, Passport.js Research
+* Renae Sowald - Concept, Plan, API Research, React Bootstrap Research
 
-///
+### Technologies
+
+* MongoDB
+* Open Library API
+* Merriam Webster Dictionary API
+* Google Books API
+* React.js
+* Express.js
+* Chart.js
+* React Bootstrap
+* React Native ??
+* Passport.js
+* Bcrypt.js
+* Toasts ??
+
+*
