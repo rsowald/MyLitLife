@@ -17,6 +17,7 @@
 * Cameron Harvey - Database
 * Ingrid Lyublinsky - Autherization & React as needed
 * Renae Sowald - React
+* Justin Walker - Database
 
 ### Week One Deliverable Responsibilities
 
@@ -25,6 +26,7 @@
 * Cameron Harvey - Plan, Design Mockup, Chart.js Research
 * Ingrid Lyublinsky - Plan, React Native Research, Passport.js Research
 * Renae Sowald - Concept, Plan, API Research, React Bootstrap Research
+* Justin Walker - Plan, Research Oauth
 
 ### Technologies
 
@@ -40,5 +42,4 @@
 * Passport.js
 * Bcrypt.js
 * Toasts ??
-
-*
+* Oath ??
