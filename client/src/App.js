@@ -5,6 +5,7 @@ import Home from "./components/pages/Home";
 import Dashboard from "./components/pages/Dashboard";
 import BookQueue from "./components/pages/BookQueue";
 import Completed from "./components/pages/Completed";
+import NoMatch from "./components/pages/NoMatch";
 import "./App.css";
 
 class App extends Component {
