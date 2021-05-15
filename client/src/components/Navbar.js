@@ -6,15 +6,15 @@ import { Link } from 'react-router-dom';
 function AppNav() {
     return (
 
-        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" className="space">
-            <Link to="/"><Navbar.Brand as="div">My Lit Life</Navbar.Brand></Link>
+        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" style={{ marginBottom: "20px", paddingLeft: "1rem", paddingRight: "1rem" }}>
+            <Link to="/" style={{ textDecoration: "none" }}><Navbar.Brand as="div">My Lit Life</Navbar.Brand></Link>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-            <Navbar.Collapse id="responsive-navbar-nav">
-                <Nav className="ml-auto">
-                    <Link to="/dashboard">Dashboard</Link>
-                    <Link to="/book-queue">Book Queue</Link>
-                    <Link to="/api/books">Completed Books</Link>
-                    <Link to="/login">Login</Link>
+            <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
+                <Nav>
+                    <Link to="/dashboard" style={{ textDecoration: "none" }}><Nav.Link as="div">Dashboard</Nav.Link></Link>
+                    <Link to="/book-queue" style={{ textDecoration: "none" }}><Nav.Link as="div">Book Queue</Nav.Link></Link>
+                    <Link to="/api/books" style={{ textDecoration: "none" }}><Nav.Link as="div">Completed Books</Nav.Link></Link>
+                    <Link to="/login" style={{ textDecoration: "none" }}><Nav.Link as="div">Login</Nav.Link></Link>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>
