@@ -42,4 +42,11 @@
 * Passport.js
 * Bcrypt.js
 * Toasts ??
-* Oath ??
+* Oauth ??
+
+### Guidlines
+
+![Screenshot](../room7project3/Guidlines/Coding_Requirements.png)
+
+![Screenshot](../room7project3/Guidlines/Deliverables_1.png)
+
