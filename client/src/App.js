@@ -1,19 +1,23 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
+import AppNav from "./components/Navbar";
+import Home from "./components/pages/Home";
+import Dashboard from "./components/pages/Dashboard";
+import BookQueue from "./components/pages/BookQueue";
+import Completed from "./components/pages/Completed";
 import "./App.css";
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
-      </div>
+      <Router>
+        <AppNav />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/book-queue" component={BookQueue} />
+          <Route exact path="/dashboard" component={Dashboard} />
+          <Route exact path="/api/books" component={Completed} />
+        </Switch>
+      </Router>
     );
   }
 }
