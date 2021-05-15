@@ -43,9 +43,12 @@
 * Bcrypt.js
 * Toasts ??
 * Oath ??
+<<<<<<< HEAD
 
 ### Guidlines
 
 ![Screenshot](../room7project3/Guidlines/Coding_Requirements.png)
 
 ![Screenshot](../room7project3/Guidlines/Deliverables_1.png)
+=======
+>>>>>>> 1c3818413c331182fd5c72e3f6a906b36a6984e0
