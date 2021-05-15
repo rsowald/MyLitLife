@@ -16,6 +16,7 @@ class App extends Component {
           <Route exact path="/book-queue" component={BookQueue} />
           <Route exact path="/dashboard" component={Dashboard} />
           <Route exact path="/api/books" component={Completed} />
+          <Route component={NoMatch} />
         </Switch>
       </Router>
     );
