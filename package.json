@@ -25,6 +25,7 @@
     "if-env": "^1.0.4",
     "mongoose": "^5.12.9",
     "oauth": "^0.9.15",
-    "passport": "^0.4.1"
+    "passport": "^0.4.1",
+    "passport-google-oauth": "^2.0.0"
   }
 }
