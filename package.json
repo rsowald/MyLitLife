@@ -21,12 +21,14 @@
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
+    "cookie-session": "^1.4.0",
     "express": "^4.16.3",
     "if-env": "^1.0.4",
     "mongoose": "^5.12.9",
     "oauth": "^0.9.15",
     "passport": "^0.4.1",
     "passport-google-oauth": "^2.0.0",
-    "passport-google-oauth20": "^2.0.0"
+    "passport-google-oauth20": "^2.0.0",
+    "react-google-login": "^5.2.2"
   }
 }
