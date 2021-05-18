@@ -42,11 +42,12 @@
 * Passport.js
 * Bcrypt.js
 * Toasts ??
-* Oauth ??
+* Oauth 2.0 (Google)
+* Cookie-session
+* React-google-login
 
 ### Guidlines
 
 ![Screenshot](../room7project3/Guidlines/Coding_Requirements.png)
 
 ![Screenshot](../room7project3/Guidlines/Deliverables_1.png)
-
