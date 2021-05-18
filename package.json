@@ -21,10 +21,22 @@
   },
   "dependencies": {
     "bcrypt": "^5.0.1",
+<<<<<<< HEAD
+    "bootstrap": "^5.0.1",
+    "chart.js": "^3.2.1",
+    "connect-mongodb-session": "^2.4.1",
+=======
     "cookie-session": "^1.4.0",
+>>>>>>> f5239f8e213b482681adcafbcf112c8959cc6d44
     "express": "^4.16.3",
     "if-env": "^1.0.4",
+<<<<<<< HEAD
+    "jquery": "^3.6.0",
+    "mongoose": "^5.12.10",
+    "native": "^0.3.3",
+=======
     "mongoose": "^5.12.9",
+>>>>>>> f5239f8e213b482681adcafbcf112c8959cc6d44
     "oauth": "^0.9.15",
     "passport": "^0.4.1",
     "passport-google-oauth": "^2.0.0",

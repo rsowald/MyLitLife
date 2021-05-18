@@ -1,4 +1,7 @@
 const express = require("express");
+const session = require("express-session");
+const MongoDBStore = require("connect-mongodb-session")(session);
+
 const app = express();
 const bodyParser = require('body-parser');
 const path = require("path");
@@ -41,8 +44,33 @@ app.use(passport.session());
 
 //port
 const PORT = process.env.PORT || 3001;
+const mongoose = require("mongoose");
+
+const router = require("./routes");
+
 const app = express();
 
+// Needs to be changed to whatever we call the uri and collection
+const store = new MongoDBStore({
+  uri: process.env.MONGODB_URI || "mongodb://localhost/user",
+  collection: "",
+});
+
+store.on("error", (error) => {
+  console.log(error);
+});
+
+app.use(
+  session({
+    secret: "This is a secret",
+    cookie: {
+      maxAge: 1000 * 60 * 60 * 24, // 1 day before they have to log back in
+    },
+    store: store,
+    resave: true,
+    saveUninitialized: true,
+  })
+);
 //Google login authentication - scope
 app.get('/google', passport.authenticate('google', { scope: ['profile', 'email'] }));
 
@@ -69,7 +97,7 @@ if (process.env.NODE_ENV === "production") {
 
 // Send every request to the React app
 // Define any API routes before this runs
-app.get("*", function(req, res) {
+app.get("*", function (req, res) {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
