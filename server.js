@@ -7,7 +7,7 @@ const bodyParser = require('body-parser');
 const path = require("path");
 const passport = require('passport');
 const cookieSession = require('cookie-session')
-require(''./utils/passportSetup');
+require('./utils/passportSetup');
 
 app.use(cors());
 
@@ -24,11 +24,11 @@ app.use(cookieSession({
 }))
 
 //Middleware - login next steps & 401 page (not authorized)
-const userLoggedIn = (res,  req, next) => {
+const userLoggedIn = (res, req, next) => {
   if (req.user) {
     next();
   } else {
-    res.sendStauts(401);
+    res.sendStatus(401);
   }
 };
 
@@ -48,7 +48,6 @@ const mongoose = require("mongoose");
 
 const router = require("./routes");
 
-const app = express();
 
 // Needs to be changed to whatever we call the uri and collection
 const store = new MongoDBStore({
@@ -85,7 +84,7 @@ app.get('/', (req, res) => res.send('You are no longer logged in.'));
 
 //Successful login route
 app.get('/google/callback', passport.authenticate('google', { failureRedirect: '/failed' }),
-  function(req, res) {
+  function (req, res) {
     // Successful authentication, redirect home.
     res.redirect('/success');
   });
@@ -107,6 +106,6 @@ app.get('/logout', (req, res) => {
   res.redirect('/');
 });
 
-app.listen(PORT, function() {
+app.listen(PORT, function () {
   console.log(`🌎 ==> API server now on port ${PORT}!`);
 });
