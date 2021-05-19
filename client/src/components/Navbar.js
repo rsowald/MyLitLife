@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 function AppNav() {
     return (
 
-        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" style={{ marginBottom: "20px", paddingLeft: "1rem", paddingRight: "1rem" }}>
+        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark" style={{ paddingLeft: "1rem", paddingRight: "1rem" }}>
             <Link to="/" style={{ textDecoration: "none" }}><Navbar.Brand as="div">My Lit Life</Navbar.Brand></Link>
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
