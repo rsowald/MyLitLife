@@ -1,0 +1,19 @@
+.book-queue-col-header {
+    background-color: lightblue;
+    text-align: center;
+    margin: 2px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.book-queue-col {
+    margin-top: 10px;
+}
+
+.book-item {
+    background-color: lightblue;
+    padding: 10px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
