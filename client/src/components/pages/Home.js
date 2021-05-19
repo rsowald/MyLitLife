@@ -1,4 +1,5 @@
 import React from "react";
+<<<<<<< Updated upstream
 import { Container, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
@@ -23,5 +24,17 @@ function Home() {
         </Container >
     )
 }
+=======
+import app from "./base";
+
+function Home() {
+    return (
+        <>
+        <h1>Home</h1>
+        <button onClick={() => app.auth().signOut()}>Sign Out</button>
+        </>
+    );
+};
+>>>>>>> Stashed changes
 
 export default Home;

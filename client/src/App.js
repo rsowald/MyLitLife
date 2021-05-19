@@ -7,6 +7,8 @@ import BookQueue from "./components/pages/BookQueue";
 import Completed from "./components/pages/Completed";
 import NoMatch from "./components/pages/NoMatch";
 import "./App.css";
+import Login from "./components/authentication/Login";
+import SignUp from "./components/authentication/SignUp";
 
 class App extends Component {
   render() {
@@ -21,8 +23,27 @@ class App extends Component {
           <Route component={NoMatch} />
         </Switch>
       </Router>
+          <Router>
+    <div>
+      <Route exact path="/" component={Home} />
+      <Route exact path="/login" component={Login} />
+      <Route exact path="/signup" component={SignUp} />
+    </div>
+    </Router>
     );
   }
 }
+
+// const user = () => {
+//   return {
+//     <Router>
+//     <div>
+//       <Route exact path="/" component={Home} />
+//       <Route exact path="/login" component={Login} />
+//       <Route exact path="/signup" component={SignUp} />
+//     </div>
+//     </Router>
+//   };
+// };
 
 export default App;
