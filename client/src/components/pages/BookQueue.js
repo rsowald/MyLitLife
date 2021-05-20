@@ -2,11 +2,12 @@
 import React, { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import {DragDropContext, Droppable, Draggable} from "react-beautiful-dnd";
+import SearchForm from "../SearchForm";
 //import uuid from "react-uuid";
 import "./BookQueue.css";
 
 
-const recommendations = [
+const completed = [
     {
         "kind": "books#volume",
         "id": "_FjrugAACAAJ",
@@ -149,8 +150,10 @@ const recommendations = [
         "searchInfo": {
           "textSnippet": "The amber glow of the carlantern lighted up my figure in the gloom , the driver \u003cbr\u003e\ngave a quick turn on the brake , and the conductor , making a sudden dexterous \u003cbr\u003e\nclutch at the strap over his head , sounded the death - knell of my \u003cb\u003efantasy\u003c/b\u003e as I&nbsp;..."
         }
-      },
-      {
+}];
+
+const queue = [
+  {
         "kind": "books#volume",
         "id": "a-H5L-lSsR0C",
         "etag": "IKrtSO9KRhQ",
@@ -291,8 +294,11 @@ const recommendations = [
         "searchInfo": {
           "textSnippet": "From OKing of SportswritersO and &quot;New York Times&quot;-bestselling author Lupica. In Los Angeles, 12-year-old Charlie&#39;s skill at fantasy football gains the attention of both the local media and the owner of a professional football team."
         }
-      },
-      {
+      }
+    ];
+    
+const searchResults = [
+    {
         "kind": "books#volume",
         "id": "7YzaCwAAQBAJ",
         "etag": "SL43JdTsFHA",
@@ -443,7 +449,6 @@ const recommendations = [
 
 
 function BookQueue() {
-//    const [rec, updateRec] = useState(recommendations);
     const initColumns = {
         [1]: {
             name: "Results",
@@ -451,15 +456,25 @@ function BookQueue() {
         },
         [2]: {
             name: "Book Queue",
-            items: recommendations
+            items: queue
         },
         [3]: {
             name: "Completed",
-            items: []
+            items: completed
         }
     };
 
     const [columns, setColumns] = useState(initColumns);
+
+    function handleSearch() {
+      setColumns({
+        ...columns,
+        [1]: {
+          name: "Results",
+          items: searchResults
+        }
+      });
+    }
 
     function handleOnDragEnd(result, columns, setColumns) {
         if (!result.destination) return;
@@ -505,6 +520,9 @@ function BookQueue() {
     }
     return (
         <Container>
+            <Row>
+              <SearchForm handleSearch={handleSearch} />
+            </Row>
             <Row>
                 <DragDropContext onDragEnd={(result) => handleOnDragEnd(result, columns, setColumns)} >
                     {Object.entries(columns).map(([columnId, column]) => {
