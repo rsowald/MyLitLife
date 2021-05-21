@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import app from "./Base.js";
+import app from "./Base";
 
 export const AuthContext = React.createContext();
 
@@ -11,11 +11,14 @@ export const AuthProvider = ({ children }) => {
     }, []);
 
     return (
-        <AuthContext.Providervalue={{
-            currentuser
+        <AuthContext.Providervalue
+        value={{
+            currentUser
         }}
         >
             {children}
         </AuthContext.Providervalue>
     );
 };
+
+export default AuthProvider;
