@@ -1,5 +1,5 @@
 import React from "react";
-import app from "../authentication/Base";
+import app from "../components/authentication/Base";
 
 function Logout() {
     return (

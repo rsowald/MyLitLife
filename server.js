@@ -3,11 +3,11 @@ const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
 
 const app = express();
-const bodyParser = require('body-parser');
+// const bodyParser = require('body-parser');
 const path = require("path");
-const passport = require('passport');
-const cookieSession = require('cookie-session')
-require('./utils/passportSetup');
+// const passport = require('passport');
+// const cookieSession = require('cookie-session')
+// require('./utils/passportSetup');
 
 app.use(cors());
 
