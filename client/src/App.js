@@ -7,10 +7,16 @@ import BookQueue from "./components/pages/BookQueue";
 import Completed from "./components/pages/Completed";
 import NoMatch from "./components/pages/NoMatch";
 import "./App.css";
+import Login from "./components/authentication/Login";
+import SignUp from "./components/authentication/SignUp";
+import Logout from "./components/Logout";
+import { AuthProvider } from "./components/authentication/Auth";
+import PrivateRoute from "./components/authentication/PrivateRoute";
 
 class App extends Component {
   render() {
     return (
+      <AuthProvider>
       <Router>
         <AppNav />
         <Switch>
@@ -18,11 +24,27 @@ class App extends Component {
           <Route exact path="/book-queue" component={BookQueue} />
           <Route exact path="/dashboard" component={Dashboard} />
           <Route exact path="/api/books" component={Completed} />
+          <PrivateRoute exact path="/logout" component={Logout} />
+         <Route exact path="/login" component={Login} />
+         <Route exact path="/signup" component={SignUp} />
           <Route component={NoMatch} />
         </Switch>
       </Router>
+      </AuthProvider>
     );
   }
 }
+
+// const user = () => {
+//   return {
+//     <Router>
+//     <div>
+//       <Route exact path="/" component={Home} />
+//       <Route exact path="/login" component={Login} />
+//       <Route exact path="/signup" component={SignUp} />
+//     </div>
+//     </Router>
+//   };
+// };
 
 export default App;

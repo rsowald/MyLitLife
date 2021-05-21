@@ -1,95 +1,75 @@
-import * as React from react';
-import * as ReactDOM from ;'react-dom';
-import React, { useRef } from "react";
-import GoogleLogin form 'react-google-login';
+// import * as React from react';
+// import * as ReactDOM from ;'react-dom';
+// import React, { useRef } from "react";
+// import GoogleLogin form 'react-google-login';
+import React, { useCallback, useContext } from "react";
+import { withRouter, Redirect } from "react-router";
+// import { Form, Button, Card } from "react-bootstrap";
+import app from "./base.js";
+import { AuthContext } from "./Auth.js";
+import { GoogleAuthProvider } from "firebase/auth";
 
-export default function App(){
+const Login = ({ history }) => {
+  const handleLogin = useCallback(
+    async event => {
+      event.preventDefault();
+      const { email, password } = event.target.elements;
+      try {
+        await app
+        .auth()
+        .signInWithEmailAndPassword(email.value, password.value);
+        history.push("/");
+      } catch (error) {
+        alert(error);
+      }
+    },
+    [history]
+  );
 
- const responseGoogle=(response)=>{
-    console.log(response);
+  const { currentUser } = useContext(AuthContext);
 
-    var res = response.profileObj;
-    console.log(res));
+  if (currentUser) {
+    return <Redirect to="/" />
+  }
+
+    return (
+        <div>
+            <h3>Sign Up</h3>
+            <form onSubmit={handleLogin}>
+                <label>
+                    Email
+                    <input name="email" type="email" placeholder="name@example.com" />
+                </label>
+                <label>
+                    Password
+                    <input name="password" type="password" placeholder="Password" />
+                </label>
+                <button type="submit">Login</button>
+            </form>
+        </div>
+    );
+
+  // function Login() {
+  //   const emailRef = useRef();
+  //   const passwordRef = useRef();
+
+//   return(
+//         <Card>
+//             <Card.Body>
+//                 <h3 className="text-center mb-4">Login</h3>
+//                 <Form onSumbmit={handleLogin}>
+//                     <Form.Group id="email">
+//                         <Form.Label>Email</Form.Label>
+//                         <Form.Control type="email" ref={emailRef} placeholder="Email" required />
+//                         <Form.Group id="password" />
+//                         <Form.Label>Password</Form.Label>
+//                         <Form.Control type="email" ref={passwordRef} placeholder="Password" required />
+//                     </Form.Group>
+//                     <button type="submit">Login</button>
+//                 </Form>
+//             </Card.Body>
+//         </Card>
+//     )
+// };
 }
-
-  return {
-    <div className={`signature`}>
-      <GoogleLogin
-           clientId='380023474924-48ghoo4d3bdvjbtjgaqanlva6s15llql.apps.googleusercontent.com'
-          buttonText="Login"
-          onSuccess={this.responseGoogle}
-          onFailure={this.responseGoogle}
-          cookiePolicy={'single_host_origin'} > </GoogleLogin>
-    
-    </div>
-  };
-
-export default Login;
-
-// import {
-//     GoogleButton,
-//     IAuthorizationOptions,
-//     isLoggedIn,
-//     createOAuthHeaders,
-//     logOutOAuthUser,
-//     GoogleAuth,
-// } from "react-google-oauth2";
-
-
-
-
-
-// // import { GoogleLogin } from 'react-google-login';
-
-// // // export class Login extends Component {}
-
-// //     const responseGoogle=(response)=>{
-// //         console.log(response);
-// //         console.log(response.profileObj);
-// //     }
-
-// //    function render() {
-// //         return (
-// //             <div>
-// //             <GoogleLogin
-// //             clientId="380023474924-48ghoo4d3bdvjbtjgaqanlva6s15llql.apps.googleusercontent.com"
-// //             buttonText="Login"
-// //             onSuccess={this.responseGoogle}
-// //             onFailure={this.responseGoogle}
-// //             cookiePolicy={'single_host_origin'}
-
-// //             />
-            
-// //             </div>
-// //         )
-// //     };
-
-
-// function App(props: any) {
-
-//     const options: IAuthorizationOptions = {
-//         clientId: (process.env.380023474924-48ghoo4d3bdvjbtjgaqanlva6s15llql.apps.googleusercontent.com as string),
-//         redirectUri: "http://localhost:3000/react-google-Oauth2.0/dist/index.html",
-//         scopes: ["profile", "email"],
-//         includeGrantedScopes: true,
-//         accessType: "offline",
-//     };
-
-//     return (
-//         <>
-//           <GoogleButton
-//               placeholder="demo/search.png" // Optional
-//               options={options}
-//               apiUrl="http://localhost:5000/google_login"
-//               defaultStyle={true} // Optional
-//           />
-//         </>
-//     );
-// }
-
-// ReactDOM.render(
-//     </App>,
-//     document.getElementById("main"),
-// );
-
-// export default Login;
+export default withRouter(Login);

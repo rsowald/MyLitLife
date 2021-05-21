@@ -27,6 +27,7 @@
     "cookie-session": "^1.4.0",
     "express": "^4.16.3",
     "express-session": "^1.17.1",
+    "firebase": "^8.6.2",
     "if-env": "^1.0.4",
     "jquery": "^3.6.0",
     "mongoose": "^5.12.10",
@@ -35,6 +36,8 @@
     "passport": "^0.4.1",
     "passport-google-oauth": "^2.0.0",
     "passport-google-oauth20": "^2.0.0",
-    "react-google-login": "^5.2.2"
+    "react-google-login": "^5.2.2",
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0"
   }
 }
