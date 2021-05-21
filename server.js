@@ -17,12 +17,12 @@ const PORT = process.env.PORT || 3001;
 const mongoose = require("mongoose");
 
 const router = require("./routes");
-
+app.use(router);
 
 // Needs to be changed to whatever we call the uri and collection
 const store = new MongoDBStore({
-  uri: process.env.MONGODB_URI || "mongodb://localhost/user",
-  collection: "books",
+  uri: process.env.MONGODB_URI || "mongodb://localhost/MyLitLife",
+  collection: "user",
 });
 
 store.on("error", (error) => {
