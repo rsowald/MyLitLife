@@ -21,7 +21,7 @@ const Signup = ({ history }) => {
     return (
         <div>
             <h3>Sign Up</h3>
-            <form onSubmit={() => handleSignUp}>
+            <form onSubmit={handleSignUp}>
                 <label>
                     Email
                     <input name="email" type="email" placeholder="name@example.com" />
@@ -32,7 +32,7 @@ const Signup = ({ history }) => {
                 </label>
                 <label>
                     Confirm Password
-                    <input name="confirm-password" type="confirmPassword" placeholder="Confirm Password" />
+                    <input name="confirm-password" type="password" placeholder="Confirm Password" />
                 </label>
                 <button type="submit">Sign Up</button>
             </form>
