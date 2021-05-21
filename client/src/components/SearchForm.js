@@ -1,6 +1,7 @@
 import React from "react";
+import { Button, Form, Container, Row, Col } from "react-bootstrap";
 
-function SearchForm() {
+function SearchForm(props) {
     return (
         <Container>
             <Row style={{ border: "3px solid black", borderRadius: "5px", padding: "20px" }}>
@@ -8,7 +9,7 @@ function SearchForm() {
                     <Form style={{ padding: "10px" }}>
                         <Form.Group controlId="searchForm.Input">
                             <Form.Label>Search Terms</Form.Label>
-                            <Form.Control type="text" onChange={handleInputChange} placeholder="Keyword? Title? Author? Whatever." />
+                            <Form.Control type="text" onChange={() => console.log("handleInputChange")} placeholder="Keyword? Title? Author? Whatever." />
                         </Form.Group>
                         <Form.Group controlId="searchForm.Select">
                             <Form.Label>Search By</Form.Label>
@@ -18,7 +19,8 @@ function SearchForm() {
                                 <option value="genre">Genre</option>
                             </Form.Control>
                         </Form.Group>
-                        <Button variant="primary" className="float-right mb-2" onClick={handleSearch}>Search</Button>
+                        {/* <Button variant="primary" className="float-right mb-2" onClick={() => console.log("handleSearch")}>Search</Button> */}
+                        <Button variant="primary" className="float-right mb-2" onClick={ props.handleSearch }>Search</Button>
                     </Form>
                 </Col>
             </Row>
