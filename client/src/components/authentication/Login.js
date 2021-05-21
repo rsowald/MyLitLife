@@ -35,7 +35,7 @@ const Login = ({ history }) => {
     return (
         <div>
             <h3>Sign Up</h3>
-            <form onSubmit={()=>handleLogin}>
+            <form onSubmit={handleLogin}>
                 <label>
                     Email
                     <input name="email" type="email" placeholder="name@example.com" />

@@ -21,7 +21,7 @@ const Signup = ({ history }) => {
     return (
         <div>
             <h3>Sign Up</h3>
-            <form onSubmit={() => handleSignUp}>
+            <form onSubmit={handleSignUp}>
                 <label>
                     Email
                     <input name="email" type="email" placeholder="name@example.com" />

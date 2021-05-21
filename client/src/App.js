@@ -9,30 +9,41 @@ import NoMatch from "./components/pages/NoMatch";
 import "./App.css";
 import Login from "./components/authentication/Login";
 import Signup from "./components/authentication/Signup";
-import Logout from "./components/Logout";
-// import { AuthProvider } from "./components/authentication/Auth";
+// import Logout from "./components/Logout";
+import { AuthProvider } from "./components/authentication/Auth";
 import PrivateRoute from "./components/authentication/PrivateRoute";
 
 class App extends Component {
   render() {
     return (
-      // <AuthProvider>
+      <AuthProvider>
       <Router>
         <AppNav />
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/book-queue" component={BookQueue} />
-          <Route exact path="/dashboard" component={Dashboard} />
+          <PrivateRoute exact path="/dashboard" component={Dashboard} />
           <Route exact path="/api/books" component={Completed} />
-          <PrivateRoute exact path="/logout" component={Logout} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/signup" component={Signup} />
           <Route component={NoMatch} />
         </Switch>
       </Router>
-      // </AuthProvider>
+      </AuthProvider>
     );
   }
 }
+
+// function test () {
+// return(
+// // console.log('Route', Route);
+// // console.log('Switch', Switch);
+// // console.log('Home', Home);
+// // console.log('AppNav', AppNav);
+// // console.log('PrivateRoute', PrivateRoute);
+// // console.log('App', App);
+// console.log('AuthProvider', AuthProvider)
+// );
+// };
 
 export default App;
