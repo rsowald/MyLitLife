@@ -2,7 +2,7 @@ import React, { useCallback } from "react";
 import { withRouter } from "react-router";
 // import { Form, Button, Card } from "react-bootstrap";
 import app from "./Base";
-
+import { Container, Row, Col, Card, Form, Button, ButtonGroup, ButtonToolbar } from "react-bootstrap";
 
 const Signup = ({ history }) => {
     const handleSignUp = useCallback(async event => {
@@ -19,30 +19,55 @@ const Signup = ({ history }) => {
     }, [history])
 
     return (
-        <div>
-            <h3>Sign Up</h3>
-            <form onSubmit={handleSignUp}>
-                <label>
-                    Email
-                    <input name="email" type="email" placeholder="name@example.com" />
-                </label>
-                <label>
-                    Password
-                    <input name="password" type="password" placeholder="Minimum 8 characters" />
-                </label>
-                <label>
-                    Confirm Password
-                    <input name="confirm-password" type="password" placeholder="Confirm Password" />
-                </label>
-                <button type="submit">Sign Up</button>
-            </form>
-        </div>
+        <Container className="my-5">
+
+            <Row className="justify-content-md-center">
+                <Col md={6} sm={12}>
+                    <Card>
+                        <Card.Body>
+                            <h3 className="text-center mb-4">Sign Up</h3>
+                            <Form onSubmit={() => handleSignUp}>
+                                <Form.Group id="email">
+                                    <Form.Label>Email</Form.Label>
+                                    <Form.Control name="email" type="email" placeholder="Email" required />
+                                    <Form.Group id="password" />
+                                    <Form.Label>Password</Form.Label>
+                                    <Form.Control name="password" type="password" placeholder="Minimum 8 characters" required />
+                                    <Form.Label>Confirm Password</Form.Label>
+                                    <Form.Control name="password" type="password" placeholder="Confirm" required />
+                                </Form.Group>
+                            </Form>
+                            <Button className="mt-2" variant="success" type="submit">SignUp</Button>
+                        </Card.Body>
+                    </Card>
+                </Col>
+            </Row>
+        </Container>
     );
 };
 
 
 export default withRouter(Signup);
 
+
+{/* <div>
+    <h3>Sign Up</h3>
+    <form onSubmit={handleSignUp}>
+        <label>
+            Email
+                    <input name="email" type="email" placeholder="name@example.com" />
+        </label>
+        <label>
+            Password
+                    <input name="password" type="password" placeholder="Minimum 8 characters" />
+        </label>
+        <label>
+            Confirm Password
+                    <input name="confirm-password" type="password" placeholder="Confirm Password" />
+        </label>
+        <button type="submit">Sign Up</button>
+    </form>
+</div> */}
 
 // export default function Signup() {
 //     const emailRef = useRef();

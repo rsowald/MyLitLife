@@ -1,6 +1,6 @@
 //import { isValidObjectId } from "mongoose";
 import React, { useState } from "react";
-import { Container, Row, Col, Card, Paragraph, Button } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import SearchForm from "../SearchForm";
 //import uuid from "react-uuid";
@@ -309,12 +309,12 @@ function BookQueue() {
     [2]: {
       name: "Book Queue",
       items: queue
-//items: []
+      //items: []
     },
     [3]: {
       name: "Completed",
       items: completed
-//items: []
+      //items: []
     }
   };
 

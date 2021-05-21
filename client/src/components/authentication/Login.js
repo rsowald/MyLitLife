@@ -9,6 +9,7 @@ import app from "./Base.js";
 import { AuthContext } from "./Auth.js";
 import { Link } from 'react-router-dom';
 import { GoogleAuthProvider } from "firebase/auth";
+import { Container, Row, Col, Card, Form, Button, ButtonGroup, ButtonToolbar } from "react-bootstrap";
 
 const Login = ({ history }) => {
   const handleLogin = useCallback(
@@ -17,8 +18,8 @@ const Login = ({ history }) => {
       const { email, password } = event.target.elements;
       try {
         await app
-        .auth()
-        .signInWithEmailAndPassword(email.value, password.value);
+          .auth()
+          .signInWithEmailAndPassword(email.value, password.value);
         history.push("/");
       } catch (error) {
         alert(error);
@@ -33,24 +34,53 @@ const Login = ({ history }) => {
     return <Redirect to="/" />
   }
 
-    return (
-        <div>
-            <h3>Login</h3>
-            <form onSubmit={() => handleLogin}>
-                <label>
-                    Email
-                    <input name="email" type="email" placeholder="name@example.com" />
-                </label>
-                <label>
-                    Password
-                    <input name="password" type="password" placeholder="Password" />
-                </label>
-                <button type="submit">Login</button>
-            </form>
-            <h5>Don't have an account, yet?</h5>
-                    <p><Link to="/signup">Signup</Link> to get started.</p>
-        </div>
-    );
+  return (
+    <Container className="my-5">
+
+      <Row className="justify-content-md-center">
+        <Col md={6} sm={12}>
+          <Card>
+            <Card.Body>
+              <h3 className="text-center mb-4">Login</h3>
+              <Form onSubmit={() => handleLogin}>
+                <Form.Group id="email">
+                  <Form.Label>Email</Form.Label>
+                  <Form.Control name="email" type="email" placeholder="Email" required />
+                  <Form.Group id="password" />
+                  <Form.Label>Password</Form.Label>
+                  <Form.Control name="password" type="password" placeholder="Password" required />
+                </Form.Group>
+              </Form>
+
+              <ButtonToolbar className="mt-2 justify-content-between" aria-label="Toolbar with Button groups">
+                <Button variant="primary" type="submit">Login</Button>{' '}
+                <Link className="btn btn-info" to="/signup">Signup</Link>
+              </ButtonToolbar>
+              {/* <h5>Don't have an account, yet?</h5> */}
+              {/* <p><Link to="/signup">Signup</Link> to get started.</p> */}
+            </Card.Body>
+          </Card>
+        </Col>
+      </Row>
+    </Container>
+
+    // <div>
+    //     <h3>Login</h3>
+    //     <form onSubmit={() => handleLogin}>
+    //         <label>
+    //             Email
+    //             <input name="email" type="email" placeholder="name@example.com" />
+    //         </label>
+    //         <label>
+    //             Password
+    //             <input name="password" type="password" placeholder="Password" />
+    //         </label>
+    //         <button type="submit">Login</button>
+    //     </form>
+    //     <h5>Don't have an account, yet?</h5>
+    //             <p><Link to="/signup">Signup</Link> to get started.</p>
+    // </div>
+  );
 }
 export default withRouter(Login);
 
