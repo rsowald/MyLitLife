@@ -22,7 +22,7 @@ const router = require("./routes");
 // Needs to be changed to whatever we call the uri and collection
 const store = new MongoDBStore({
   uri: process.env.MONGODB_URI || "mongodb://localhost/user",
-  collection: "",
+  collection: "books",
 });
 
 store.on("error", (error) => {
@@ -35,7 +35,7 @@ app.use(
     cookie: {
       maxAge: 1000 * 60 * 60 * 24, // 1 day before they have to log back in
     },
-    store: store,
+    // store: store,
     resave: true,
     saveUninitialized: true,
   })
@@ -52,7 +52,8 @@ if (process.env.NODE_ENV === "production") {
 // Send every request to the React app
 // Define any API routes before this runs
 app.get("*", function (req, res) {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+  res.sendFile(path.join(__dirname, "./client/public/index.html"));
+  // res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
 app.get('/logout', (req, res) => {
