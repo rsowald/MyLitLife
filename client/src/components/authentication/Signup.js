@@ -4,24 +4,24 @@ import { withRouter } from "react-router";
 import app from "./Base";
 
 
-const SignUp = ({ history }) => {
+const Signup = ({ history }) => {
     const handleSignUp = useCallback(async event => {
         event.preventDefault();
         const { email, password, confirmPassword } = event.target.elements;
         try {
             await app
-            .auth()
-            .createUserWithEmailAndPassword(email.value, password.value, confirmPassword.value);
+                .auth()
+                .createUserWithEmailAndPassword(email.value, password.value, confirmPassword.value);
             history.push("/");
         } catch (error) {
             alert(error);
-                }
+        }
     }, [history])
 
     return (
         <div>
             <h3>Sign Up</h3>
-            <form onSubmit={()=>handleSignUp}>
+            <form onSubmit={() => handleSignUp}>
                 <label>
                     Email
                     <input name="email" type="email" placeholder="name@example.com" />
@@ -38,10 +38,10 @@ const SignUp = ({ history }) => {
             </form>
         </div>
     );
-    };
+};
 
-    
-export default withRouter(SignUp);
+
+export default withRouter(Signup);
 
 
 // export default function Signup() {
