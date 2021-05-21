@@ -298,155 +298,6 @@ const queue = [
   }
 ];
 
-const searchResults = [
-  {
-    "kind": "books#volume",
-    "id": "7YzaCwAAQBAJ",
-    "etag": "SL43JdTsFHA",
-    "selfLink": "https://www.googleapis.com/books/v1/volumes/7YzaCwAAQBAJ",
-    "volumeInfo": {
-      "title": "Fantasy Life",
-      "subtitle": "The Outrageous, Uplifting, and Heartbreaking World of Fantasy Sports from the Guy Who's Lived it",
-      "authors": [
-        "Matthew Berry"
-      ],
-      "publisher": "Riverhead Books",
-      "publishedDate": "2013",
-      "description": "An inside assessment of the world of fantasy sports by the ESPN Senior Fantasy Analyst reveals the life-shaping impact of the multi-billion-dollar national pastime while chronicling his own rise to a leading figure in fantasy sports.",
-      "industryIdentifiers": [
-        {
-          "type": "ISBN_13",
-          "identifier": "9781594486258"
-        },
-        {
-          "type": "ISBN_10",
-          "identifier": "1594486255"
-        }
-      ],
-      "readingModes": {
-        "text": false,
-        "image": false
-      },
-      "pageCount": 338,
-      "printType": "BOOK",
-      "categories": [
-        "Games & Activities"
-      ],
-      "averageRating": 3.5,
-      "ratingsCount": 2,
-      "maturityRating": "NOT_MATURE",
-      "allowAnonLogging": false,
-      "contentVersion": "preview-1.0.0",
-      "panelizationSummary": {
-        "containsEpubBubbles": false,
-        "containsImageBubbles": false
-      },
-      "imageLinks": {
-        "smallThumbnail": "http://books.google.com/books/content?id=7YzaCwAAQBAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
-        "thumbnail": "http://books.google.com/books/content?id=7YzaCwAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
-      },
-      "language": "en",
-      "previewLink": "http://books.google.com/books?id=7YzaCwAAQBAJ&printsec=frontcover&dq=fantasy&hl=&cd=5&source=gbs_api",
-      "infoLink": "http://books.google.com/books?id=7YzaCwAAQBAJ&dq=fantasy&hl=&source=gbs_api",
-      "canonicalVolumeLink": "https://books.google.com/books/about/Fantasy_Life.html?hl=&id=7YzaCwAAQBAJ"
-    },
-    "saleInfo": {
-      "country": "US",
-      "saleability": "NOT_FOR_SALE",
-      "isEbook": false
-    },
-    "accessInfo": {
-      "country": "US",
-      "viewability": "PARTIAL",
-      "embeddable": true,
-      "publicDomain": false,
-      "textToSpeechPermission": "ALLOWED_FOR_ACCESSIBILITY",
-      "epub": {
-        "isAvailable": false
-      },
-      "pdf": {
-        "isAvailable": false
-      },
-      "webReaderLink": "http://play.google.com/books/reader?id=7YzaCwAAQBAJ&hl=&printsec=frontcover&source=gbs_api",
-      "accessViewStatus": "SAMPLE",
-      "quoteSharingAllowed": false
-    },
-    "searchInfo": {
-      "textSnippet": "An inside assessment of the world of fantasy sports by the ESPN Senior Fantasy Analyst reveals the life-shaping impact of the multi-billion-dollar national pastime while chronicling his own rise to a leading figure in fantasy sports."
-    }
-  },
-  {
-    "kind": "books#volume",
-    "id": "hS_WugEACAAJ",
-    "etag": "kL1+YhDxp3U",
-    "selfLink": "https://www.googleapis.com/books/v1/volumes/hS_WugEACAAJ",
-    "volumeInfo": {
-      "title": "Dragon Composition Notebook",
-      "subtitle": "Standard Size Vintage Fantasy Art Cover Composition Notebook / Journal 150 Lined College Ruled Pages, Serpent Medieval Softcover Book. (Volume 9)",
-      "authors": [
-        "Abundant Creations"
-      ],
-      "publisher": "Createspace Independent Publishing Platform",
-      "publishedDate": "2018-08-10",
-      "description": "This vintage dragon artwork has been brought back to life from ancient archives and vividly recolored. It is now is available for you to enjoy. This notebook is perfect for taking notes in school or using as notebook at home. It's the perfect gift for any dragon and fantasy lover! Features: College Ruled Paper 150 Pages Matte Finish Cover Standard Size Composition Notebook Sturdy Paperback Binding",
-      "industryIdentifiers": [
-        {
-          "type": "ISBN_10",
-          "identifier": "1725154757"
-        },
-        {
-          "type": "ISBN_13",
-          "identifier": "9781725154759"
-        }
-      ],
-      "readingModes": {
-        "text": false,
-        "image": false
-      },
-      "pageCount": 150,
-      "printType": "BOOK",
-      "maturityRating": "NOT_MATURE",
-      "allowAnonLogging": false,
-      "contentVersion": "preview-1.0.0",
-      "panelizationSummary": {
-        "containsEpubBubbles": false,
-        "containsImageBubbles": false
-      },
-      "imageLinks": {
-        "smallThumbnail": "http://books.google.com/books/content?id=hS_WugEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api",
-        "thumbnail": "http://books.google.com/books/content?id=hS_WugEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
-      },
-      "language": "en",
-      "previewLink": "http://books.google.com/books?id=hS_WugEACAAJ&dq=fantasy&hl=&cd=6&source=gbs_api",
-      "infoLink": "http://books.google.com/books?id=hS_WugEACAAJ&dq=fantasy&hl=&source=gbs_api",
-      "canonicalVolumeLink": "https://books.google.com/books/about/Dragon_Composition_Notebook.html?hl=&id=hS_WugEACAAJ"
-    },
-    "saleInfo": {
-      "country": "US",
-      "saleability": "NOT_FOR_SALE",
-      "isEbook": false
-    },
-    "accessInfo": {
-      "country": "US",
-      "viewability": "NO_PAGES",
-      "embeddable": false,
-      "publicDomain": false,
-      "textToSpeechPermission": "ALLOWED",
-      "epub": {
-        "isAvailable": false
-      },
-      "pdf": {
-        "isAvailable": false
-      },
-      "webReaderLink": "http://play.google.com/books/reader?id=hS_WugEACAAJ&hl=&printsec=frontcover&source=gbs_api",
-      "accessViewStatus": "NONE",
-      "quoteSharingAllowed": false
-    },
-    "searchInfo": {
-      "textSnippet": "This vintage dragon artwork has been brought back to life from ancient archives and vividly recolored."
-    }
-  }
-]
 
 
 function BookQueue() {
@@ -458,10 +309,12 @@ function BookQueue() {
     [2]: {
       name: "Book Queue",
       items: queue
+//items: []
     },
     [3]: {
       name: "Completed",
       items: completed
+//items: []
     }
   };
 

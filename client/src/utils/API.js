@@ -11,6 +11,9 @@ const BASEURL = "https://www.googleapis.com/books/v1/volumes?q=";
 const API_KEY = "AIzaSyD941-spNv5FIwmDGKp71VhEVUEWCU4Fi8"
 
 export default {
+    getCompleted: function (){
+        return axios.get("localhost:3001/api/books/complete")
+    },
     searchBooks: function (query) {
         return axios.get(`${BASEURL}${query}&key=${API_KEY}`);
     },
