@@ -38,7 +38,7 @@ const Login = ({ history }) => {
     <Container className="my-5">
 
       <Row className="justify-content-md-center">
-        <Col md={6} sm={12}>
+        <Col lg={6} md={8} sm={12}>
           <Card>
             <Card.Body>
               <h3 className="text-center mb-4">Login</h3>
