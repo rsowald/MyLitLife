@@ -5,7 +5,7 @@
 import React, { useCallback, useContext } from "react";
 import { withRouter, Redirect } from "react-router";
 // import { Form, Button, Card } from "react-bootstrap";
-import app from "./base.js";
+import app from "./Base.js";
 import { AuthContext } from "./Auth.js";
 import { GoogleAuthProvider } from "firebase/auth";
 
@@ -35,7 +35,7 @@ const Login = ({ history }) => {
     return (
         <div>
             <h3>Sign Up</h3>
-            <form onSubmit={handleLogin}>
+            <form onSubmit={()=>handleLogin}>
                 <label>
                     Email
                     <input name="email" type="email" placeholder="name@example.com" />

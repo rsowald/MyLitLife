@@ -21,7 +21,7 @@ const SignUp = ({ history }) => {
     return (
         <div>
             <h3>Sign Up</h3>
-            <form onSubmit={handleSignUp}>
+            <form onSubmit={()=>handleSignUp}>
                 <label>
                     Email
                     <input name="email" type="email" placeholder="name@example.com" />
@@ -71,5 +71,3 @@ export default withRouter(SignUp);
 //         </Card>
 //     )
 // };
-
-export default withRouter(SignUp);
