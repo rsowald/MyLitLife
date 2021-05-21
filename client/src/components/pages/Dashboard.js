@@ -1,5 +1,5 @@
 import React from "react";
-import app from "./components/authentication/Base";
+import app from "../authentication/Base";
 
 function Dashboard() {
     return (
