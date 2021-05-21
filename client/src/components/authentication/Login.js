@@ -2,11 +2,12 @@
 // import * as ReactDOM from ;'react-dom';
 // import React, { useRef } from "react";
 // import GoogleLogin form 'react-google-login';
+// import { Form, Button, Card } from "react-bootstrap";
 import React, { useCallback, useContext } from "react";
 import { withRouter, Redirect } from "react-router";
-// import { Form, Button, Card } from "react-bootstrap";
 import app from "./Base.js";
 import { AuthContext } from "./Auth.js";
+import { Link } from 'react-router-dom';
 import { GoogleAuthProvider } from "firebase/auth";
 
 const Login = ({ history }) => {
@@ -34,8 +35,8 @@ const Login = ({ history }) => {
 
     return (
         <div>
-            <h3>Sign Up</h3>
-            <form onSubmit={handleLogin}>
+            <h3>Login</h3>
+            <form onSubmit={() => handleLogin}>
                 <label>
                     Email
                     <input name="email" type="email" placeholder="name@example.com" />
@@ -46,8 +47,12 @@ const Login = ({ history }) => {
                 </label>
                 <button type="submit">Login</button>
             </form>
+            <h5>Don't have an account, yet?</h5>
+                    <p><Link to="/signup">Signup</Link> to get started.</p>
         </div>
     );
+}
+export default withRouter(Login);
 
   // function Login() {
   //   const emailRef = useRef();
@@ -71,5 +76,3 @@ const Login = ({ history }) => {
 //         </Card>
 //     )
 // };
-}
-export default withRouter(Login);

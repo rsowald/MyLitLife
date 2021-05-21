@@ -34,16 +34,4 @@ class App extends Component {
   }
 }
 
-// function test () {
-// return(
-// // console.log('Route', Route);
-// // console.log('Switch', Switch);
-// // console.log('Home', Home);
-// // console.log('AppNav', AppNav);
-// // console.log('PrivateRoute', PrivateRoute);
-// // console.log('App', App);
-// console.log('AuthProvider', AuthProvider)
-// );
-// };
-
 export default App;

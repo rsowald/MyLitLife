@@ -32,7 +32,7 @@ const Signup = ({ history }) => {
                 </label>
                 <label>
                     Confirm Password
-                    <input name="confirm-password" type="confirmPassword" placeholder="Confirm Password" />
+                    <input name="confirm-password" type="password" placeholder="Confirm Password" />
                 </label>
                 <button type="submit">Sign Up</button>
             </form>
