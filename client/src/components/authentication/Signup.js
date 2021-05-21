@@ -26,7 +26,7 @@ const Signup = ({ history }) => {
                     <Card>
                         <Card.Body>
                             <h3 className="text-center mb-4">Sign Up</h3>
-                            <Form onSubmit={() => handleSignUp}>
+                            <Form onSubmit={handleSignUp}>
                                 <Form.Group id="email">
                                     <Form.Label>Email</Form.Label>
                                     <Form.Control name="email" type="email" placeholder="Email" required />
@@ -34,10 +34,10 @@ const Signup = ({ history }) => {
                                     <Form.Label>Password</Form.Label>
                                     <Form.Control name="password" type="password" placeholder="Minimum 8 characters" required />
                                     <Form.Label>Confirm Password</Form.Label>
-                                    <Form.Control name="password" type="password" placeholder="Confirm" required />
+                                    <Form.Control name="confirm-password" type="password" placeholder="Confirm" required />
                                 </Form.Group>
+                                <Button className="mt-2" variant="success" type="submit">SignUp</Button>
                             </Form>
-                            <Button className="mt-2" variant="success" type="submit">SignUp</Button>
                         </Card.Body>
                     </Card>
                 </Col>
