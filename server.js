@@ -1,6 +1,7 @@
 const cors = require('cors')
 const express = require("express");
 const session = require("express-session");
+const mongoose = require("mongoose");
 const MongoDBStore = require("connect-mongodb-session")(session);
 
 
@@ -9,13 +10,21 @@ const app = express();
 const path = require("path");
 
 app.use(cors());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 //port
 const PORT = process.env.PORT || 3001;
-const mongoose = require("mongoose");
+
 
 const router = require("./routes");
 app.use(router);
+
+// Why don't we need a mongoose connection?
+// mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/googlebooks", {
+//   useNewUrlParser: true,
+//   useFindAndModify: false
+// });
 
 // Needs to be changed to whatever we call the uri and collection
 const store = new MongoDBStore({
@@ -39,20 +48,10 @@ app.use(
   })
 );
 
-//After logout
-app.get('/', (req, res) => res.send('You are no longer logged in.'));
-
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
-
-// Send every request to the React app
-// Define any API routes before this runs
-app.get("*", function (req, res) {
-  res.sendFile(path.join(__dirname, "./client/public/index.html"));
-  // res.sendFile(path.join(__dirname, "./client/build/index.html"));
-});
 
 app.get('/logout', (req, res) => {
   req.session = null;
