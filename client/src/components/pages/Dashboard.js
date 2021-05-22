@@ -1,5 +1,5 @@
 import React from "react";
-import "dashboard.css";
+import "./dashboard.css";
 
 function Dashboard() {
     return (
@@ -10,13 +10,6 @@ function Dashboard() {
         <link rel="stylesheet" href="style.css" />
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
         <title>DataDemo</title>
-        <nav className="navbar lg fixed-top navbar navbar-dark bg-dark">  
-          <a className="navbar-brand" href="index.html">Home</a>
-          <form className="form-inline">
-            <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
-            <button className="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
-          </form>
-        </nav>
         <header className="masthead">
           <div className="container h-100">
             <div className="row h-100 align-items-center">
