@@ -3,6 +3,7 @@ const express = require("express");
 const session = require("express-session");
 const mongoose = require("mongoose");
 const MongoDBStore = require("connect-mongodb-session")(session);
+const router = require("./routes");
 
 
 const app = express();
@@ -16,7 +17,7 @@ app.use(express.json());
 //port
 const PORT = process.env.PORT || 3001;
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/MyLitLife", { useNewUrlParser: true });
-const router = require("./routes");
+
 app.use(router);
 
 
