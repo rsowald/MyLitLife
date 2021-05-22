@@ -20,7 +20,7 @@ const Login = ({ history }) => {
         await app
           .auth()
           .signInWithEmailAndPassword(email.value, password.value);
-        history.push("/");
+        history.push("/dashboard");
       } catch (error) {
         alert(error);
       }
@@ -42,7 +42,7 @@ const Login = ({ history }) => {
           <Card>
             <Card.Body>
               <h3 className="text-center mb-4">Login</h3>
-              <Form onSubmit={() => handleLogin}>
+              <Form onSubmit={handleLogin}>
                 <Form.Group id="email">
                   <Form.Label>Email</Form.Label>
                   <Form.Control name="email" type="email" placeholder="Email" required />

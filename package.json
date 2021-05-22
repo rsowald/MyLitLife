@@ -29,6 +29,7 @@
     "express": "^4.16.3",
     "express-session": "^1.17.1",
     "firebase": "^8.6.2",
+    "firebase-auth": "^0.1.2",
     "if-env": "^1.0.4",
     "jquery": "^3.6.0",
     "mongoose": "^5.12.10",

@@ -7,12 +7,16 @@ import { Container, Row, Col, Card, Form, Button, ButtonGroup, ButtonToolbar } f
 const Signup = ({ history }) => {
     const handleSignUp = useCallback(async event => {
         event.preventDefault();
-        const { email, password, confirmPassword } = event.target.elements;
+        // const { email, password, confirmPassword } = event.target.elements;
+        // console.log(email.value, password.value, confirmPassword.value)
+
+        const { email, password } = event.target.elements;
+        console.log(email.value, password.value)
         try {
             await app
                 .auth()
-                .createUserWithEmailAndPassword(email.value, password.value, confirmPassword.value);
-            history.push("/");
+                .createUserWithEmailAndPassword(email.value, password.value);
+            history.push("/dashboard");
         } catch (error) {
             alert(error);
         }
@@ -33,8 +37,8 @@ const Signup = ({ history }) => {
                                     <Form.Group id="password" />
                                     <Form.Label>Password</Form.Label>
                                     <Form.Control name="password" type="password" placeholder="Minimum 8 characters" required />
-                                    <Form.Label>Confirm Password</Form.Label>
-                                    <Form.Control name="confirm-password" type="password" placeholder="Confirm" required />
+                                    {/* <Form.Label>Confirm Password</Form.Label>
+                                    <Form.Control name="confirmPassword" type="password" placeholder="Confirm" required /> */}
                                 </Form.Group>
                                 <Button className="mt-2" variant="success" type="submit">SignUp</Button>
                             </Form>
