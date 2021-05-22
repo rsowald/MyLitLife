@@ -1,4 +1,3 @@
-//import { isValidObjectId } from "mongoose";
 import React, { useState } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
@@ -7,6 +6,13 @@ import SearchForm from "../SearchForm";
 import "./BookQueue.css";
 import API from "../../utils/API";
 
+// const queue = API.getQueue()
+//   .then(res => {  
+//     console.log(res.data);
+//   })
+//   .catch(err => {
+//     console.log(err)
+//   });
 
 const completed = [
   {
@@ -355,21 +361,20 @@ function BookQueue() {
     console.log(query)
     API.searchBooks(inputQuery)
       .then(res => {
-        console.log(res.data.items)
-        // setBookResults(res.data.items)
-        // console.log(bookResults);
-        setColumns({
-          ...columns,
-          [1]: {
-            name: "Results",
-            items: res.data.items
-          }
-        });
+        if (res.data.items) {
+          setColumns({
+            ...columns,
+            [1]: {
+              name: "Results",
+              items: res.data.items
+            }
+          });
+        }
       })
       .catch(err => {
         console.log(err)
-      })
-  }
+      });
+    }
 
   function handleOnDragEnd(result, columns, setColumns) {
     if (!result.destination) return;
@@ -458,19 +463,26 @@ function BookQueue() {
                           }}
                         >
                           {column.items.map(({ volumeInfo, id }, index) => {
-                            var link = volumeInfo.infoLink;
-                            var image = volumeInfo.imageLinks.thumbnail;
-                            var title = volumeInfo.title;
+                            if (volumeInfo.infoLink) {
+                              var link = volumeInfo.infoLink;
+                            }                            
+                            if (volumeInfo.imageLinks) {
+                              var image = volumeInfo.imageLinks.thumbnail;
+                            }
+                            if (volumeInfo.title) {
+                              var title = volumeInfo.title;
+                            } else { var title = 'No Results'}
 
 
 
-                            return (
+
+                            return (                              
                               <Draggable
                                 key={id}
                                 draggableId={id}
                                 index={index}
                               >
-                                {(provided, snapshot, item) => {
+                                {(provided, snapshot) => {
                                   return (
                                     <div className="book-item"
                                       ref={provided.innerRef}

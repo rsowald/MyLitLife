@@ -13,11 +13,11 @@ app.use(cors());
 //port
 const PORT = process.env.PORT || 3001;
 const mongoose = require("mongoose");
-
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/MyLitLife", {useNewUrlParser: true});
 const router = require("./routes");
 app.use(router);
 
-// Needs to be changed to whatever we call the uri and collection
+
 const store = new MongoDBStore({
   uri: process.env.MONGODB_URI || "mongodb://localhost/MyLitLife",
   collection: "user",
