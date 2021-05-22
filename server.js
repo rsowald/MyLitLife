@@ -2,11 +2,12 @@ const cors = require('cors')
 const express = require("express");
 const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
+const router = require("./routes");
 
 
 const app = express();
-// const bodyParser = require('body-parser');
-const path = require("path");
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 app.use(cors());
 
@@ -14,7 +15,6 @@ app.use(cors());
 const PORT = process.env.PORT || 3001;
 const mongoose = require("mongoose");
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/MyLitLife", {useNewUrlParser: true});
-const router = require("./routes");
 app.use(router);
 
 
@@ -39,20 +39,10 @@ app.use(
   })
 );
 
-//After logout
-app.get('/', (req, res) => res.send('You are no longer logged in.'));
-
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
-
-// Send every request to the React app
-// Define any API routes before this runs
-app.get("*", function (req, res) {
-  res.sendFile(path.join(__dirname, "./client/public/index.html"));
-  // res.sendFile(path.join(__dirname, "./client/build/index.html"));
-});
 
 app.get('/logout', (req, res) => {
   req.session = null;
