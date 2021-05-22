@@ -15,18 +15,11 @@ app.use(express.json());
 
 //port
 const PORT = process.env.PORT || 3001;
-
-
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/MyLitLife", { useNewUrlParser: true });
 const router = require("./routes");
 app.use(router);
 
-// Why don't we need a mongoose connection?
-// mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/googlebooks", {
-//   useNewUrlParser: true,
-//   useFindAndModify: false
-// });
 
-// Needs to be changed to whatever we call the uri and collection
 const store = new MongoDBStore({
   uri: process.env.MONGODB_URI || "mongodb://localhost/MyLitLife",
   collection: "user",
