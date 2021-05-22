@@ -1,6 +1,4 @@
 const cors = require('cors')
-
-
 const express = require("express");
 const session = require("express-session");
 const MongoDBStore = require("connect-mongodb-session")(session);
