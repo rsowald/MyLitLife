@@ -1,4 +1,5 @@
 module.exports = {
   User: require("./User"),
-  Book: require("./Book")
+  Completed: require("./Completed"),
+  Enqueued: require("./Enqueued")
 };
