@@ -3,11 +3,10 @@ const db = require("../models");
 
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/MyLitLife");
 
-const bookSeed = [
+const completeSeed = [
     {
       "title": "The Fellowship of the Ring",
       "pageCount": 531,
-      "isComplete": true,
       "id": "_FjrugAACAAJ",
       "volumeInfo": {
         "title": "The Fellowship of the Ring",
@@ -51,50 +50,6 @@ const bookSeed = [
         "infoLink": "http://books.google.com/books?id=_FjrugAACAAJ&dq=fantasy&hl=&source=gbs_api",
         "canonicalVolumeLink": "https://books.google.com/books/about/The_Fellowship_of_the_Ring.html?hl=&id=_FjrugAACAAJ"
       },
-    },
-    {
-      "title": "A Midnight Fantasy",
-      "pageCount": 96,
-      "isComplete": false,
-      "id": "XtY-AAAAYAAJ",
-      "volumeInfo": {
-        "title": "A Midnight Fantasy",
-        "subtitle": "And The Little Violinist",
-        "authors": [
-          "Thomas Bailey Aldrich"
-        ],
-        "publishedDate": "1877",
-        "industryIdentifiers": [
-          {
-            "type": "OTHER",
-            "identifier": "HARVARD:HWJSK6"
-          }
-        ],
-        "readingModes": {
-          "text": false,
-          "image": true
-        },
-        "pageCount": 96,
-        "printType": "BOOK",
-        "categories": [
-          "Hamlet (Legendary character)"
-        ],
-        "maturityRating": "NOT_MATURE",
-        "allowAnonLogging": false,
-        "contentVersion": "0.2.3.0.full.1",
-        "panelizationSummary": {
-          "containsEpubBubbles": false,
-          "containsImageBubbles": false
-        },
-        "imageLinks": {
-          "smallThumbnail": "http://books.google.com/books/content?id=XtY-AAAAYAAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
-          "thumbnail": "http://books.google.com/books/content?id=XtY-AAAAYAAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
-        },
-        "language": "en",
-        "previewLink": "http://books.google.com/books?id=XtY-AAAAYAAJ&pg=PA70&dq=fantasy&hl=&cd=2&source=gbs_api",
-        "infoLink": "https://play.google.com/store/books/details?id=XtY-AAAAYAAJ&source=gbs_api",
-        "canonicalVolumeLink": "https://play.google.com/store/books/details?id=XtY-AAAAYAAJ"
-      }
     },
     {
       "title": "A Fantasy in Fustian",
@@ -188,9 +143,67 @@ const bookSeed = [
       }
     }
   ];
-  
-  db.Book.deleteMany({})
-  .then(() => db.Book.collection.insertMany(bookSeed))
+
+const queueSeed = [
+
+  {
+    "title": "A Midnight Fantasy",
+    "pageCount": 96,
+    "id": "XtY-AAAAYAAJ",
+    "volumeInfo": {
+      "title": "A Midnight Fantasy",
+      "subtitle": "And The Little Violinist",
+      "authors": [
+        "Thomas Bailey Aldrich"
+      ],
+      "publishedDate": "1877",
+      "industryIdentifiers": [
+        {
+          "type": "OTHER",
+          "identifier": "HARVARD:HWJSK6"
+        }
+      ],
+      "readingModes": {
+        "text": false,
+        "image": true
+      },
+      "pageCount": 96,
+      "printType": "BOOK",
+      "categories": [
+        "Hamlet (Legendary character)"
+      ],
+      "maturityRating": "NOT_MATURE",
+      "allowAnonLogging": false,
+      "contentVersion": "0.2.3.0.full.1",
+      "panelizationSummary": {
+        "containsEpubBubbles": false,
+        "containsImageBubbles": false
+      },
+      "imageLinks": {
+        "smallThumbnail": "http://books.google.com/books/content?id=XtY-AAAAYAAJ&printsec=frontcover&img=1&zoom=5&edge=curl&source=gbs_api",
+        "thumbnail": "http://books.google.com/books/content?id=XtY-AAAAYAAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api"
+      },
+      "language": "en",
+      "previewLink": "http://books.google.com/books?id=XtY-AAAAYAAJ&pg=PA70&dq=fantasy&hl=&cd=2&source=gbs_api",
+      "infoLink": "https://play.google.com/store/books/details?id=XtY-AAAAYAAJ&source=gbs_api",
+      "canonicalVolumeLink": "https://play.google.com/store/books/details?id=XtY-AAAAYAAJ"
+    }
+  }
+];
+
+  db.Completed.deleteMany({})
+  .then(() => db.Completed.collection.insertMany(completeSeed))
+  .then(data => {
+    console.log(data.result.n + " records inserted!");
+    process.exit(0);
+  })
+  .catch(err => {
+    console.error(err);
+    process.exit(1);
+  });
+
+  db.Enqueued.deleteMany({})
+  .then(() => db.Enqueued.collection.insertMany(queueSeed))
   .then(data => {
     console.log(data.result.n + " records inserted!");
     process.exit(0);
