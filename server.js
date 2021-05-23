@@ -7,8 +7,8 @@ const router = require("./routes");
 
 
 const app = express();
-// const bodyParser = require('body-parser');
-const path = require("path");
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
@@ -16,8 +16,8 @@ app.use(express.json());
 
 //port
 const PORT = process.env.PORT || 3001;
+const mongoose = require("mongoose");
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/MyLitLife", { useNewUrlParser: true });
-
 app.use(router);
 
 

@@ -2,13 +2,12 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
 const BookSchema = new Schema({
-  title: { type: String, required: true },
+  title: { type: String },
   pageCount: { type: Number },
-  isComplete: { type: Boolean, default: false },
   id: { type: String },
   volumeInfo: {}
 });
 
-const Book = mongoose.model("Book", BookSchema);
+const Completed = mongoose.model("Completed", BookSchema);
 
-module.exports = Book;
+module.exports = Completed;
