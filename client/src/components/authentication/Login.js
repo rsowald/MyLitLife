@@ -50,15 +50,19 @@ const Login = ({ history }) => {
                   <Form.Label>Password</Form.Label>
                   <Form.Control name="password" type="password" placeholder="Password" required />
                 </Form.Group>
-                <ButtonToolbar className="mt-2 justify-content-between" aria-label="Toolbar with Button groups">
-                  <Button variant="primary" type="submit">Login</Button>{' '}
-                  <Link className="btn btn-info" to="/signup">Signup</Link>
-                </ButtonToolbar>
+                <Button className="mt-3 w-100" variant="primary" type="submit">Login</Button>{' '}
               </Form>
               {/* <h5>Don't have an account, yet?</h5> */}
               {/* <p><Link to="/signup">Signup</Link> to get started.</p> */}
+
             </Card.Body>
           </Card>
+          <div className="text-center mt-2">
+            <h5>Don't have an account, yet?
+              <Link to="/signup"> Sign Up!</Link>
+            </h5>
+
+          </div>
         </Col>
       </Row>
     </Container>
