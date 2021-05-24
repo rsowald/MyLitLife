@@ -22,7 +22,7 @@ class App extends Component {
         <Router>
           <AppNav />
           <Switch>
-            <Route exact path="/" component={!user ? Home : Dashboard}> </Route>
+            <Route exact path="/" component={!user ? Home : Dashboard} />
             <Route exact path="/book-queue" component={BookQueue} />
             <PrivateRoute exact path="/dashboard" component={Dashboard} />
             <Route exact path="/api/books" component={Completed} />
