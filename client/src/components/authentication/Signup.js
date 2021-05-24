@@ -18,7 +18,7 @@ const Signup = ({ history }) => {
         if (passwordRef.current.value !== passwordConfirmRef.current.value) {
             return setPasswordError('Passwords do not match')
         } else if (passwordRef.current.value.length < 8) {
-            return setPasswordError('Passwords required to be at least 8 characters long')
+            return setPasswordError('Password required to be at least 8 characters long')
         }
         const { firstName, lastName, email, password, confirmPassword } = event.target.elements;
         console.log(firstName.value, lastName.value, email.value, password.value, confirmPassword.value)
@@ -52,7 +52,7 @@ const Signup = ({ history }) => {
                             <Form onSubmit={handleSignUp}>
 
                                 <Form.Label>First Name</Form.Label>
-                                <Form.Control name="firstName" type="name"  placeholder="First Name" required />
+                                <Form.Control name="firstName" type="name" placeholder="First Name" required />
                                 <Form.Label>Last Name</Form.Label>
                                 <Form.Control name="lastName" type="name" placeholder="Last Name" required />
                                 <Form.Group id="email">
