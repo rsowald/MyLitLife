@@ -23,6 +23,7 @@ const Signup = ({ history }) => {
         const { firstName, lastName, email, password, confirmPassword } = event.target.elements;
         console.log(firstName.value, lastName.value, email.value, password.value, confirmPassword.value)
         try {
+            console.log(emailRef.current.value, passwordRef.current.value)
             setLoading(true)
             await app
                 .auth()
@@ -51,12 +52,12 @@ const Signup = ({ history }) => {
                             <Form onSubmit={handleSignUp}>
 
                                 <Form.Label>First Name</Form.Label>
-                                <Form.Control name="firstName" type="name" ref={emailRef} placeholder="First Name" required />
+                                <Form.Control name="firstName" type="name"  placeholder="First Name" required />
                                 <Form.Label>Last Name</Form.Label>
                                 <Form.Control name="lastName" type="name" placeholder="Last Name" required />
                                 <Form.Group id="email">
                                     <Form.Label>Email</Form.Label>
-                                    <Form.Control name="email" type="email" placeholder="Email" required />
+                                    <Form.Control name="email" type="email" ref={emailRef} placeholder="Email" required />
                                 </Form.Group>
                                 <Form.Group id="password">
                                     <Form.Label>Password</Form.Label>
