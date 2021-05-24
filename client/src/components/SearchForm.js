@@ -33,6 +33,10 @@ function SearchForm(props) {
                             <Form.Label>Genre</Form.Label>
                             <Form.Control onChange={props.handleChange} type="text" name="genre" placeholder="genre" />
                         </Form.Group>
+                        <Form.Group controlId="formBasicIsbn">
+                            <Form.Label>ISBN</Form.Label>
+                            <Form.Control onChange={props.handleChange} type="text" name="isbn" placeholder="ISBN" />
+                        </Form.Group>
 
 
                         {/* <Button variant="primary" className="float-right mb-2" onClick={() => console.log("handleSearch")}>Search</Button> */}

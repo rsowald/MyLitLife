@@ -2,15 +2,10 @@ import React, { useState, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
 import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import SearchForm from "../SearchForm";
-//import uuid from "react-uuid";
 import "./BookQueue.css";
 import API from "../../utils/API";
 
 function BookQueue() {
-
- const data = API.completed()
-   .then(res => res.data)
-  console.log(data);
 
   const initColumns = {
     [1]: {
@@ -27,36 +22,16 @@ function BookQueue() {
     }
   };
 
-
   const [columns, setColumns] = useState(initColumns);
-  const [query, setQuery] = useState("");
-  const [bookResults, setBookResults] = useState([]);
+//  const [query, setQuery] = useState("");
 
   const [search, setSearch] = useState({
-
     title: "",
     author: "",
-    genre: ""
-
-  })
-
-  API.queue()
-  .then(res => {
-    if (res.data.items) {
-      setColumns({
-        ...columns,
-        [2]: {
-          name: "Book Queue",
-          items: res.data.items
-        }
-      });
-    }
+    genre: "",
+    isbn: ""
   })
   
-
-
-
-
   function handleChange(event) {
     console.log(event.target.name)
     const inputValue = event.target.value.toLowerCase().trim()
@@ -69,12 +44,34 @@ function BookQueue() {
 
   function handleSearch(event) {
     event.preventDefault();
-    const inputQuery = `${search.title}+inauthor:${search.author}`
-    // const inputQuery = `${state.title}`
-    console.log(inputQuery)
-    setQuery(inputQuery)
-    // const query = `${state.title}+inauthor:${state.author}+subject:${state.genre}`
-    console.log(query)
+    var queryCount = 0;
+    var inputQuery = '';
+    if (search.title){
+      inputQuery = `intitle:${search.title}`
+      queryCount++;
+    }
+    if (search.author){
+      if (queryCount > 0){
+        inputQuery += '+'
+      }
+      inputQuery += `inauthor:${search.author}`
+      queryCount++;
+    }
+    if (search.genre){
+      if (queryCount > 0){
+        inputQuery += '+'
+      }
+      inputQuery += `subject:${search.genre}`
+      queryCount++;      
+    }
+    if (search.isbn){
+      if (queryCount > 0){
+        inputQuery += '+'
+      }
+      inputQuery += `isbn:${search.isbn}`
+      queryCount++;      
+    }
+  //  setQuery(inputQuery)
     API.searchBooks(inputQuery)
       .then(res => {
         if (res.data.items) {
@@ -94,41 +91,29 @@ function BookQueue() {
 
 
   useEffect(() => {
-//    loadQueue(columns, setColumns);
-//    loadCompleted(columns, setColumns);
-  });
-
-  //   .then( res => {
-  //     setColumns({
-  //       ...columns,
-  //       [2]: {
-  //         name: "Book Queue",
-  //         items: res.data
-  //       }
-  //     })
-  //   })
-  //   .catch(err => {
-  //   console.log(err)
-  // });
-  // } 
-
-  // function loadCompleted(columns, setColumns) {
-  //   API.completed()
-  //   .then( res => {
-  //     setColumns({
-  //       ...columns,
-  //       [3]: {
-  //         name: "Completed",
-  //         items: res.data
-  //       }
-  //     })
-  //   })
-  //   .catch(err => {
-  //   console.log(err)
-  // });
-  // } 
+    loadQueue(columns, setColumns); 
+  }, []);
 
 
+  
+  function loadQueue(columns, setColumns) {
+    API.queue()
+      .then(res => {
+        if (res.data){
+          setColumns({
+            ...columns,
+            [2]: {
+              name: "Book Queue",
+              items: res.data
+            }
+          })
+        }
+      })
+      .catch(err => {
+        console.log(err)
+      });
+    } 
+ 
   function handleOnDragEnd(result, columns, setColumns) {
     if (!result.destination) return;
 
@@ -146,13 +131,13 @@ function BookQueue() {
       } else if (source.droppableId === '3') {
         API.removeFromCompleted(movedItem);
       }
-
+  
       if (destination.droppableId === '2') {
         API.addToQueue(movedItem);
       } else if (destination.droppableId === '3') {
         API.addToCompleted(movedItem);
       }
-
+    
       setColumns({
         ...columns,
         [source.droppableId]: {
@@ -189,19 +174,9 @@ function BookQueue() {
           title={search.title}
           author={search.author}
           genre={search.genre}
+          isbn={search.isbn}
         />
       </Row>
-      {/* <Row>
-        <Col md={8} sm={12}>
-          {bookResults.map(result => {
-            return (
-              <h1>Hello World</h1>
-            )
-
-          })}
-
-        </Col>
-      </Row> */}
       <Row>
         <DragDropContext onDragEnd={(result) => handleOnDragEnd(result, columns, setColumns)} >
           {Object.entries(columns).map(([columnId, column]) => {
@@ -225,15 +200,14 @@ function BookQueue() {
                           }}
                         >
                           {column.items.map(({ volumeInfo, id }, index) => {
-                            if (volumeInfo.infoLink) {
-                              var link = volumeInfo.infoLink;
-                            }                            
+                            var link = volumeInfo.infoLink;
+                            var image;
                             if (volumeInfo.imageLinks) {
-                              var image = volumeInfo.imageLinks.thumbnail;
+                              image = volumeInfo.imageLinks.thumbnail;
+                            } else {
+                              image = "https://books.google.com/googlebooks/images/no_cover_thumb.gif"
                             }
-                            if (volumeInfo.title) {
-                              var title = volumeInfo.title;
-                            } 
+                            var title = volumeInfo.title;
 
                             return (                              
                               <Draggable
@@ -258,6 +232,7 @@ function BookQueue() {
                                       }}
                                     >
                                       <a href={link}><img src={image} alt={title} /></a>
+                                      <p>{title}</p>
                                     </div>
                                   );
                                 }}
