@@ -25,7 +25,6 @@ export default {
         return axios.get("/api/books/queue");
     },
     addToQueue: function (item) {
-        console.log(item);
         return axios.post("/api/books/queue", item);
     },
     removeFromQueue: function (item) {
@@ -35,7 +34,6 @@ export default {
         return axios.get("/api/books/completed");
     },
     addToCompleted: function (item) {
-        console.log(item);
         return axios.post("/api/books/completed", item);
     },
     removeFromCompleted: function (item) {
