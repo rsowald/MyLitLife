@@ -23,8 +23,6 @@ function BookQueue() {
   };
 
   const [columns, setColumns] = useState(initColumns);
-//  const [query, setQuery] = useState("");
-
   const [search, setSearch] = useState({
     title: "",
     author: "",
@@ -33,13 +31,11 @@ function BookQueue() {
   })
   
   function handleChange(event) {
-    console.log(event.target.name)
     const inputValue = event.target.value.toLowerCase().trim()
     setSearch({
       ...search,
       [event.target.name]: inputValue
     });
-    console.log(search)
   }
 
   function handleSearch(event) {
@@ -71,7 +67,6 @@ function BookQueue() {
       inputQuery += `isbn:${search.isbn}`
       queryCount++;      
     }
-  //  setQuery(inputQuery)
     API.searchBooks(inputQuery)
       .then(res => {
         if (res.data.items) {
@@ -93,8 +88,6 @@ function BookQueue() {
   useEffect(() => {
     loadQueue(columns, setColumns); 
   }, []);
-
-
   
   function loadQueue(columns, setColumns) {
     API.queue()
