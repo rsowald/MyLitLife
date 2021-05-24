@@ -9,26 +9,31 @@ import NoMatch from "./components/pages/NoMatch";
 import "./App.css";
 import Login from "./components/authentication/Login";
 import Signup from "./components/authentication/Signup";
+import ForgotPassword from './components/authentication/ForgotPassword'
 // import Logout from "./components/Logout";
-import { AuthProvider } from "./components/authentication/Auth";
+import { AuthProvider } from "./components/authentication/context/AuthContext";
 import PrivateRoute from "./components/authentication/PrivateRoute";
+import UpdatePassword from "./components/authentication/UpdatePassword";
 
 class App extends Component {
   render() {
     return (
       <AuthProvider>
-      <Router>
-        <AppNav />
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/book-queue" component={BookQueue} />
-          <PrivateRoute exact path="/dashboard" component={Dashboard} />
-          <Route exact path="/api/books" component={Completed} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/signup" component={Signup} />
-          <Route component={NoMatch} />
-        </Switch>
-      </Router>
+        <Router>
+          <AppNav />
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <PrivateRoute exact path="/book-queue" component={BookQueue} />
+            <PrivateRoute exact path="/dashboard" component={Dashboard} />
+            <PrivateRoute exact path="/api/books" component={Completed} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/signup" component={Signup} />
+            <Route exact path="/forgot-password" component={ForgotPassword} />
+            <PrivateRoute path="/update-password" component={UpdatePassword} />
+
+            <Route component={NoMatch} />
+          </Switch>
+        </Router>
       </AuthProvider>
     );
   }
