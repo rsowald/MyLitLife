@@ -30,7 +30,8 @@ export default function Dashboard() {
             </header>
             <div className="container-fluid">
                 <div className="jumbotron-fluid">
-                    <h1 className="display-4">Hello, {currentUser.email}</h1>
+                    <h1 className="display-4">Hello, {currentUser.displayName.split(' ')[0]}</h1>
+                    {/* <h1 className="display-4">Hello, {currentUser.displayName}</h1> */}
                     <p className="lead">your UID: {currentUser.uid}</p>
                     <hr className="my-4" />
                     <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
