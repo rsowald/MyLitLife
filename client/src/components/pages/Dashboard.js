@@ -1,10 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
+import { useAuth } from "../authentication/context/AuthContext"
+import { Link } from "react-router-dom"
+import { Alert } from "react-bootstrap"
+
 import "./dashboard.css";
 
-function Dashboard() {
+export default function Dashboard() {
+    const { currentUser } = useAuth()
+    console.log(currentUser);
+
     return (
         <>
-
             <meta charSet="UTF-8" />
             <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
             <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -12,6 +18,7 @@ function Dashboard() {
             <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
             <title>DataDemo</title>
             <header className="masthead">
+                <h1 className="text-center mb-4">Hello </h1>
                 <div className="container h-100">
                     <div className="row h-100 align-items-center">
                         <div className="col-12 text-center">
@@ -23,8 +30,8 @@ function Dashboard() {
             </header>
             <div className="container-fluid">
                 <div className="jumbotron-fluid">
-                    <h1 className="display-4">Hello, world!</h1>
-                    <p className="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+                    <h1 className="display-4">Hello, {currentUser.email}</h1>
+                    <p className="lead">your UID: {currentUser.uid}</p>
                     <hr className="my-4" />
                     <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
                     <p className="lead">
@@ -63,4 +70,3 @@ function Dashboard() {
     )
 }
 
-export default Dashboard;
