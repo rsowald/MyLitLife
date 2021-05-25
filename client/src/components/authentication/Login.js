@@ -1,12 +1,14 @@
 import React, { useRef, useState } from "react";
 import { Link, useHistory } from 'react-router-dom';
 import { useAuth } from './context/AuthContext'
+import app from './fireBase'
+
 import { Container, Row, Col, Card, Form, Button, Alert } from "react-bootstrap";
 
 export default function Login() {
   const emailRef = useRef()
   const passwordRef = useRef()
-  const { login } = useAuth()
+  const { login, googleSignInPopup } = useAuth()
   const [firebaseError, setFirebaseError] = useState('')
   const [loading, setLoading] = useState(false)
   const history = useHistory()
@@ -26,6 +28,10 @@ export default function Login() {
     setLoading(false)
   };
 
+  function googleSignin() {
+    googleSignInPopup()
+
+  }
   return (
     <Container className="my-5">
       <Row className="justify-content-md-center">
@@ -42,8 +48,10 @@ export default function Login() {
                   <Form.Label>Password</Form.Label>
                   <Form.Control name="password" type="password" ref={passwordRef} placeholder="Password" required />
                 </Form.Group>
-                <Button className="mt-3 w-100" variant="primary" type="submit">Login</Button>{' '}
+                <Button className="mt-3 w-100" variant="primary" type="submit">Login</Button>
               </Form>
+              <Button className="mt-3 w-100" variant="primary" type="submit" onClick={googleSignin}>Login with Google</Button>
+
               <div className="text-center mt-3">
                 <Link to="/forgot-password">Forgot Password?</Link>
               </div>

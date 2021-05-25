@@ -1,4 +1,6 @@
 import firebase from "firebase/app";
+// import firebasee from "firebase";
+
 import "firebase/auth";
 
 const app = firebase.initializeApp({
@@ -10,6 +12,7 @@ const app = firebase.initializeApp({
     appId: process.env.REACT_APP_FIREBASE_APP_ID
 });
 
-// export const auth = app.auth()
+
+// export const provider = new firebasee.auth.GoogleAuthProvider();
 export default app;
 

@@ -1,5 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react'
 import app from '../fireBase'
+// import firebase from 'firebase'
+// import provider from '../fireBase'
 // import { auth } from "../Base"
 
 const AuthContext = React.createContext()
@@ -42,11 +44,39 @@ export function AuthProvider({ children }) {
 
     }
 
+    function googleSignInPopup(provider) {
+        console.log("started");
+        // var provider = new app.auth.GoogleAuthProvider();
+        return app.auth().signInWithPopup(provider)
+        app.auth()
+            .signInWithPopup(provider)
+            .then((result) => {
+                /** @type {firebase.auth.OAuthCredential} */
+                var credential = result.credential;
+
+                // This gives you a Google Access Token. You can use it to access the Google API.
+                var token = credential.accessToken;
+                // The signed-in user info.
+                var user = result.user;
+                // ...
+            }).catch((error) => {
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                // The email of the user's account used.
+                var email = error.email;
+                // The firebase.auth.AuthCredential type that was used.
+                var credential = error.credential;
+                // ...
+            });
+    }
+
     useEffect(() => {
         const unsubscribe = app.auth().onAuthStateChanged(user => {
             setCurrentUser(user)
             setLoading(false)
             setLoggedIn(true)
+
         })
 
         return unsubscribe
@@ -59,7 +89,8 @@ export function AuthProvider({ children }) {
         logout,
         resetPassword,
         updatePassword,
-        updateUser
+        updateUser,
+        googleSignInPopup
     }
     return (
         <AuthContext.Provider value={value} >
