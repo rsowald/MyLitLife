@@ -17,7 +17,6 @@ import UpdatePassword from "./components/authentication/UpdatePassword";
 
 class App extends Component {
   render() {
-    const user = app.auth().currentUser;
     return (
       <AuthProvider>
         <Router>

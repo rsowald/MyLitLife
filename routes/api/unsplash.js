@@ -10,7 +10,8 @@ router.get("/background", async (req, res) => {
     const backgrounds = pictures.map(picture => ({
         artist: picture.user.name,
         profile: picture.user.links.html,
-        image: picture.urls.regular
+        image: picture.urls.regular,
+        blur: picture.blur_hash
     }))
     res.json(backgrounds);
 });
