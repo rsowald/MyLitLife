@@ -5,10 +5,19 @@ import axios from 'axios';
 
 const BASEURL = "https://www.googleapis.com/books/v1/volumes?q=";
 
-// const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY || "AIzaSyD941-spNv5FIwmDGKp71VhEVUEWCU4Fi8"
-const API_KEY = "AIzaSyD941-spNv5FIwmDGKp71VhEVUEWCU4Fi8"
+const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
+
 
 export default {
+    getBackground: function () {
+        return axios.get(`/api/unsplash/background`)
+    },
+    getCompleted: function () {
+        return axios.get(`/api/books/completed`)
+    },
+    getQueue: function () {
+        return axios.get(`/api/books/queue`)
+    },
     searchBooks: function (query) {
         return axios.get(`${BASEURL}${query}&key=${API_KEY}`);
     },
@@ -19,7 +28,7 @@ export default {
         return axios.post("/api/books/queue", item);
     },
     removeFromQueue: function (item) {
-        return axios.delete("/api/books/queue/"+item.id);
+        return axios.delete("/api/books/queue/" + item.id);
     },
     completed: function () {
         return axios.get("/api/books/completed");
@@ -28,7 +37,7 @@ export default {
         return axios.post("/api/books/completed", item);
     },
     removeFromCompleted: function (item) {
-        return axios.delete("/api/books/completed/"+item.id);
+        return axios.delete("/api/books/completed/" + item.id);
     },
 
 };
