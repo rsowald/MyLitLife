@@ -46,7 +46,7 @@ function Background(props) {
                 style={{ display: "block", clear: "both" }}
             />
             { currentImage &&
-                <span>Photo by&nbsp;
+                <span className="bg-dark text-muted" style={{ paddingLeft: "20px" }}>Photo by&nbsp;
                    <a href={`${currentImage.profile}?utm_source=my-lit-life&utm_medium=referral`} target="_blank" rel="noopener noreferrer">{currentImage.artist}</a>
                    &nbsp;on <a href="https://unsplash.com/?utm_source=my-lit-life&utm_medium=referral" target="_blank" rel="noopener noreferrer">Unsplash</a>
                 </span>
