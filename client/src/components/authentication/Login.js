@@ -6,7 +6,6 @@ import { useAuth } from './context/AuthContext'
 import { provider } from './fireBase'
 
 import { Container, Row, Col, Card, Form, Button, Alert } from "react-bootstrap";
-import { googleSignIn } from './googleButton/GoogleSignIn';
 
 export default function Login() {
   const emailRef = useRef()
@@ -15,7 +14,6 @@ export default function Login() {
   const [firebaseError, setFirebaseError] = useState('')
   const [loading, setLoading] = useState(false)
   const history = useHistory()
-  const { googleSignIn } = useAuth()
 
   async function handleLogin(event) {
     event.preventDefault();
@@ -65,10 +63,6 @@ export default function Login() {
               <div className="text-center mt-3">
                 <Link to="/forgot-password">Forgot Password?</Link>
               </div>
-              <hr></hr>
-             <Button onClick={handleGoogleSignIn} type='Submit'>
-              Sign in with Google
-             </Button>
             </Card.Body>
           </Card>
           <div className="text-center mt-2">
