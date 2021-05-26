@@ -1,7 +1,9 @@
 import React, { useRef, useState } from "react";
 import { Link, useHistory } from 'react-router-dom';
 import { useAuth } from './context/AuthContext'
-import app from './fireBase'
+// import app from './fireBase'
+// import { provider } from './authProvider'
+import { provider } from './fireBase'
 
 import { Container, Row, Col, Card, Form, Button, Alert } from "react-bootstrap";
 
@@ -28,8 +30,14 @@ export default function Login() {
     setLoading(false)
   };
 
-  function googleSignin() {
-    googleSignInPopup()
+  async function googleSignin(provider) {
+    try {
+      await googleSignInPopup(provider)
+      history.push("/dashboard");
+    } catch (error) {
+      console.log(error);
+      setFirebaseError(error.message)
+    }
 
   }
   return (
@@ -50,7 +58,7 @@ export default function Login() {
                 </Form.Group>
                 <Button className="mt-3 w-100" variant="primary" type="submit">Login</Button>
               </Form>
-              <Button className="mt-3 w-100" variant="primary" type="submit" onClick={googleSignin}>Login with Google</Button>
+              <Button className="mt-3 w-100" variant="primary" type="submit" onClick={() => { googleSignin(provider) }}>Login with Google</Button>
 
               <div className="text-center mt-3">
                 <Link to="/forgot-password">Forgot Password?</Link>
