@@ -103,7 +103,7 @@ function BookQueue() {
         }
       })
       .catch(err => {
-        console.log(err)
+        console.log(err);
       });
   }
 
