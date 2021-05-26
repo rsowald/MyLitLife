@@ -43,28 +43,28 @@ function BookQueue() {
     var queryCount = 0;
     var inputQuery = '';
     if (search.title) {
-      inputQuery = `intitle:${search.title}`
+      inputQuery = `intitle:${search.title}`;
       queryCount++;
     }
     if (search.author) {
       if (queryCount > 0) {
-        inputQuery += '+'
+        inputQuery += '+';
       }
-      inputQuery += `inauthor:${search.author}`
+      inputQuery += `inauthor:${search.author}`;
       queryCount++;
     }
     if (search.genre) {
       if (queryCount > 0) {
-        inputQuery += '+'
+        inputQuery += '+';
       }
-      inputQuery += `subject:${search.genre}`
+      inputQuery += `subject:${search.genre}`;
       queryCount++;
     }
     if (search.isbn) {
       if (queryCount > 0) {
-        inputQuery += '+'
+        inputQuery += '+';
       }
-      inputQuery += `isbn:${search.isbn}`
+      inputQuery += `isbn:${search.isbn}`;
       queryCount++;
     }
     API.searchBooks(inputQuery)
@@ -224,7 +224,7 @@ function BookQueue() {
                                         ...provided.draggableProps.style
                                       }}
                                     >
-                                      <a href={link}><img src={image} alt={title} /></a>
+                                      <a href={link} target="_blank" rel="noopener noreferrer"><img src={image} alt={title} /></a>
                                       <p>{title}</p>
                                     </div>
                                   );
