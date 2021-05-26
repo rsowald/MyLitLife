@@ -29,7 +29,7 @@ function BookQueue() {
     genre: "",
     isbn: ""
   })
-  
+
   function handleChange(event) {
     const inputValue = event.target.value.toLowerCase().trim()
     setSearch({
@@ -42,30 +42,30 @@ function BookQueue() {
     event.preventDefault();
     var queryCount = 0;
     var inputQuery = '';
-    if (search.title){
+    if (search.title) {
       inputQuery = `intitle:${search.title}`;
       queryCount++;
     }
-    if (search.author){
-      if (queryCount > 0){
+    if (search.author) {
+      if (queryCount > 0) {
         inputQuery += '+';
       }
       inputQuery += `inauthor:${search.author}`;
       queryCount++;
     }
-    if (search.genre){
-      if (queryCount > 0){
+    if (search.genre) {
+      if (queryCount > 0) {
         inputQuery += '+';
       }
       inputQuery += `subject:${search.genre}`;
-      queryCount++;      
+      queryCount++;
     }
-    if (search.isbn){
-      if (queryCount > 0){
+    if (search.isbn) {
+      if (queryCount > 0) {
         inputQuery += '+';
       }
       inputQuery += `isbn:${search.isbn}`;
-      queryCount++;      
+      queryCount++;
     }
     API.searchBooks(inputQuery)
       .then(res => {
@@ -82,17 +82,17 @@ function BookQueue() {
       .catch(err => {
         console.log(err)
       });
-    }
+  }
 
 
   useEffect(() => {
-    loadQueue(columns, setColumns); 
+    loadQueue(columns, setColumns);
   }, []);
-  
+
   function loadQueue(columns, setColumns) {
     API.queue()
       .then(res => {
-        if (res.data){
+        if (res.data) {
           setColumns({
             ...columns,
             [2]: {
@@ -105,8 +105,8 @@ function BookQueue() {
       .catch(err => {
         console.log(err)
       });
-    } 
- 
+  }
+
   function handleOnDragEnd(result, columns, setColumns) {
     if (!result.destination) return;
 
@@ -124,13 +124,13 @@ function BookQueue() {
       } else if (source.droppableId === '3') {
         API.removeFromCompleted(movedItem);
       }
-  
+
       if (destination.droppableId === '2') {
         API.addToQueue(movedItem);
       } else if (destination.droppableId === '3') {
         API.addToCompleted(movedItem);
       }
-    
+
       setColumns({
         ...columns,
         [source.droppableId]: {
@@ -198,11 +198,11 @@ function BookQueue() {
                             if (volumeInfo.imageLinks) {
                               image = volumeInfo.imageLinks.thumbnail;
                             } else {
-                              image = "https://books.google.com/googlebooks/images/no_cover_thumb.gif"
+                              image = `${process.env.PUBLIC_URL}/cover_placeholder.jpg`;
                             }
                             var title = volumeInfo.title;
 
-                            return (                              
+                            return (
                               <Draggable
                                 key={id}
                                 draggableId={id}

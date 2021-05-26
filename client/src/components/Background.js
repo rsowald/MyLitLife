@@ -3,7 +3,7 @@ import API from '../utils/API';
 import ImageGallery from 'react-image-gallery';
 import "react-image-gallery/styles/css/image-gallery.css";
 
-function Background(props) {
+function Background() {
     const [images, setImages] = useState([]);
     const [imageIndex, setImageIndex] = useState(0);
 
