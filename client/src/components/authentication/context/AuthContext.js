@@ -1,7 +1,7 @@
 import React, { useContext, useState, useEffect } from 'react'
-import app from '../fireBase'
 // import app from '../fireBase'
-// import firebase from 'firebase'
+// import app from '../fireBase'
+import app from '../fireBase'
 // import provider from '../fireBase'
 // import { auth } from "../Base"
 
