@@ -1,5 +1,8 @@
 import React, { useContext, useState, useEffect } from 'react'
+// import app from '../fireBase'
+// import app from '../fireBase'
 import app from '../fireBase'
+// import provider from '../fireBase'
 // import { auth } from "../Base"
 
 const AuthContext = React.createContext()
@@ -42,11 +45,27 @@ export function AuthProvider({ children }) {
 
     }
 
+    function googleSignInPopup(provider) {
+        console.log(provider);
+        console.log("started");
+        // var provider = new app.auth.GoogleAuthProvider();
+        return app
+            .auth()
+            .signInWithPopup(provider)
+            .then((result) => {
+                console.log(result.user);
+                return result
+            }).catch((error) => {
+                console.log(error);
+            });
+    }
+
     useEffect(() => {
         const unsubscribe = app.auth().onAuthStateChanged(user => {
             setCurrentUser(user)
             setLoading(false)
             setLoggedIn(true)
+
         })
 
         return unsubscribe
@@ -59,7 +78,8 @@ export function AuthProvider({ children }) {
         logout,
         resetPassword,
         updatePassword,
-        updateUser
+        updateUser,
+        googleSignInPopup
     }
     return (
         <AuthContext.Provider value={value} >
