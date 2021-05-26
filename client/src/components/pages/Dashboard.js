@@ -15,7 +15,7 @@ function Dashboard() {
 
     return (
         <>
-        <Title></Title>
+<Title></Title>
         <div className="container">
         <Row>
         <Col md="3">

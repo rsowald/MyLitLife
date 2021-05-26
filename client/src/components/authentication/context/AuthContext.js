@@ -4,6 +4,7 @@ import React, { useContext, useState, useEffect } from 'react'
 import app from '../fireBase'
 // import provider from '../fireBase'
 // import { auth } from "../Base"
+// import { GoogleAuthProvider } from "firebase/auth";
 
 const AuthContext = React.createContext()
 

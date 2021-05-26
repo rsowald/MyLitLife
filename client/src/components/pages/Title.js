@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import { useAuth } from '../authentication/context/AuthContext';
 import './Title.css';
 
 function Title() {
