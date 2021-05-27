@@ -85,5 +85,15 @@ module.exports = {
             .then(dbModel => dbModel.remove())
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
+    },
+        getCompletedLimit: function (req, res) {
+        //  TODO: add userId to search criteria (done?)
+        Completed
+        //  --waiting to access currentUser
+            .find({ userId: currentUser }, '-_id')
+            .sort({ createdAt: -1 })
+            .limit(5)
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err));
     }
 };

@@ -15,6 +15,9 @@ export default {
     getCompleted: function () {
         return axios.get(`/api/books/completed`)
     },
+    getCompletedLimit: function () {
+        return axios.get(`/api/books/recent`)
+    },
     getQueue: function () {
         return axios.get(`/api/books/queue`)
     },

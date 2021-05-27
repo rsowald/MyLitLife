@@ -86,25 +86,39 @@ function BookQueue() {
 
 
   useEffect(() => {
-    loadQueue(columns, setColumns);
+    loadColumns(columns, setColumns);
   }, []);
 
-  function loadQueue(columns, setColumns) {
+  function loadColumns(columns, setColumns) {
+    var queue = [];
+    var comp = [];
     API.queue()
       .then(res => {
-        if (res.data) {
-          setColumns({
-            ...columns,
-            [2]: {
-              name: "Book Queue",
-              items: res.data
-            }
+        queue = res.data;
+      })
+        .then(() => {
+          API.getCompletedLimit()
+          .then(res => {
+            comp = res.data;
+            setColumns({
+              ...columns,
+              [2]: {
+                name: "Book Queue",
+                items: queue
+              },
+              [3]: {
+                name: "Completed",
+                items: comp
+              }
+            })
           })
-        }
+        })
+        .catch(err => {
+          console.log(err);
       })
       .catch(err => {
         console.log(err);
-      });
+    });
   }
 
   function handleOnDragEnd(result, columns, setColumns) {
