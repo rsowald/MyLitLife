@@ -12,8 +12,8 @@ const API_KEY_Glossary = "d0a0ba1b62842eb7b002340c1b1b7723"
 
 const APP_KEY_Merriam_Dictionary = "f98cea37-bf71-4164-afc9-2bbaf979b4c3"
 const APP_KEY_Merriam_Thesaurus = "9b0a6644-633b-4299-bc65-c30bb8137369"
-const merriam_Dictionary_Base_URL = 'https://www.dictionaryapi.com/api/v3/references/collegiate/json/';
-
+const merriam_Collegiate_Dictionary_Base_URL = 'https://www.dictionaryapi.com/api/v3/references/collegiate/json/';
+const merriam_Thesaurus_Dictionary_Base_URL = 'https://www.dictionaryapi.com/api/v3/references/thesaurus/json/';
 
 export default {
     getBackground: function () {
@@ -23,9 +23,14 @@ export default {
         return axios.get(`${bookSearchBaseURL}${query}&key=${API_KEY_Search_Book}`);
     },
     searchInMerriamDictionary: function (query) {
-        console.log(query);
-        console.log(`${merriam_Dictionary_Base_URL}${query}?key=${APP_KEY_Merriam_Dictionary}`);
-        return axios.get(`${merriam_Dictionary_Base_URL}${query}?key=${APP_KEY_Merriam_Dictionary}`);
+        // console.log(query);
+        // console.log(`${merriam_Dictionary_Base_URL}${query}?key=${APP_KEY_Merriam_Dictionary}`);
+        return axios.get(`${merriam_Collegiate_Dictionary_Base_URL}${query}?key=${APP_KEY_Merriam_Dictionary}`);
+    },
+    searchInMerriamDictionaryy: function (query) {
+        // console.log(query);
+        // console.log(`${merriam_Dictionary_Base_URL}${query}?key=${APP_KEY_Merriam_Dictionary}`);
+        return axios.get(`${merriam_Thesaurus_Dictionary_Base_URL}${query}?key=${APP_KEY_Merriam_Thesaurus}`);
     },
     // searchInDictionary: function (query) {
     //     return axios(

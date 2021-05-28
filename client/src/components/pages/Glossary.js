@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Container, Row, Col, Card, Form, Button, Alert, Spinner, ListGroup } from "react-bootstrap";
+import { Container, Row, Col, Card, Form, Button, Alert, Spinner, ListGroup, Accordion } from "react-bootstrap";
 import API from "../../utils/API";
 
 export default function Glossary() {
@@ -8,7 +8,8 @@ export default function Glossary() {
     const [errorMessage, seterrorMessage] = useState('')
     const [btnLoading, setBtnLoading] = useState(false)
     const [btnSpin, setBtnSpinner] = useState(false)
-    const [searchResult, setsearchResult] = useState()
+    const [searchResult, setsearchResult] = useState("")
+    const [open, setOpen] = useState(false);
 
     async function handleSearch(event) {
         event.preventDefault();
@@ -21,16 +22,12 @@ export default function Glossary() {
             setBtnLoading(true)
             const query = wordRef.current.value
             await API.searchInMerriamDictionary(wordRef.current.value)
+
                 .then(results => {
                     // console.log(results);
                     console.log(results.data);
                     setsearchResult(results.data)
                 })
-
-            // API.searchInDictionary(wordRef)
-            //     .then(results => {
-            //         console.log(results);
-            //     })
         } catch (error) {
             console.log(error)
             seterrorMessage(error.message)
@@ -41,23 +38,16 @@ export default function Glossary() {
 
     return (
         <>
-            <Card className='my-3'>
-                <Row className="no-gutters vertical-divider">
+            <Card className='my-3' style={{ textAlign: 'left' }}>
+                <Row className="no-gutters ">
                     <h3 className="text-center mb-4">Glossary</h3>
                     <hr />
-
-
                     <Col md="8" >
-
-
                         <p className="d-flex justify-content-start">
                             Get the most trusted, up-to-date definitions from Merriam:
                     </p>
                         {/* {passwordError && <Alert variant="danger">{passwordError}</Alert>} */}
                         {/* {errorMessage && <Alert variant="danger">{errorMessage}</Alert>} */}
-
-
-
                     </Col>
                     <Col className="border-start  border-dark" md="4">
                         <Form onSubmit={handleSearch}>
@@ -76,33 +66,53 @@ export default function Glossary() {
                         </Form>
                     </Col>
                 </Row>
-                {searchResult &&
-                    <Row className="mt-3">
-                        <hr />
+                <Row className="mt-3 ">
+                    {searchResult.length
+                        ? <Col className="d-flex justify-content-start">
+                            <hr />
+                            <Alert className="text-left " variant="success">
+                                < Alert.Heading >Definition: </Alert.Heading>
+                                <p>
+                                    {searchResult[0].shortdef}
+                                </p>
 
-                        <Col sm="12" md="6">
-                            <Card style={{ width: '18rem' }}>
-                                <Card.Header>{wordRef.current.value}</Card.Header>
-                                <ListGroup variant="flush">
-                                    {searchResult.map(res => {
-                                        return (
-                                            <>
-                                                <ListGroup.Item key={res.meta.uuid}>{res.shortdef}</ListGroup.Item>
 
-                                            </>
-                                        )
-                                    })}
+                                <Accordion defaultActiveKey="0" >
+                                    <Card style={{ textAlign: "left" }}>
+                                        <Card.Header>
+                                            <Accordion.Toggle as={Button} eventKey="1">
+                                                More responses
+                                                        </Accordion.Toggle>
+                                        </Card.Header>
+                                        <Accordion.Collapse eventKey="1">
+                                            <Card.Body>
+                                                {searchResult.map((definition, index) => {
 
-                                </ListGroup>
-                            </Card>
-
+                                                    var index = index + 1;
+                                                    return (
+                                                        <>
+                                                            <div>
+                                                                <strong>Definition {index}: ({definition.fl})</strong>
+                                                                <p>
+                                                                    {definition.shortdef}
+                                                                </p>
+                                                            </div>
+                                                            <hr />
+                                                        </>
+                                                    )
+                                                })
+                                                }
+                                            </Card.Body>
+                                        </Accordion.Collapse>
+                                    </Card>
+                                </Accordion>
+                            </Alert>
+                            {/* : <p>No result found for {wordRef.current.value}</p>} */}
                         </Col>
-                    </Row>
-                }
-
+                        : <p></p>}
+                </Row>
             </Card>
         </>
     )
-
 }
 
