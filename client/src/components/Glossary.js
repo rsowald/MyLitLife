@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { Container, Row, Col, Card, Form, Button, Alert, Spinner, ListGroup, Accordion } from "react-bootstrap";
-import API from "../../utils/API";
+import API from "../utils/API";
 
 export default function Glossary() {
     const wordRef = useRef()
@@ -38,7 +38,7 @@ export default function Glossary() {
 
     return (
         <>
-            <Card className='my-3' style={{ textAlign: 'left' }}>
+            <Card className='my-3' style={{ textAlign: 'left', backgroundColor: "#f7d065" }}>
                 <Row className="no-gutters ">
                     <h3 className="text-center mb-4">Glossary</h3>
                     <hr />

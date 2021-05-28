@@ -1,15 +1,10 @@
 import React from "react";
 // react-bootstrap components
-import {
-  Card,
-  Row,
-  Col,
-  Button,
-  ButtonToolbar
-} from "react-bootstrap";
-import Title from './Title';
+import { Container, Card, Row, Col, Button, ButtonToolbar } from "react-bootstrap";
+import Title from '../Title';
 import "./dashboard.css";
-import Glossary from "./Glossary";
+import Glossary from "../Glossary";
+import DashboardQuoteCol from "../DashboardQuoteCol";
 
 export default function Dashboard() {
   // const bookGoals = useRef();
@@ -17,8 +12,8 @@ export default function Dashboard() {
   return (
     <>
       <Title />
-      <div className="container">
-    <Row className="d-flex justify-content-center">
+      <Container fluid="md">
+        <Row className="d-flex justify-content-center">
           <Col>
             <Glossary />
           </Col>
@@ -63,9 +58,9 @@ export default function Dashboard() {
               </Card.Footer>
             </Card>
           </Col>
-          <Col>
-            Insert Quote Here
-        </Col>
+          <Col className="d-flex">
+            <DashboardQuoteCol />
+          </Col>
           <Col md="4">
             <Card className="card-queue" style={{ backgroundColor: "#f7d065" }}>
               <Card.Body>
@@ -175,7 +170,7 @@ export default function Dashboard() {
 
           </Col>
         </Row>
-      </div>
+      </Container>
     </>
   )
 }
