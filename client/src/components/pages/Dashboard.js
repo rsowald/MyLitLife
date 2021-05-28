@@ -16,17 +16,16 @@ export default function Dashboard() {
 
   return (
     <>
-      <Title></Title>
+      <Title />
       <div className="container">
-        <Row className="d-flex justify-content-center">
+    <Row className="d-flex justify-content-center">
           <Col>
             <Glossary />
           </Col>
         </Row>
         <Row>
           <Col md="4">
-
-            <Card className="card-stats">
+            <Card className="card-stats" style={{ backgroundColor: "#f7d065" }}>
               <Card.Body>
                 <Row>
                   <Col xs="2">
@@ -64,11 +63,11 @@ export default function Dashboard() {
               </Card.Footer>
             </Card>
           </Col>
-          <Col md="4">
+          <Col>
             Insert Quote Here
-          </Col>
+        </Col>
           <Col md="4">
-            <Card className="card-queue">
+            <Card className="card-queue" style={{ backgroundColor: "#f7d065" }}>
               <Card.Body>
                 <Row>
                   <Col xs="2">
@@ -109,7 +108,7 @@ export default function Dashboard() {
                 <br></br>
               </Row>
               <Col md="12">
-                <Card className="card-completed-form">
+                <Card className="card-completed-form" style={{ backgroundColor: "#f7d065" }}>
                   <Card.Body>
                     <Row>
                       <Col xs="2">
