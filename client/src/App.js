@@ -6,7 +6,7 @@ import Dashboard from "./components/pages/Dashboard";
 import BookQueue from "./components/pages/BookQueue";
 import Completed from "./components/pages/Completed";
 import NoMatch from "./components/pages/NoMatch";
-import Glossary from "./components/pages/Glossary";
+import Glossary from "./components/Glossary";
 import "./App.css";
 import Login from "./components/authentication/Login";
 import Signup from "./components/authentication/Signup";
