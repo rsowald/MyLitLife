@@ -9,6 +9,7 @@ import {
 } from "react-bootstrap";
 import Title from './Title';
 import "./dashboard.css";
+import Glossary from "./Glossary";
 
 export default function Dashboard() {
   // const bookGoals = useRef();
@@ -17,6 +18,11 @@ export default function Dashboard() {
     <>
       <Title />
       <div className="container">
+    <Row className="d-flex justify-content-center">
+          <Col>
+            <Glossary />
+          </Col>
+        </Row>
         <Row>
           <Col md="4">
             <Card className="card-stats" style={{ backgroundColor: "#f7d065" }}>
