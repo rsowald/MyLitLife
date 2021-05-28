@@ -3,9 +3,8 @@ const { Schema } = mongoose;
 
 const BookSchema = new Schema({
   userId: { type: String, required: true },
-//  title: { type: String },
-//  pageCount: { type: Number },
-  id: { type: String, unique: true },
+  createdAt: {type: Date, default:Date.now },
+  id: { type: String },
   volumeInfo: {}
 });
 
