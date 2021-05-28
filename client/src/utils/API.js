@@ -43,32 +43,33 @@ export default {
     //             }
     //         });
     // },
-    getCompleted: function () {
-        return axios.get(`/api/books/completed`)
+    getCompleted: function (user) {
+        return axios.get(`/api/books/completed/${user}`);
     },
-    getCompletedLimit: function () {
-        return axios.get(`/api/books/recent`)
+    getCompletedLimit: function (user) {
+        return axios.get(`/api/books/recent/${user}`)
     },
-    getQueue: function () {
-        return axios.get(`/api/books/queue`)
+    getQueue: function (user) {
+        return axios.get(`/api/books/queue/${user}`)
     },
-    queue: function () {
-        return axios.get("/api/books/queue");
+
+    queue: function (user) {
+        return axios.get(`/api/books/queue/${user}`);
     },
-    addToQueue: function (item) {
-        return axios.post("/api/books/queue", item);
+    addToQueue: function (item, user) {
+        return axios.post(`/api/books/queue/${user}`, item);
     },
-    removeFromQueue: function (item) {
-        return axios.delete("/api/books/queue/" + item.id);
+    removeFromQueue: function (id, user) {
+        return axios.delete(`/api/books/queue/${user}/${id}`);
     },
-    completed: function () {
-        return axios.get("/api/books/completed");
+    completed: function (user) {
+        return axios.get(`/api/books/completed/${user}`);
     },
-    addToCompleted: function (item) {
-        return axios.post("/api/books/completed", item);
+    addToCompleted: function (item, user) {
+        return axios.post(`/api/books/completed/${user}`, item);
     },
-    removeFromCompleted: function (item) {
-        return axios.delete("/api/books/completed/" + item.id);
-    },
+    removeFromCompleted: function (id, user) {
+        return axios.delete(`/api/books/completed/${user}/${id}`);
+    }
 
 };
