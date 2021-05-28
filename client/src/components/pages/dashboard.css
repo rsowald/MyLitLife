@@ -16,20 +16,22 @@
 }
 
 .card {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  /* this adds the "card" effect */
   padding: 16px;
   text-align: center;
-  background-color: #f7d065 !important;
-  color: saddlebrown !important;
+  background-color: #f7d065;
+  color: saddlebrown;
 }
 
 .card-stats {
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); /* this adds the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  /* this adds the "card" effect */
   padding: 10px;
   height: 800px;
   text-align: left;
-  background-color: #f7d065 !important;
-  color: saddlebrown !important;
+  background-color: #f7d065;
+  color: saddlebrown;
 }
 
 .form-inline {
