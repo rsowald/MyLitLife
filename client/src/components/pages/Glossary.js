@@ -44,7 +44,7 @@ export default function Glossary() {
                     <hr />
                     <Col md="8" >
                         <p className="d-flex justify-content-start">
-                            Get the most trusted, up-to-date definitions from Merriam:
+                            Get the most trusted, up-to-date definitions from Merriam Dictionary:
                     </p>
                         {/* {passwordError && <Alert variant="danger">{passwordError}</Alert>} */}
                         {/* {errorMessage && <Alert variant="danger">{errorMessage}</Alert>} */}
@@ -52,7 +52,7 @@ export default function Glossary() {
                     <Col className="border-start  border-dark" md="4">
                         <Form onSubmit={handleSearch}>
                             <Form.Group className="mb-3" id="word">
-                                <Form.Label className="" >Search for word:</Form.Label>
+                                <Form.Label className="" >Search for a word:</Form.Label>
                                 <Form.Control name="word" type="text" ref={wordRef} placeholder="Ex: exponential" required />
                             </Form.Group>
                             <Row className="d-flex justify-content">
