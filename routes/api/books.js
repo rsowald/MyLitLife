@@ -12,6 +12,10 @@ router.route("/queue")
 router.route("/completed/:id")
     .delete(booksController.removeCompleted);
 
+router.route("/recent")
+    .get(booksController.getCompletedLimit)
+
+
 router.route("/queue/:id")
     .delete(booksController.removeEnqueued);
 
