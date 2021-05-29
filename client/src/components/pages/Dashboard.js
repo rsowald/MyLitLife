@@ -18,13 +18,8 @@ export default function Dashboard() {
     <>
       <Title />
       <div className="container">
-    <Row className="d-flex justify-content-center">
+        <Row className="d-flex justify-content-center mb-3">
           <Col>
-            <Glossary />
-          </Col>
-        </Row>
-        <Row>
-          <Col md="4">
             <Card className="card-stats" style={{ backgroundColor: "#f7d065" }}>
               <Card.Body>
                 <Row>
@@ -62,6 +57,12 @@ export default function Dashboard() {
                 </div>
               </Card.Footer>
             </Card>
+          </Col>
+        </Row>
+        <Row>
+          <Col md="4">
+            <Glossary />
+
           </Col>
           <Col>
             Insert Quote Here
