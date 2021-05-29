@@ -60,8 +60,8 @@ export default function Dashboard() {
 
           </Col>
           <Col>
-            Insert Quote Here
-        </Col>
+            <DashboardQuoteCol />
+          </Col>
           <Col md="4">
             <Card className="card-queue" style={{ backgroundColor: "#f7d065" }}>
               <Card.Body>
