@@ -1,15 +1,10 @@
 import React from "react";
 // react-bootstrap components
-import {
-  Card,
-  Row,
-  Col,
-  Button,
-  ButtonToolbar
-} from "react-bootstrap";
-import Title from './Title';
+import { Container, Card, Row, Col, Button, ButtonToolbar } from "react-bootstrap";
+import Title from '../Title';
 import "./dashboard.css";
-import Glossary from "./Glossary";
+import Glossary from "../Glossary";
+import DashboardQuoteCol from "../DashboardQuoteCol";
 
 export default function Dashboard() {
   // const bookGoals = useRef();
@@ -176,7 +171,7 @@ export default function Dashboard() {
 
           </Col>
         </Row>
-      </div>
+      </Container>
     </>
   )
 }

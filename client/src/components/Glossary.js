@@ -41,7 +41,7 @@ function Glossary() {
 
     return (
         <>
-            <Card className='my-3' style={{ textAlign: 'left' }}>
+            <Card className='my-3' style={{ textAlign: 'left', backgroundColor: "#f7d065" }}>
                 <Row className="no-gutters ">
                     <h3 className="text-center mb-4">Glossary</h3>
                     <hr />

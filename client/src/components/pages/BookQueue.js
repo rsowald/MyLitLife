@@ -4,9 +4,12 @@ import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd";
 import SearchForm from "../SearchForm";
 import "./BookQueue.css";
 import API from "../../utils/API";
+import { useAuth } from "../authentication/context/AuthContext";
 
 function BookQueue() {
+  const { currentUser } = useAuth();
 
+  const user = currentUser.uid;
   const initColumns = {
     [1]: {
       name: "Results",
@@ -92,12 +95,12 @@ function BookQueue() {
   function loadColumns(columns, setColumns) {
     var queue = [];
     var comp = [];
-    API.queue()
+    API.queue(user)
       .then(res => {
         queue = res.data;
       })
         .then(() => {
-          API.getCompletedLimit()
+          API.getCompletedLimit(user)
           .then(res => {
             comp = res.data;
             setColumns({
@@ -134,15 +137,15 @@ function BookQueue() {
       const [movedItem] = sourceItems.splice(result.source.index, 1);
       destItems.splice(result.destination.index, 0, movedItem);
       if (source.droppableId === '2') {
-        API.removeFromQueue(movedItem);
+        API.removeFromQueue(movedItem.id, user);
       } else if (source.droppableId === '3') {
-        API.removeFromCompleted(movedItem);
+        API.removeFromCompleted(movedItem.id, user);
       }
 
       if (destination.droppableId === '2') {
-        API.addToQueue(movedItem);
+        API.addToQueue(movedItem, user);
       } else if (destination.droppableId === '3') {
-        API.addToCompleted(movedItem);
+        API.addToCompleted(movedItem, user);
       }
 
       setColumns({
