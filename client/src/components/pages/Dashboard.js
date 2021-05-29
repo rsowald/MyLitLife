@@ -13,6 +13,11 @@ export default function Dashboard() {
     <>
       <Title />
       <Container>
+        <Row>
+          <Col className="mb-5">
+            <DashboardQuoteCol />
+          </Col>
+        </Row>
         <Row className="d-flex justify-content-center mb-3">
           <Col>
             <Card className="card-stats" style={{ backgroundColor: "#f7d065" }}>
@@ -53,15 +58,7 @@ export default function Dashboard() {
               </Card.Footer>
             </Card>
           </Col>
-        </Row>
-        <Row>
-          <Col md="4">
-            <Glossary />
 
-          </Col>
-          <Col>
-            <DashboardQuoteCol />
-          </Col>
           <Col md="4">
             <Card className="card-queue" style={{ backgroundColor: "#f7d065" }}>
               <Card.Body>
@@ -170,6 +167,13 @@ export default function Dashboard() {
             </Row>
 
           </Col>
+        </Row>
+        <Row>
+          <Col >
+            <Glossary />
+
+          </Col>
+
         </Row>
       </Container>
     </>

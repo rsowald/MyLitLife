@@ -13,10 +13,13 @@ import {
   ListGroupItem,
 } from "react-bootstrap";
 import "./BookQueue";
+import { useAuth } from '../authentication/context/AuthContext'
 
 function CompletedBooks() {
+  const { currentUser } = useAuth();
   return (
     <Container>
+      <h1>{currentUser.uid}</h1>
       <Row>
         <Col size="md-8" className="text-left" style={{ borderRadius: "5px" }}>
           <h1>Completed Books</h1>
