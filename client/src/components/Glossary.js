@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { Container, Row, Col, Card, Form, Button, Alert, Spinner, ListGroup, Accordion } from "react-bootstrap";
-import API from "../../utils/API";
+import API from "../utils/API";
 // import DictionaryResult from '../DictionaryResult'
 
 function Glossary() {

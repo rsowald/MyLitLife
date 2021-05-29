@@ -12,7 +12,7 @@ export default function Dashboard() {
   return (
     <>
       <Title />
-      <div className="container">
+      <Container>
         <Row className="d-flex justify-content-center mb-3">
           <Col>
             <Card className="card-stats" style={{ backgroundColor: "#f7d065" }}>
