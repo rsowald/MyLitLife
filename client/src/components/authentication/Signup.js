@@ -1,10 +1,10 @@
 import React, { useRef, useState } from "react";
 import { Link, useHistory } from "react-router-dom"
 import { useAuth } from './context/AuthContext'
-import { Container, Row, Col, Card, Form, Button, Alert, Spinner } from "react-bootstrap";
+import { Card, Form, Button, Alert, Spinner } from "react-bootstrap";
 import app from './fireBase'
 
-export default function Signup() {
+export default function Signup(props) {
     const emailRef = useRef()
     const passwordRef = useRef()
     const passwordConfirmRef = useRef()
@@ -48,52 +48,46 @@ export default function Signup() {
     }
 
     return (
-        <Container className="my-5">
-            <Row className="justify-content-md-center">
-                <Col lg={6} md={8} sm={12}>
-                    <Card>
-                        <Card.Body>
-                            <h3 className="text-center mb-4">Sign Up</h3>
-                            {/* {currentUser.email} */}
-                            {passwordError && <Alert variant="danger">{passwordError}</Alert>}
-                            {firebaseError && <Alert variant="danger">{firebaseError}</Alert>}
-                            <Form onSubmit={handleSignUp}>
-                                <Form.Group className="mb-3" id="fName">
-                                    <Form.Label >First Name</Form.Label>
-                                    <Form.Control name="firstName" type="name" ref={fNameRef} placeholder="First Name" required />
-                                </Form.Group>
-                                <Form.Group className="mb-3" id="lName">
-                                    <Form.Label>Last Name</Form.Label>
-                                    <Form.Control name="lastName" type="name" ref={lNameRef} placeholder="Last Name" required />
-                                </Form.Group>
-                                <Form.Group className="mb-3" id="email">
-                                    <Form.Label>Email</Form.Label>
-                                    <Form.Control name="email" type="email" ref={emailRef} placeholder="Email" required />
-                                </Form.Group>
-                                <Form.Group className="mb-3" id="password">
-                                    <Form.Label>Password</Form.Label>
-                                    <Form.Control name="password" type="password" ref={passwordRef} placeholder="Minimum 8 characters." required />
-                                </Form.Group>
-                                <Form.Group className="mb-3" id="confirmPassword">
-                                    <Form.Label>Confirm Password</Form.Label>
-                                    <Form.Control name="confirmPassword" type="password" ref={passwordConfirmRef} placeholder="Confirm Password" required />
-                                </Form.Group>
+        <Card>
+            <Card.Body>
+                <h3 className="text-center mb-4">Sign Up</h3>
+                {/* {currentUser.email} */}
+                {passwordError && <Alert variant="danger">{passwordError}</Alert>}
+                {firebaseError && <Alert variant="danger">{firebaseError}</Alert>}
+                <Form onSubmit={handleSignUp}>
+                    <Form.Group className="mb-3" id="fName">
+                        <Form.Label >First Name</Form.Label>
+                        <Form.Control name="firstName" type="name" ref={fNameRef} placeholder="First Name" required />
+                    </Form.Group>
+                    <Form.Group className="mb-3" id="lName">
+                        <Form.Label>Last Name</Form.Label>
+                        <Form.Control name="lastName" type="name" ref={lNameRef} placeholder="Last Name" required />
+                    </Form.Group>
+                    <Form.Group className="mb-3" id="email">
+                        <Form.Label>Email</Form.Label>
+                        <Form.Control name="email" type="email" ref={emailRef} placeholder="Email" required />
+                    </Form.Group>
+                    <Form.Group className="mb-3" id="password">
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control name="password" type="password" ref={passwordRef} placeholder="Minimum 8 characters." required />
+                    </Form.Group>
+                    <Form.Group className="mb-3" id="confirmPassword">
+                        <Form.Label>Confirm Password</Form.Label>
+                        <Form.Control name="confirmPassword" type="password" ref={passwordConfirmRef} placeholder="Confirm Password" required />
+                    </Form.Group>
 
-                                {!spin
-                                    ? < Button disabled={loading} className="mt-3 w-100" variant="success" type="submit">Sign Up</Button>
-                                    : <Spinner className="mt-3" animation="border" variant="success" />
-                                }
-                            </Form>
-                        </Card.Body>
-                    </Card>
-                    <div className="text-center mt-2">
-                        <h5>
-                            Have an account, <Link to="/login">Log in!</Link>
-                        </h5>
-                    </div>
-                </Col>
-            </Row >
-        </Container >
+                    {!spin
+                        ? < Button disabled={loading} className="mt-3 w-100" variant="success" type="submit">Sign Up</Button>
+                        : <Spinner className="mt-3" animation="border" variant="success" />
+                    }
+                </Form>
+            </Card.Body>
+            <Card.Footer className="text-center mt-2">
+                <h5>
+                    Have an account? <Button size="sm" className="ml-2" onClick={() => props.onClick()}>Log in!</Button>
+                </h5>
+            </Card.Footer>
+        </Card>
     );
 };
 
