@@ -1,0 +1,12 @@
+.sidePanel {
+  min-width: 400px;
+  max-width: 400px;
+  height: 100vh;
+  position: absolute;
+  top: 0;
+  left: 0;
+  /* top layer */
+  z-index: 10;
+  background-color: #212529;
+  padding-top: 20px;
+}

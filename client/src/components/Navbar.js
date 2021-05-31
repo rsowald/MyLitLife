@@ -1,14 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Navbar from 'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav'
 import { Link, useHistory } from 'react-router-dom';
-// import { Link } from 'react-router-dom';
-import { useAuth } from "./authentication/context/AuthContext"
-import app from "./authentication/fireBase";
+import { useAuth } from "./authentication/context/AuthContext";
 
 export default function AppNav() {
-    const { currentUser, logout, loggedIn } = useAuth()
-    // const { logout } = useAuth()
+    const { currentUser, logout } = useAuth()
     const history = useHistory()
 
     async function handleLogout() {
@@ -27,19 +24,10 @@ export default function AppNav() {
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
                 <Nav>
-
-                    {!currentUser
-                        ? < Link to="/login" style={{ textDecoration: "none" }}><Nav.Link as="div">Login</Nav.Link></Link>
-                        : <>
-                            <Link to="/dashboard" style={{ textDecoration: "none" }}><Nav.Link as="div">Dashboard</Nav.Link></Link>
-                            <Link to="/book-queue" style={{ textDecoration: "none" }}><Nav.Link as="div">Book Queue</Nav.Link></Link>
-                            <Link to="/api/books" style={{ textDecoration: "none" }}><Nav.Link as="div">Completed Books</Nav.Link></Link>
-                            <Link to="/" onClick={handleLogout} style={{ textDecoration: "none" }}><Nav.Link as="div">Logout</Nav.Link></Link>
-                        </>
-
-                    }
-                    {/* onClick={handleLogout()} */}
-                    {/* onClick={() => app.auth().signOut()} */}
+                    <Link to="/dashboard" style={{ textDecoration: "none" }}><Nav.Link as="div">Dashboard</Nav.Link></Link>
+                    <Link to="/book-queue" style={{ textDecoration: "none" }}><Nav.Link as="div">Book Queue</Nav.Link></Link>
+                    <Link to="/completed" style={{ textDecoration: "none" }}><Nav.Link as="div">Completed Books</Nav.Link></Link>
+                    <Link to="/" onClick={handleLogout} style={{ textDecoration: "none" }}><Nav.Link as="div">Logout</Nav.Link></Link>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>
