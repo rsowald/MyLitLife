@@ -25,7 +25,7 @@ export default function AppNav() {
             <Navbar.Collapse id="responsive-navbar-nav" className="justify-content-end">
                 <Nav>
                     {!currentUser
-                        ? < Link to="/" style={{ textDecoration: "none" }}><Nav.Link as="div">Login</Nav.Link></Link>
+                        ? <></>
                         : <>
                             <Link to="/dashboard" style={{ textDecoration: "none" }}><Nav.Link as="div">Dashboard</Nav.Link></Link>
                             <Link to="/book-queue" style={{ textDecoration: "none" }}><Nav.Link as="div">Book Queue</Nav.Link></Link>
