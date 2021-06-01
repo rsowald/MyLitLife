@@ -1,30 +1,24 @@
 import React, { useRef, useState } from "react";
-import { Container, Row, Col, Card, Form, Button, Alert, Spinner, ListGroup, Accordion } from "react-bootstrap";
+import { Row, Col, Card, Form, Button, Alert, Spinner, Accordion } from "react-bootstrap";
 import API from "../utils/API";
 
 export default function Glossary() {
     const wordRef = useRef()
-    // const [word, setWord] = useState()
     const [errorMessage, seterrorMessage] = useState('')
     const [btnLoading, setBtnLoading] = useState(false)
     const [btnSpin, setBtnSpinner] = useState(false)
     const [searchResult, setsearchResult] = useState("")
-    const [open, setOpen] = useState(false);
 
     async function handleSearch(event) {
         event.preventDefault();
         console.log("input value: ", wordRef.current.value)
-        const app_id = 'ca8c5d3b';
-        const app_key = 'd0a0ba1b62842eb7b002340c1b1b7723'
 
         try {
             setBtnSpinner(true)
             setBtnLoading(true)
-            const query = wordRef.current.value
             await API.searchInMerriamDictionary(wordRef.current.value)
 
                 .then(results => {
-                    // console.log(results);
                     console.log(results.data);
                     setsearchResult(results.data)
                 })
