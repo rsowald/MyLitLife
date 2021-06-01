@@ -16,6 +16,7 @@ import { AuthProvider } from "./components/authentication/context/AuthContext";
 import PrivateRoute from "./components/authentication/PrivateRoute";
 import UpdatePassword from "./components/authentication/UpdatePassword";
 
+
 class App extends Component {
   render() {
     return (

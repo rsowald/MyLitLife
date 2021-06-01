@@ -5,6 +5,7 @@ import Title from '../Title';
 import "./dashboard.css";
 import Glossary from "../Glossary";
 import DashboardQuoteCol from "../DashboardQuoteCol";
+import BestSellers from '../BestSellers'
 
 export default function Dashboard() {
   // const bookGoals = useRef();
@@ -171,6 +172,7 @@ export default function Dashboard() {
 
           </Col>
         </Row>
+        <BestSellers />
       </Container>
     </>
   )

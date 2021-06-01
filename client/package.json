@@ -22,7 +22,9 @@
     "react-image-gallery": "^1.0.9",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^2.1.1",
-    "react-uuid": "^1.0.2"
+    "react-slick": "^0.28.1",
+    "react-uuid": "^1.0.2",
+    "slick-carousel": "^1.8.1"
   },
   "scripts": {
     "start": "react-scripts start",

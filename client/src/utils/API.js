@@ -10,7 +10,9 @@ const API_KEY_Search_Book = process.env.REACT_APP_GOOGLE_API_KEY;
 const APP_KEY_Merriam_Dictionary = process.env.REACT_APP_MERRIAM_API_KEY;
 const merriam_Collegiate_Dictionary_Base_URL = 'https://www.dictionaryapi.com/api/v3/references/collegiate/json/';
 
-const APP_KEY_Merriam_Dictionary = process.env.REACT_APP_NYT_API_KEY;
+
+const APP_KEY_NYT_Dictionary = process.env.REACT_APP_NYT_API_KEY;
+const NYT_Base_URL = "https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key="
 
 
 
@@ -23,6 +25,9 @@ export default {
     },
     searchInMerriamDictionary: function (query) {
         return axios.get(`${merriam_Collegiate_Dictionary_Base_URL}${query}?key=${APP_KEY_Merriam_Dictionary}`);
+    },
+    searchNYTBestSellers: function () {
+        return axios.get(`${NYT_Base_URL}${APP_KEY_NYT_Dictionary}`);
     },
     getCompleted: function (user) {
         return axios.get(`/api/books/completed/${user}`);

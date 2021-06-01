@@ -90,24 +90,3 @@ export default function Signup(props) {
         </Card>
     );
 };
-
-// const promises = []
-        // setSpinner(true)
-        // setLoading(true)
-        // promises.push(signup(emailRef.current.value, passwordRef.current.value))
-
-
-        // promises.push(updateUser(fNameRef.current.value, lNameRef.current.value))
-
-
-        // Promise.all(promises)
-        //     .then(() => {
-        //         history.push("/dashboard")
-        //     })
-        //     .catch((error) => {
-        //         console.log(error)
-        //         setFirebaseError(error.message)
-        //     })
-        //     .finally(() => {
-        //         setLoading(false)
-        //     })

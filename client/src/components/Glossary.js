@@ -12,14 +12,8 @@ function Glossary() {
     const [searchResult, setsearchResult] = useState("")
     const [open, setOpen] = useState(false);
 
-
-
     async function handleSearch(event) {
         event.preventDefault();
-        console.log("input value: ", wordRef.current.value)
-        const app_id = 'ca8c5d3b';
-        const app_key = 'd0a0ba1b62842eb7b002340c1b1b7723'
-
         try {
             setBtnSpinner(true)
             setBtnLoading(true)
