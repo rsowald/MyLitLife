@@ -1,14 +1,14 @@
 import React, { useRef, useState } from "react";
 import { Link } from 'react-router-dom';
-import { useAuth } from './context/AuthContext'
+import { useAuth } from './context/AuthContext';
 import { Container, Row, Col, Card, Form, Button, Alert } from "react-bootstrap";
 
 export default function ResetPassword() {
-    const emailRef = useRef()
-    const { resetPassword } = useAuth()
-    const [firebaseError, setFirebaseError] = useState('')
-    const [loading, setLoading] = useState(false)
-    const [instructions, setInstruction] = useState("")
+    const emailRef = useRef();
+    const { resetPassword } = useAuth();
+    const [firebaseError, setFirebaseError] = useState('');
+    const [loading, setLoading] = useState(false);
+    const [instructions, setInstruction] = useState("");
 
     async function handleResetPassword(event) {
         event.preventDefault();
@@ -42,13 +42,13 @@ export default function ResetPassword() {
                                 <Button className="mt-3 w-100" variant="success" type="submit">Reset Password</Button>{' '}
                             </Form>
                             <div className="text-center mt-3">
-                                <Link to="/login">Back to, Login</Link>
+                                <Link to={{ pathname: "/", state: { defaultShowLogin: true } }}>Back to Login</Link>
                             </div>
                         </Card.Body>
                     </Card>
                     <div className="text-center mt-2">
                         <h5>Don't have an account, yet?
-              <Link to="/signup"> Sign Up!</Link>
+              <Link to={{ pathname: "/", state: { defaultShowSignup: true } }}> Sign Up!</Link>
                         </h5>
                     </div>
                 </Col>

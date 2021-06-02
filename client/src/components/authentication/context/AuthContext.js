@@ -1,9 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react'
-// import app from '../fireBase'
-// import app from '../fireBase'
 import app from '../fireBase'
-// import provider from '../fireBase'
-// import { auth } from "../Base"
 
 const AuthContext = React.createContext()
 
@@ -61,18 +57,16 @@ export function AuthProvider({ children }) {
     }
 
     useEffect(() => {
-        const unsubscribe = app.auth().onAuthStateChanged(user => {
-            setCurrentUser(user)
-            setLoading(false)
-            setLoggedIn(true)
-
-        })
-
-        return unsubscribe
+        app.auth().onAuthStateChanged(user => {
+            setCurrentUser(user);
+            setLoading(false);
+            setLoggedIn(true);
+        });
     }, [])
 
     const value = {
         currentUser,
+        loggedIn,
         signup,
         login,
         logout,
