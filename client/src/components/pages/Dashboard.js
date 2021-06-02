@@ -7,6 +7,9 @@ import Glossary from "../Glossary";
 import DashboardQuoteCol from "../DashboardQuoteCol";
 import BestSellers from '../BestSellers';
 import BookForm from '../CompletedBookForm';
+import History from '../History';
+import BookGoalChart from "../BookGoalChart";
+import PageGoalChart from "../PageGoalChart";
 
 export default function Dashboard() {
   // const bookGoals = useRef();
@@ -25,10 +28,16 @@ export default function Dashboard() {
                       <i className="nc-icon nc-chart text-warning"></i>
                     </div>
                   </Col>
-                  <Col xs="10">
-                    <div className="numbers">
+                  <Col xs={4}>
+                    <History className="chart" />
+                  </Col>
+                  <Col xs={3}>
+                    <BookGoalChart className="chart" />
+                  </Col>
+                  <Col xs={3}>
+                    <PageGoalChart className="chart" />
+                  </Col>
                       {/* {{ useRef }} */}
-                      <p className="card-category">User Book Chart Here</p>
                       <hr></hr>
                       <Card.Title as="h2">Book Goals</Card.Title>
                       <hr></hr>
@@ -40,8 +49,6 @@ export default function Dashboard() {
                         <hr></hr>
                         Currently Reading:
                     </Card.Body>
-                    </div>
-                  </Col>
                 </Row>
               </Card.Body>
               <Card.Footer>

@@ -28,7 +28,7 @@
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   /* this adds the "card" effect */
   padding: 10px;
-  height: 800px;
+  /* height: 800px; */
   text-align: left;
   background-color: #f7d065;
   color: saddlebrown;
@@ -38,3 +38,4 @@
   float: right;
   margin-left: auto;
 }
+

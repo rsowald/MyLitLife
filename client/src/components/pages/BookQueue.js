@@ -178,7 +178,7 @@ function BookQueue() {
   return (
     <Container>
       <Row>
-        <SearchForm
+        <SearchForm className="card"
           handleChange={handleChange}
           handleSearch={handleSearch}
           title={search.title}
@@ -204,8 +204,8 @@ function BookQueue() {
                           ref={provided.innerRef}
                           style={{
                             background: snapshot.isDraggingOver
-                              ? "lightblue"
-                              : "lightgrey",
+                              ? "#eeeeee"
+                              : "whitesmoke",
                             minHeight: 200
                           }}
                         >
@@ -220,7 +220,7 @@ function BookQueue() {
                             var title = volumeInfo.title;
 
                             return (
-                              <Draggable
+                              <Draggable 
                                 key={id}
                                 draggableId={id}
                                 index={index}
@@ -235,9 +235,9 @@ function BookQueue() {
                                         userSelect: "none",
                                         minHeight: "50px",
                                         backgroundColor: snapshot.isDragging
-                                          ? "#263B4A"
-                                          : "#456C86",
-                                        color: "white",
+                                          ? "whitesmoke"
+                                          : "#f7d065",
+                                        color: "saddlebrown",
                                         ...provided.draggableProps.style
                                       }}
                                     >
