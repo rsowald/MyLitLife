@@ -16,9 +16,36 @@ class History extends Component{
                             106519,
                             105162,
                             95072
-                        ]
+                        ],
+                        backgroundColor: ['#ff3d67', '#ff9f40', '#ffcd56', '#4bc0c0', '#999999', '#333fde'],
                     }
-                ]
+                ],
+                showDatapoints: true,
+                options: {
+                    tooltips: {
+                        enabled: false
+                    },
+                    pieceLabel: {
+                        render: 'label',
+                        arc: true,
+                        fontColor: '#000',
+                        position: 'outside'
+                    },
+                    responsive: true,
+                    legend: {
+                        position: 'bottom',
+                    },
+                    title: {
+                        display: true,
+                        text: 'History',
+                        fontSize: 20
+                    },
+                    animation: {
+                        animateScale: true,
+                        animateRotate: true
+                    }
+                }
+    
             }
         }
     }

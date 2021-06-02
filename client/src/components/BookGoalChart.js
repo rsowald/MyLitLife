@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { Bar } from 'react-chartjs-2';
 
-class PageGoalChart extends Component{
+class BookGoalChart extends Component{
     constructor(props){
         super(props);
         this.state = {
@@ -9,29 +9,29 @@ class PageGoalChart extends Component{
                 labels: ['January', 'February','March','April','May','June'],
                 datasets:[
                     {
-                        label: 'Pages',
+                        label: 'Books',
                         data:[
-                            617594,
-                            181045,
-                            153060,
-                            106519,
-                            105162,
-                            95072
+                            14,
+                            10,
+                            15,
+                            17,
+                            11,
+                            0
                         ],
-                        backgroundColor:"green"
+                        backgroundColor:'#ff9f40'
                 
                     },
                     {
                         label: 'Goal',
                         data:[
-                            100000,
-                            100000,
-                            100000,
-                            100000,
-                            100000,
-                            100000
+                            12,
+                            12,
+                            12,
+                            12,
+                            12,
+                            12
                         ],
-                        backgroundColor:"yellow"
+                        backgroundColor:"saddlebrown"
                 
                     }
 
@@ -61,4 +61,4 @@ class PageGoalChart extends Component{
     }
 }
 
-export default PageGoalChart;
+export default BookGoalChart;

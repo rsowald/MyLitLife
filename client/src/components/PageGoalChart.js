@@ -11,27 +11,27 @@ class PageGoalChart extends Component{
                     {
                         label: 'Pages',
                         data:[
-                            617594,
-                            181045,
-                            153060,
-                            106519,
-                            105162,
+                            5594,
+                            4045,
+                            6060,
+                            6519,
+                            5162,
                             0
                         ],
-                        backgroundColor:"green"
+                        backgroundColor:'#ff9f40'
                 
                     },
                     {
                         label: 'Goal',
                         data:[
-                            100000,
-                            100000,
-                            100000,
-                            100000,
-                            100000,
-                            100000
+                            5000,
+                            5000,
+                            5000,
+                            5000,
+                            5000,
+                            5000
                         ],
-                        backgroundColor:"yellow"
+                        backgroundColor:"saddlebrown"
                 
                     }
 
