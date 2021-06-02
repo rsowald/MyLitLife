@@ -29,7 +29,7 @@ export default function AppNav() {
                         : <>
                             <Link to="/dashboard" style={{ textDecoration: "none" }}><Nav.Link as="div">Dashboard</Nav.Link></Link>
                             <Link to="/book-queue" style={{ textDecoration: "none" }}><Nav.Link as="div">Book Queue</Nav.Link></Link>
-                            <Link to="/api/books" style={{ textDecoration: "none" }}><Nav.Link as="div">Completed Books</Nav.Link></Link>
+                            <Link to="/completed" style={{ textDecoration: "none" }}><Nav.Link as="div">Completed Books</Nav.Link></Link>
                             <Link to="/" onClick={handleLogout} style={{ textDecoration: "none" }}><Nav.Link as="div">Logout</Nav.Link></Link>
                         </>
 
