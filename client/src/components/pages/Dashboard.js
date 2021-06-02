@@ -5,6 +5,7 @@ import Title from '../Title';
 import "./dashboard.css";
 import Glossary from "../Glossary";
 import DashboardQuoteCol from "../DashboardQuoteCol";
+import BookForm from "../CompletedBookForm";
 
 export default function Dashboard() {
   // const bookGoals = useRef();
@@ -106,64 +107,23 @@ export default function Dashboard() {
                 <Card className="card-completed-form" style={{ backgroundColor: "#f7d065" }}>
                   <Card.Body>
                     <Row>
-                      <Col xs="2">
+                      <Col lg="2">
                         <div className="icon-big text-left icon-warning">
                           <i className="nc-icon nc-chart text-warning"></i>
                         </div>
                       </Col>
-                      <Col xs="10">
+                      <Col lg="10">
                         <div className="numbers">
-                          {/* {{ useRef }} */}
-                          <p className="card-category">User Book Chart Here</p>
-                          <hr></hr>
                           <Card.Title as="h2">Completed Book Form</Card.Title>
-                          <hr></hr>
                           <Card.Body>
-                            <h3 className="text-center mb-4">Sign Up</h3>
-                            {/* {currentUser.email} */}
-                            {/* {passwordError && <Alert variant="danger">{passwordError}</Alert>}
-                            {firebaseError && <Alert variant="danger">{firebaseError}</Alert>}
-                            <Form onSubmit={handleAddedBook}>
-                                <Form.Group className="mb-3" id="title">
-                                    <Form.Label >Title</Form.Label>
-                                    <Form.Control name="title" type="name" ref={titleRef} placeholder="Book Title" required />
-                                </Form.Group>
-                                <Form.Group className="mb-3" id="author">
-                                    <Form.Label>Author</Form.Label>
-                                    <Form.Control name="author" type="name" ref={authorRef} placeholder="Last Name" required />
-                                </Form.Group>
-                                <Form.Group className="mb-3" id="email">
-                                    <Form.Label>Email</Form.Label>
-                                    <Form.Control name="email" type="email" ref={emailRef} placeholder="Email" required />
-                                </Form.Group>
-                                <Form.Group className="mb-3" id="password">
-                                    <Form.Label>Password</Form.Label>
-                                    <Form.Control name="password" type="password" ref={passwordRef} placeholder="Minimum 8 characters." required />
-                                </Form.Group>
-                                <Form.Group className="mb-3" id="confirmPassword">
-                                    <Form.Label>Confirm Password</Form.Label>
-                                    <Form.Control name="confirmPassword" type="password" ref={passwordConfirmRef} placeholder="Confirm Password" required />
-                                </Form.Group>
-
-                                {!spin
-                                    ? < Button disabled={loading} className="mt-3 w-100" variant="success" type="submit">Add Book!</Button>
-                                    : <Spinner className="mt-3" animation="border" variant="success" />
-                                }
-                            </Form> */}
+                            <h6 className="text-center mb-9">Add Your Book Below!</h6>
+                            <hr></hr>
+                            <BookForm />
                           </Card.Body>
                         </div>
                       </Col>
                     </Row>
                   </Card.Body>
-                  <Card.Footer>
-                    <hr></hr>
-                    <div className="stats">
-                      <i className="fas fa-redo mr-1"></i>
-                      <ButtonToolbar className="mt-3 justify-content-between" aria-label="Toolbar with Button groups">
-                        <Button variant="secondary" type="submit">Update</Button>
-                      </ButtonToolbar>
-                    </div>
-                  </Card.Footer>
                 </Card>
               </Col>
             </Row>
