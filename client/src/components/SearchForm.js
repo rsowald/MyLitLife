@@ -4,9 +4,9 @@ import { Button, Form, Container, Row, Col } from "react-bootstrap";
 function SearchForm(props) {
     return (
         <Container>
-            <Row style={{ border: "3px solid black", borderRadius: "5px", padding: "20px" }}>
+            <Row style={{ margin: "5px", padding: "20px", backgroundColor: "#f7d065" }}>
                 <Col size="md-4">
-                    <Form style={{ padding: "10px" }}>
+                    <Form style={{ padding: "10px", color: "saddlebrown", fontWeight: "bold" }}>
                         {/* <Form.Group controlId="searchForm.Input">
                             <Form.Label>Search Terms</Form.Label>
                             <Form.Control type="text" onChange={() => console.log("handleInputChange")} placeholder="Keyword? Title? Author? Whatever." />
@@ -40,7 +40,7 @@ function SearchForm(props) {
 
 
                         {/* <Button variant="primary" className="float-right mb-2" onClick={() => console.log("handleSearch")}>Search</Button> */}
-                        <Button variant="primary" className="float-right mb-2" onClick={props.handleSearch}>Search</Button>
+                        <Button variant="secondary" className="float-right mb-2" onClick={props.handleSearch}>Search</Button>
                     </Form>
                 </Col>
             </Row>
