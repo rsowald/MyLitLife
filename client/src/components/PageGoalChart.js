@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
-import {Bar, Line, Pie} from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
 
-class Chart extends Component{
+class PageGoalChart extends Component{
     constructor(props){
         super(props);
         this.state = {
             chartData: {
-                labels: ['Mystery', 'Historical Fiction','Fantasy','Crime','Coming-of-age','Nonfiction'],
+                labels: ['January', 'February','March','April','May','June'],
                 datasets:[
                     {
                         label: 'Pages',
@@ -16,7 +16,7 @@ class Chart extends Component{
                             153060,
                             106519,
                             105162,
-                            95072
+                            0
                         ],
                         backgroundColor:"green"
                 
@@ -61,4 +61,4 @@ class Chart extends Component{
     }
 }
 
-export default Chart;
+export default PageGoalChart;
