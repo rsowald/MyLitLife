@@ -1,8 +1,7 @@
 import React, { useRef, useState } from "react";
-import { Link, useHistory } from "react-router-dom"
+import { useHistory } from "react-router-dom"
 import { useAuth } from './context/AuthContext'
 import { Card, Form, Button, Alert, Spinner } from "react-bootstrap";
-import app from './fireBase'
 
 export default function Signup(props) {
     const emailRef = useRef()
@@ -34,8 +33,8 @@ export default function Signup(props) {
         try {
             setSpinner(true)
             setLoading(true)
-            let user = await signup(emailRef.current.value, passwordRef.current.value);
-            let addDisplayName = await updateUser(fNameRef.current.value, lNameRef.current.value)
+            await signup(emailRef.current.value, passwordRef.current.value);
+            await updateUser(fNameRef.current.value, lNameRef.current.value)
             setTimeout(
                 history.push("/dashboard")
                 , 3000)

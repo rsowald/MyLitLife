@@ -6,17 +6,13 @@ import axios from 'axios';
 const bookSearchBaseURL = "https://www.googleapis.com/books/v1/volumes?q=";
 const API_KEY_Search_Book = process.env.REACT_APP_GOOGLE_API_KEY;
 
-
 const APP_KEY_Merriam_Dictionary = process.env.REACT_APP_MERRIAM_API_KEY;
 const merriam_Collegiate_Dictionary_Base_URL = 'https://www.dictionaryapi.com/api/v3/references/collegiate/json/';
-
 
 const APP_KEY_NYT_Dictionary = process.env.REACT_APP_NYT_API_KEY;
 const NYT_Category_Base_URL = "https://api.nytimes.com/svc/books/v3/lists/current/hardcover"
 const NYT_Else_Base_URL = "https://api.nytimes.com/svc/books/v3/lists/current/"
 const NYT_All_Time_Base_URL = "https://api.nytimes.com/svc/books/v3/lists/best-sellers/history"
-
-
 
 export default {
     getBackground: function () {
