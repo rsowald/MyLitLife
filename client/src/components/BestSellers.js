@@ -1,31 +1,47 @@
 import React, { useEffect, useState } from 'react'
 import API from "../utils/API";
-import { Container, Row, Col, Button, CardDeck, Card, } from "react-bootstrap";
+import { Container, Row, Col, Tabs, Tab, Button, CardDeck, Card, } from "react-bootstrap";
 import Slider from "react-slick";
+import Category from "./NYTcase/Category";
+import AllTime from "./NYTcase/AllTime";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 
 function BestSellers() {
+    // const categoryRef = useRef()
     const [bestSeller, setbestSeller] = useState([])
-    // var best = []
+    const [key, setKey] = useState('fiction');
+    const [bestSellerAll, setbestSellerAll] = useState([]);
+    const [bestSellerElse, setbestSellerElse] = useState([]);
+
+    var tryitout = []
 
 
-    let settings = {
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        cssEase: "linear"
-    }
 
     useEffect(() => {
-        searchNYTBestSellersBooks()
+        searchNYTByCategory(key)
+        // searchNYTBestAllTime()
     }, [])
+    function searchNYT(category) {
 
-    function searchNYTBestSellersBooks() {
-        API.searchNYTBestSellers()
+        if (category === "fiction" || category === "nonfiction" || category === "advice" || category === "graphic-books") {
+            console.log("searching by category: " + category);
+            return searchNYTByCategory(category)
+        }
+        if (category === "history") {
+            console.log("searching all-time history");
+            return searchNYTBestAllTime()
+        }
+
+        if (category === "picture-books") {
+            console.log("searching else ");
+            return searchNYTElse(category)
+        }
+
+    }
+    function searchNYTByCategory(category) {
+        API.searchNYTByCategory(category)
             .then(res => {
                 // console.log(results);
                 console.log(res.data.results);
@@ -33,8 +49,37 @@ function BestSellers() {
                 // best = res.data.results.books
                 // console.log(best);
                 console.log(bestSeller);
+
+
             })
             .catch(err => console.log(err));
+    };
+    async function searchNYTBestAllTime() {
+        try {
+            const apiResults = await API.searchNYTBestAllTime()
+            console.log(apiResults.data.results);
+            let books = apiResults.data.results.filter(book => book.isbns.length)
+            setbestSellerAll(books)
+            console.log(tryitout);
+
+        } catch (err) {
+            console.log(err)
+        }
+    };
+    async function searchNYTElse(query) {
+        try {
+            const apiResults = await API.searchNYTByElse(query)
+            console.log(apiResults.data.results.books);
+            // let books = apiResults.data.results.filter(book => book.isbns.length)
+            // setbestSellerAll(books)
+            setbestSellerElse(apiResults.data.results.books)
+            // console.log(tryitout);
+
+        } catch (err) {
+            console.log(err)
+        }
+
+
     };
 
     return (
@@ -43,44 +88,47 @@ function BestSellers() {
                 Best Sellers
                 </h2>
             <Row className='my-3 mx-3' >
-                {bestSeller.length ? (
-                    <Slider {...settings}>
-
-                        {bestSeller.map(book => {
-                            return (
-                                <div key={book.primary_isbn10}>
-                                    <Card className="mx-3 v-100" style={{ textAlign: 'left' }} >
-                                        <Card.Img className=" d-block mx-auto img-fluid" variant="top" src={book.book_image} />
-                                        <Card.Body>
-                                            <Card.Title>{book.title}
-                                                <br />
-                                                <span style={{ fontSize: "12px" }}>by {book.author}</span></Card.Title>
-                                            <Card.Text>
-                                                {book.description}
-                                            </Card.Text>
-                                        </Card.Body>
-                                        <Card.Footer>
-                                            <small className="text-muted">Weeks on list as best selling: {book.weeks_on_list}</small>
-                                        </Card.Footer>
-                                    </Card>
-                                </div>
-
-                            )
-                        })}
-
-                    </Slider>
-                ) : (
-                    <>
-                        <h3>No Results to Display</h3>
-                        <Button onClick={searchNYTBestSellersBooks} />
-                    </>
-                )
-
-                }
+                <Tabs
+                    id="controlled-tab-example"
+                    activeKey={key}
+                    onSelect={(k) => {
+                        setKey(k)
+                        searchNYT(k)
+                    }}
+                >
+                    <Tab eventKey="fiction" title="Fiction" >
+                        <Category
+                            books={bestSeller}
+                        />
+                    </Tab>
+                    <Tab eventKey="nonfiction" title="Non-Fiction">
+                        <Category
+                            books={bestSeller}
+                        />
+                    </Tab>
+                    <Tab eventKey="advice" title="Advice, How-To">
+                        <Category
+                            books={bestSeller}
+                        />
+                    </Tab>
+                    <Tab eventKey="graphic-books" title="Graphics">
+                        <Category
+                            books={bestSeller}
+                        />
+                    </Tab>
+                    <Tab eventKey="picture-books" title="Kid's books">
+                        <Category
+                            books={bestSellerElse}
+                        />
+                    </Tab>
+                    <Tab eventKey="history" title="All-time">
+                        <AllTime
+                            books={bestSellerAll}
+                        />
+                    </Tab>
+                </Tabs>
             </Row>
         </Card>
-
-
     )
 }
 export default BestSellers;
