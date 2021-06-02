@@ -14,6 +14,7 @@ import PrivateRoute from "./components/authentication/PrivateRoute";
 import UpdatePassword from "./components/authentication/UpdatePassword";
 import { AuthContext } from './components/authentication/context/AuthContext';
 
+
 class App extends Component {
   render() {
     let currentUser = this.context;

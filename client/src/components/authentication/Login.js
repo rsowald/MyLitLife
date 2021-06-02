@@ -38,7 +38,6 @@ export default function Login(props) {
       console.log(error);
       setFirebaseError(error.message)
     }
-
   }
   return (
     <Card>
