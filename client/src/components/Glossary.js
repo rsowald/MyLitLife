@@ -1,8 +1,9 @@
 import React, { useRef, useState } from "react";
 import { Row, Col, Card, Form, Button, Alert, Spinner, Accordion } from "react-bootstrap";
 import API from "../utils/API";
+// import DictionaryResult from '../DictionaryResult'
 
-export default function Glossary() {
+function Glossary() {
     const wordRef = useRef()
     const [errorMessage, seterrorMessage] = useState('')
     const [btnLoading, setBtnLoading] = useState(false)
@@ -11,7 +12,6 @@ export default function Glossary() {
 
     async function handleSearch(event) {
         event.preventDefault();
-        console.log("input value: ", wordRef.current.value)
 
         try {
             setBtnSpinner(true)
@@ -40,8 +40,6 @@ export default function Glossary() {
                         <p className="d-flex justify-content-start">
                             Get the most trusted, up-to-date definitions from Merriam Dictionary:
                     </p>
-                        {/* {passwordError && <Alert variant="danger">{passwordError}</Alert>} */}
-                        {/* {errorMessage && <Alert variant="danger">{errorMessage}</Alert>} */}
                     </Col>
                     <Col className="border-start  border-dark" md="4">
                         <Form onSubmit={handleSearch}>
@@ -61,46 +59,73 @@ export default function Glossary() {
                     </Col>
                 </Row>
                 <Row className="mt-3 ">
+                    {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
                     {searchResult.length
                         ? <Col className="d-flex justify-content-start">
                             <hr />
-                            <Alert className="text-left " variant="success">
-                                < Alert.Heading >Definition: </Alert.Heading>
-                                <p>
-                                    {searchResult[0].shortdef}
-                                </p>
+                            <Alert className="text-left " >
+                                < Alert.Heading >Definition: 
+                                 </Alert.Heading>
+                                {/* {searchResult[0].hwi.prs[0].sound} */}
+                                {searchResult[0].shortdef
+                                    ? searchResult[0].shortdef.map((def, index) => {
+                                        var index = index + 1
 
+                                        return (
+                                            <>
+                                                <p key={searchResult[0].meta.uuid}>
+                                                    {index}: {def}                                                 </p>
 
-                                <Accordion defaultActiveKey="0" >
-                                    <Card style={{ textAlign: "left" }}>
-                                        <Card.Header>
-                                            <Accordion.Toggle as={Button} eventKey="1">
-                                                More responses
+                                            </>
+                                        )
+                                    })
+
+                                    : <p>No results found</p>
+                                }
+                                {searchResult[1].shortdef &&
+                                    <Accordion defaultActiveKey="0" >
+                                        <Card style={{ textAlign: "left" }}>
+                                            <Card.Header>
+                                                <Accordion.Toggle as={Card.Header} eventKey="1">
+                                                    More responses
                                                         </Accordion.Toggle>
-                                        </Card.Header>
-                                        <Accordion.Collapse eventKey="1">
-                                            <Card.Body>
-                                                {searchResult.map((definition, index) => {
+                                            </Card.Header>
+                                            <Accordion.Collapse eventKey="1">
+                                                <Card.Body>
+                                                    {/* {searchResult.shift()} */}
+                                                    {searchResult[0].shortdef
+                                                        ? searchResult.map((definition, index) => {
 
-                                                    var index = index + 1;
-                                                    return (
-                                                        <>
-                                                            <div>
-                                                                <strong>Definition {index}: ({definition.fl})</strong>
-                                                                <p>
-                                                                    {definition.shortdef}
-                                                                </p>
-                                                            </div>
-                                                            <hr />
-                                                        </>
-                                                    )
-                                                })
-                                                }
-                                            </Card.Body>
-                                        </Accordion.Collapse>
-                                    </Card>
-                                </Accordion>
+                                                            var index = index + 1;
+                                                            return (
+                                                                <>
+                                                                    <div key={definition.meta.uuid}>
+
+                                                                        <strong>Definition {index}: ({definition.fl})</strong>
+                                                                        <p key={definition.meta.uuid}>
+                                                                            {definition.shortdef.join(", ")}
+                                                                        </p>
+                                                                        <hr />
+                                                                    </div>
+                                                                </>
+
+                                                            )
+                                                        })
+                                                        : <p></p>
+                                                    }
+                                                </Card.Body>
+                                            </Accordion.Collapse>
+                                        </Card>
+                                    </Accordion>
+                                }
+                                {/* <p>
+                                    {searchResult[0].shortdef.join(" | ")}
+                                </p> */}
+
+
+
                             </Alert>
+                            {/* <DictionaryResult searchResult={searchResult} /> */}
                             {/* : <p>No result found for {wordRef.current.value}</p>} */}
                         </Col>
                         : <p></p>}
@@ -109,4 +134,6 @@ export default function Glossary() {
         </>
     )
 }
+
+export default Glossary;
 
