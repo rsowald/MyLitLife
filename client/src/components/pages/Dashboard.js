@@ -5,7 +5,8 @@ import Title from '../Title';
 import "./dashboard.css";
 import Glossary from "../Glossary";
 import DashboardQuoteCol from "../DashboardQuoteCol";
-import BookForm from "../CompletedBookForm";
+import BestSellers from '../BestSellers';
+import BookForm from '../CompletedBookForm';
 
 export default function Dashboard() {
   // const bookGoals = useRef();
@@ -13,14 +14,9 @@ export default function Dashboard() {
   return (
     <>
       <Title />
-      <Container fluid="md">
-        <Row className="d-flex justify-content-center">
+      <Container>
+        <Row className="d-flex justify-content-center mb-3">
           <Col>
-            <Glossary />
-          </Col>
-        </Row>
-        <Row>
-          <Col md="4">
             <Card className="card-stats" style={{ backgroundColor: "#f7d065" }}>
               <Card.Body>
                 <Row>
@@ -59,7 +55,13 @@ export default function Dashboard() {
               </Card.Footer>
             </Card>
           </Col>
-          <Col className="d-flex">
+        </Row>
+        <Row>
+          <Col md="4">
+            <Glossary />
+
+          </Col>
+          <Col>
             <DashboardQuoteCol />
           </Col>
           <Col md="4">
@@ -130,6 +132,7 @@ export default function Dashboard() {
 
           </Col>
         </Row>
+        <BestSellers />
       </Container>
     </>
   )

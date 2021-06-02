@@ -1,9 +1,5 @@
 import React, { useContext, useState, useEffect } from 'react'
-// import app from '../fireBase'
-// import app from '../fireBase'
 import app from '../fireBase'
-// import provider from '../fireBase'
-// import { auth } from "../Base"
 
 const AuthContext = React.createContext()
 
@@ -70,6 +66,7 @@ export function AuthProvider({ children }) {
 
     const value = {
         currentUser,
+        loggedIn,
         signup,
         login,
         logout,

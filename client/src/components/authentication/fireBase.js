@@ -1,5 +1,4 @@
 import firebase from "firebase/app";
-// import firebasee from "firebase";
 
 import "firebase/auth";
 
