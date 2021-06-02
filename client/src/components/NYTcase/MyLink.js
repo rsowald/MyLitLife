@@ -21,7 +21,7 @@ function MyLink(props) {
             });
     }
     return (
-        <Card.Img key={props.isbn} className=" d-block mx-auto img-fluid" variant="top" src={img} />
+        <Card.Img key={props.isbn} className=" d-block mx-auto img-fluid" variant="top" src={img} style={{ height: "300px" }}/>
     )
 }
 

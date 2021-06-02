@@ -14,10 +14,6 @@ function BestSellers() {
     const [bestSellerAll, setbestSellerAll] = useState([]);
     const [bestSellerElse, setbestSellerElse] = useState([]);
 
-    var tryitout = []
-
-
-
     useEffect(() => {
         searchNYTByCategory(key)
         // searchNYTBestAllTime()
@@ -37,19 +33,12 @@ function BestSellers() {
             console.log("searching else ");
             return searchNYTElse(category)
         }
-
     }
     function searchNYTByCategory(category) {
         API.searchNYTByCategory(category)
             .then(res => {
-                // console.log(results);
                 console.log(res.data.results);
                 setbestSeller(res.data.results.books)
-                // best = res.data.results.books
-                // console.log(best);
-                console.log(bestSeller);
-
-
             })
             .catch(err => console.log(err));
     };
@@ -59,8 +48,6 @@ function BestSellers() {
             console.log(apiResults.data.results);
             let books = apiResults.data.results.filter(book => book.isbns.length)
             setbestSellerAll(books)
-            console.log(tryitout);
-
         } catch (err) {
             console.log(err)
         }
@@ -73,12 +60,9 @@ function BestSellers() {
             // setbestSellerAll(books)
             setbestSellerElse(apiResults.data.results.books)
             // console.log(tryitout);
-
         } catch (err) {
             console.log(err)
         }
-
-
     };
 
     return (
@@ -116,13 +100,9 @@ function BestSellers() {
                         />
                     </Tab>
                     <Tab eventKey="picture-books" title="Kid's books">
-                        <CardDeck>
-
-                            <Category
-                                books={bestSellerElse}
-                            />
-                        </CardDeck>
-
+                        <Category
+                            books={bestSellerElse}
+                        />
                     </Tab>
                     <Tab eventKey="history" title="All-time">
                         <AllTime

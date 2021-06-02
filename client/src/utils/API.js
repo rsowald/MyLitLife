@@ -43,7 +43,6 @@ export default {
     getQueue: function (user) {
         return axios.get(`/api/books/queue/${user}`)
     },
-
     queue: function (user) {
         return axios.get(`/api/books/queue/${user}`);
     },

@@ -10,10 +10,33 @@ function Category(props) {
     let settings = {
         dots: true,
         infinite: true,
-        speed: 500,
-        slidesToShow: 3,
-        slidesToScroll: 1,
-        cssEase: "linear"
+        speed: 400,
+        slidesToShow: 4,
+        slidesToScroll: 3,
+        cssEase: "linear",
+        responsive: [
+            {
+                breakpoint: 1200,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 2
+                }
+            },
+            {
+                breakpoint: 850,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1,
+                }
+            },
+            {
+                breakpoint: 480,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1
+                }
+            }
+        ]
     }
 
 
@@ -22,7 +45,7 @@ function Category(props) {
             {props.books.map(book => {
                 return (
                     <div key={book.isbns[0].isbn10}>
-                        <Card className="m-3 v-100" style={{ textAlign: 'left' }} >
+                        <Card className="m-3 v-100" style={{ textAlign: 'left',  minHeight: "550px" }} >
                             <MyLink
                                 isbn={book.isbns[0].isbn10}
                             />
