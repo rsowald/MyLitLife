@@ -2,7 +2,6 @@ import React, { useRef, useState } from "react";
 import { Link } from 'react-router-dom';
 import { useAuth } from './context/AuthContext';
 import { Container, Row, Col, Card, Form, Button, Alert } from "react-bootstrap";
-import Home from "../pages/Home";
 
 export default function ResetPassword() {
     const emailRef = useRef();
