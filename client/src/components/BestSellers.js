@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import API from "../utils/API";
-import { Container, Row, Col, Tabs, Tab, Button, CardDeck, Card, } from "react-bootstrap";
-import Slider from "react-slick";
+import { Row, Tabs, Tab, Card, CardDeck } from "react-bootstrap";
 import Category from "./NYTcase/Category";
 import AllTime from "./NYTcase/AllTime";
 import "slick-carousel/slick/slick.css";
@@ -117,9 +116,13 @@ function BestSellers() {
                         />
                     </Tab>
                     <Tab eventKey="picture-books" title="Kid's books">
-                        <Category
-                            books={bestSellerElse}
-                        />
+                        <CardDeck>
+
+                            <Category
+                                books={bestSellerElse}
+                            />
+                        </CardDeck>
+
                     </Tab>
                     <Tab eventKey="history" title="All-time">
                         <AllTime

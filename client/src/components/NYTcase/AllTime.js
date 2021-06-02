@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import Slider from 'react-slick'
-import { Container, Row, Col, Tabs, Tab, Button, CardDeck, Card, } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import API from '../../utils/API'
 import MyLink from './MyLink'
 
