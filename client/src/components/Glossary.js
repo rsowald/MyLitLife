@@ -33,12 +33,6 @@ function Glossary() {
         <>
             <Card className='my-3' style={{ textAlign: 'left', backgroundColor: "#f7d065" }}>
                 <Card className="def-body-results" style={{ backgroundColor: "#FAF9F6" }}>
-                <Row className="no-gutters ">
-                    <h3 className="text-center mb-4">Glossary</h3>
-                    <hr />
-                    <Col md="8" >
-                        <p className="d-flex justify-content-start">
-                            Get the most trusted, up-to-date definitions from Merriam Dictionary:
                 <Container>
                     <Row className="no-gutters ">
                         <h3 className="text-center mb-4">Dictionary</h3>
@@ -48,10 +42,6 @@ function Glossary() {
                                 Get the most trusted, up-to-date definitions from Merriam Dictionary:
                     </p>
                         </Col>
-                        : <p></p>}
-                </Row>
-                </Card>
-                </Card>
                         <Col className="border-start  border-dark" md="4">
                             <Form onSubmit={handleSearch}>
                                 <Form.Group className="mb-3" id="word">
@@ -94,9 +84,9 @@ function Glossary() {
                     </Row>
                 </Container>
             </Card>
+            </Card>
         </>
     )
 }
 
 export default Glossary;
-

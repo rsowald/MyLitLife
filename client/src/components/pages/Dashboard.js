@@ -91,7 +91,7 @@ export default function Dashboard() {
                   <Card.Body>
                     <h6 className="text-center mb-9">Add Your Book Below!</h6>
                     <hr></hr>
-                    <BookForm />
+                    <CompletedBookForm />
                   </Card.Body>
                 </div>
               </Card.Body>
@@ -114,6 +114,8 @@ export default function Dashboard() {
                 </div> */}
               <Card.Title as="h2">Book Queue</Card.Title>
               <hr></hr>
+              </Card>
+              </Col>
               </Row>
             <Row>
           <Col md="6">
