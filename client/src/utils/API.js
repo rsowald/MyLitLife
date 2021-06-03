@@ -5,7 +5,8 @@ import axios from 'axios';
 
 const bookSearchBaseURL = "https://www.googleapis.com/books/v1/volumes?q=";
 // const API_KEY_Search_Book = process.env.REACT_APP_GOOGLE_API_KEY;
-const API_KEY_Search_Book = "AIzaSyD941-spNv5FIwmDGKp71VhEVUEWCU4Fi8"
+// const API_KEY_Search_Book = "AIzaSyD941-spNv5FIwmDGKp71VhEVUEWCU4Fi8"
+const API_KEY_Search_Book = "AIzaSyAPNC7dcV49SiauSu-_3ZPN7UPuNKL0RTs"
 
 const REACT_APP_KEY_Merriam_Dictionary = process.env.REACT_APP_KEY_MERRIAM_WEBSTER;
 const merriam_Collegiate_Dictionary_Base_URL = 'https://www.dictionaryapi.com/api/v3/references/collegiate/json/';
