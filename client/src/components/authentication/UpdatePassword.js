@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react"
-import { Container, Row, Col, Card, Form, Button, Alert, Spinner } from "react-bootstrap";
+import { Container, Row, Col, Card, Form, Button, Alert } from "react-bootstrap";
 import { useAuth } from "./context/AuthContext"
 import { Link, useHistory } from "react-router-dom"
 
@@ -52,7 +52,7 @@ export default function UpdateProfile() {
                                     <Form.Label>Confirm New Password</Form.Label>
                                     <Form.Control name="confirmPassword" type="password" ref={passwordConfirmRef} placeholder="Confirm Password" required />
                                 </Form.Group>
-                                <Button className="mt-3 w-100" variant="success" type="submit">Update Password</Button>{' '}
+                                <Button disabled={loading} className="mt-3 w-100" variant="success" type="submit">Update Password</Button>{' '}
                             </Form>
                             <div className="text-center mt-3">
                                 <Link to="/">Cancel</Link>
