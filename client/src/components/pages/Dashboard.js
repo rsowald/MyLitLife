@@ -25,6 +25,11 @@ export default function Dashboard() {
     <>
       <Title />
       <Container>
+        <Row className="justify-content-center">
+          <Col md="6">
+            <DashboardQuoteCol />
+          </Col>
+        </Row>
         <Row className="d-flex justify-content-center mb-3">
           <Col>
             <Card className="card-stats" style={{ backgroundColor: "#f7d065" }}>
@@ -48,7 +53,6 @@ export default function Dashboard() {
                   </Col>
                   {/* {{ useRef }} */}
                   <hr></hr>
-
                   <Card.Body>
                     Goal:
                         {/* input */}
@@ -61,31 +65,24 @@ export default function Dashboard() {
             </Card>
           </Col>
         </Row>
-        <Row>
-          <Col md="4">
-            <Glossary />
-          </Col>
-          <Col>
-            <DashboardQuoteCol />
-          </Col>
-          <Col md="4">
+        <Row className="row-eq-height">
+          <Col md="6">
             <RecentlyCompleted refresher={(fn) => refresher = fn} />
-            <Row>
-              <Row>
-                <br></br>
-              </Row>
-              <Col md="12">
-                <Card style={{ backgroundColor: "#f7d065" }}>
-                  <Card.Body>
-                    <Card.Title as="h2">Completed Book Form</Card.Title>
-                    <h6 className="text-center mb-9">Add Your Book Below!</h6>
-                    <hr></hr>
-                    <CompletedBookForm onAdd={onNewCompletedBook} />
-                  </Card.Body>
-                </Card>
-              </Col>
-            </Row>
-
+          </Col>
+          <Col md="6">
+            <Card style={{ backgroundColor: "#f7d065" }}>
+              <Card.Body>
+                <Card.Title as="h2">Completed Book Form</Card.Title>
+                <h6 className="text-center mb-9">Add Your Book Below!</h6>
+                <hr></hr>
+                <CompletedBookForm onAdd={onNewCompletedBook} />
+              </Card.Body>
+            </Card>
+          </Col>
+        </Row>
+        <Row>
+          <Col >
+            <Glossary />
           </Col>
         </Row>
         <BestSellers />
