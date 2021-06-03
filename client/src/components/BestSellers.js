@@ -1,13 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import API from "../utils/API";
-
 import { Row, Tabs, Tab, Card } from "react-bootstrap";
-
 import Category from "./NYTcase/Category";
-import AllTime from "./NYTcase/AllTime";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-
 
 function BestSellers() {
     // const categoryRef = useRef()
@@ -109,9 +105,12 @@ function BestSellers() {
                         />
                     </Tab>
                     <Tab eventKey="history" title="All-time">
-                        <AllTime
+                        <Category
                             books={bestSellerAll}
                         />
+                        {/* <AllTime
+                            books={bestSellerAll}
+                        /> */}
                     </Tab>
                 </Tabs>
             </Row>
