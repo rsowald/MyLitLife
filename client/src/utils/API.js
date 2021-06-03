@@ -4,7 +4,8 @@ import axios from 'axios';
 // q - intitle, inauthor, inpublisher, subject, isbn, 
 
 const bookSearchBaseURL = "https://www.googleapis.com/books/v1/volumes?q=";
-const API_KEY_Search_Book = process.env.REACT_APP_GOOGLE_API_KEY;
+// const API_KEY_Search_Book = process.env.REACT_APP_GOOGLE_API_KEY;
+const API_KEY_Search_Book = "AIzaSyD941-spNv5FIwmDGKp71VhEVUEWCU4Fi8"
 
 const REACT_APP_KEY_Merriam_Dictionary = process.env.REACT_APP_KEY_MERRIAM_WEBSTER;
 const merriam_Collegiate_Dictionary_Base_URL = 'https://www.dictionaryapi.com/api/v3/references/collegiate/json/';
@@ -26,6 +27,7 @@ export default {
         return axios.get(`${merriam_Collegiate_Dictionary_Base_URL}${query}?key=${REACT_APP_KEY_Merriam_Dictionary}`);
     },
     searchNYTByCategory: function (category) {
+        // console.log(`${NYT_Category_Base_URL}-${category}.json?api-key=${APP_KEY_NYT_Dictionary}`);
         return axios.get(`${NYT_Category_Base_URL}-${category}.json?api-key=${APP_KEY_NYT_Dictionary}`);
     },
     searchNYTBestAllTime: function (category) {

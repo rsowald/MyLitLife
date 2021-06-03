@@ -39,7 +39,7 @@ export default function ResetPassword() {
                                     <Form.Label>Email</Form.Label>
                                     <Form.Control name="email" type="email" ref={emailRef} placeholder="Email address" required />
                                 </Form.Group>
-                                <Button className="mt-3 w-100" variant="success" type="submit">Reset Password</Button>{' '}
+                                <Button disabled={loading} className="mt-3 w-100" variant="success" type="submit">Reset Password</Button>{' '}
                             </Form>
                             <div className="text-center mt-3">
                                 <Link to={{ pathname: "/", state: { defaultShowLogin: true } }}>Back to Login</Link>

@@ -24,6 +24,30 @@
   color: saddlebrown;
 }
 
+.best-card .card  {
+  padding: 0px;
+}
+
+.best-card .card-body  {
+  padding: 0px;
+}
+
+.title {
+    display: inline-block;
+    width: 130px;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+}
+
+.author {
+    display: inline-block;
+    width: 120px;
+    white-space: nowrap;
+    overflow: hidden !important;
+    text-overflow: ellipsis;
+}
+
 .card-stats {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   /* this adds the "card" effect */
