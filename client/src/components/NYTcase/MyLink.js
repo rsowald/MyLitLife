@@ -28,5 +28,4 @@ function MyLink(props) {
         </a>
     )
 }
-
 export default MyLink

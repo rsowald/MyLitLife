@@ -10,7 +10,6 @@ function Category(props) {
     const [loading, setLoading] = useState(false)
     const [showError, setShowError] = useState('')
     const [addBookMessage, setAddBookMessage] = useState()
-
     const [apiError, setApiError] = useState('')
     const [mongoError, setMongoError] = useState('')
     // const [spin, setSpinner] = useState(false)
@@ -109,7 +108,6 @@ function Category(props) {
         <>
             {addBookMessage &&
                 <Row className="m-3">
-
                     {addBookMessage.includes("successfuly") ? (
                         <>
                             {/* <Toast>

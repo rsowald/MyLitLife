@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react'
 import Slider from 'react-slick'
 import { Row, Card, Button, Alert } from "react-bootstrap";
@@ -19,6 +20,7 @@ function Category(props) {
     let settings = {
         dots: true,
         infinite: true,
+
         speed: 600,
         slidesToShow: 6,
         slidesToScroll: 5,
@@ -143,9 +145,9 @@ function Category(props) {
                                 />
                                 <Card.Body>
                                     <span className="title ml-1" style={{ fontSize: "14px", color: "black" }}>{book.title} </span>
+
                                     <br />
                                     <span className="author ml-1" style={{ fontSize: "10px" }}>by {book.author}</span>
-
                                 </Card.Body>
                                 <div className="text-center">
                                     < Button className="mt-2" disabled={loading} size="sm" variant="primary" onClick={() => handleAddBook(book.title, book.author)}>
@@ -162,5 +164,4 @@ function Category(props) {
         </>
     )
 }
-
 export default Category
