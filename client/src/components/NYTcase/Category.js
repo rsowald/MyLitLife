@@ -7,10 +7,10 @@ import { useAuth } from '../authentication/context/AuthContext'
 function Category(props) {
     const { currentUser } = useAuth()
     const [loading, setLoading] = useState(false)
-    const [apiError, setApiError] = useState('')
     const [showError, setShowError] = useState('')
     const [addBookMessage, setAddBookMessage] = useState()
 
+    const [apiError, setApiError] = useState('')
     const [mongoError, setMongoError] = useState('')
     // const [spin, setSpinner] = useState(false)
     // const [addBookSucces, setAddBookSucces] = useState()
@@ -94,12 +94,15 @@ function Category(props) {
             })
             .catch(err => {
                 setShowError("We couldn't find the book on Google: no response")
-                setApiError(err)
+                setLoading(false)
+                setApiError(err.message)
                 console.log(err)
             });
-        // setInterval(function () {
-        //     setAddBookMessage(null)
-        // }, 7000);
+        setInterval(function () {
+            setAddBookMessage(null)
+            setShowError(null)
+            setApiError(null)
+        }, 7000);
     };
     return (
         <>
@@ -119,6 +122,10 @@ function Category(props) {
             {/* before presentaion remove it from here, for developing it helps if any errors... */}
             {mongoError && <Row className="m-3">
                 <Alert variant="danger">{mongoError}</Alert>
+            </Row>
+            }
+            {apiError && <Row className="m-3">
+                <Alert variant="danger">{apiError}</Alert>
             </Row>
             }
             <Slider {...settings}>
