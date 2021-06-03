@@ -72,6 +72,7 @@ function BookQueue() {
     }
     API.searchBooks(inputQuery)
       .then(res => {
+        console.log(res.data.items);
         if (res.data.items) {
           setColumns({
             ...columns,

@@ -7,7 +7,7 @@ module.exports = {
     completed: function (req, res) {
         //  TODO: add userId to search criteria (done?)
         Completed
-        //  --waiting to access currentUser
+            //  --waiting to access currentUser
             .find({ userId: req.params.user }, '-_id')
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
@@ -15,21 +15,21 @@ module.exports = {
     queue: function (req, res) {
         //  TODO: add userId to search criteria (done?)
         Enqueued
-        //  --waiting to access currentUser
-        .find({ userId: req.params.user }, '-_id')
-        .then(dbModel => res.json(dbModel))
+            //  --waiting to access currentUser
+            .find({ userId: req.params.user }, '-_id')
+            .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
-        //  TODO: create object with req.body data and userId then insert it (done?)
-        createCompleted: function (req, res) {
-          const newBook = {
-        //  --waiting to access currentUser
-        userId: req.params.user,
-//              title: req.body.volumeInfo.title,    // CHECK: see if others are using these fields -- these are inside volumeInfo
-//              pageCount: req.body.volumeInfo.pageCount,
-              id: req.body.id,
-              volumeInfo: req.body.volumeInfo
-          }  
+    //  TODO: create object with req.body data and userId then insert it (done?)
+    createCompleted: function (req, res) {
+        const newBook = {
+            //  --waiting to access currentUser
+            userId: req.params.user,
+            //              title: req.body.volumeInfo.title,    // CHECK: see if others are using these fields -- these are inside volumeInfo
+            //              pageCount: req.body.volumeInfo.pageCount,
+            id: req.body.id,
+            volumeInfo: req.body.volumeInfo
+        }
         Completed
             .create(newBook)
             .then(dbModel => res.json(dbModel))
@@ -38,46 +38,46 @@ module.exports = {
     removeCompleted: function (req, res) {
         //  TODO: add userId to search criteria (done?)
         Completed
-            .findOne({ 
+            .findOne({
                 id: req.params.id,
-        //  --waiting to access currentUser
-        userId: req.params.user
+                //  --waiting to access currentUser
+                userId: req.params.user
             })
             .then(dbModel => dbModel.remove())
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
-        //  TODO: create object with req.body data and userId then insert it (done?)
-        createEnqueued: function (req, res) {
-            const newBook = {
-        //  --waiting to access currentUser
-        userId:  req.params.user,
-  //              title: req.body.volumeInfo.title,    // CHECK: see if others are using these fields -- these are inside volumeInfo
-  //              pageCount: req.body.volumeInfo.pageCount,
-                id: req.body.id,
-                volumeInfo: req.body.volumeInfo
-            }  
-          Enqueued
+    //  TODO: create object with req.body data and userId then insert it (done?)
+    createEnqueued: function (req, res) {
+        const newBook = {
+            //  --waiting to access currentUser
+            userId: req.params.user,
+            //              title: req.body.volumeInfo.title,    // CHECK: see if others are using these fields -- these are inside volumeInfo
+            //              pageCount: req.body.volumeInfo.pageCount,
+            id: req.body.id,
+            volumeInfo: req.body.volumeInfo
+        }
+        Enqueued
             .create(newBook)
             .then(dbModel => res.json(dbModel))
             .catch(err => console.log(err));
     },
-        //  TODO: add userId to search criteria (done?)
-        removeEnqueued: function (req, res) {
-          Enqueued
-            .findOne({ 
+    //  TODO: add userId to search criteria (done?)
+    removeEnqueued: function (req, res) {
+        Enqueued
+            .findOne({
                 id: req.params.id,
-        //  --waiting to access currentUser
-        userId: req.params.user 
-             })
+                //  --waiting to access currentUser
+                userId: req.params.user
+            })
             .then(dbModel => dbModel.remove())
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
-        getCompletedLimit: function (req, res) {
+    getCompletedLimit: function (req, res) {
         //  TODO: add userId to search criteria (done?)
         Completed
-        //  --waiting to access currentUser
+            //  --waiting to access currentUser
             .find({ userId: req.params.user }, '-_id')
             .sort({ createdAt: -1 })
             .limit(5)

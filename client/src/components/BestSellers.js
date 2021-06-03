@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import API from "../utils/API";
-import { Container, Row, Col, Tabs, Tab, Button, CardDeck, Card, } from "react-bootstrap";
-import Slider from "react-slick";
+import { Row, Tabs, Tab, Card, CardDeck } from "react-bootstrap";
 import Category from "./NYTcase/Category";
 import AllTime from "./NYTcase/AllTime";
 import "slick-carousel/slick/slick.css";
@@ -14,10 +13,6 @@ function BestSellers() {
     const [key, setKey] = useState('fiction');
     const [bestSellerAll, setbestSellerAll] = useState([]);
     const [bestSellerElse, setbestSellerElse] = useState([]);
-
-    var tryitout = []
-
-
 
     useEffect(() => {
         searchNYTByCategory(key)
@@ -38,19 +33,12 @@ function BestSellers() {
             console.log("searching else ");
             return searchNYTElse(category)
         }
-
     }
     function searchNYTByCategory(category) {
         API.searchNYTByCategory(category)
             .then(res => {
-                // console.log(results);
                 console.log(res.data.results);
                 setbestSeller(res.data.results.books)
-                // best = res.data.results.books
-                // console.log(best);
-                console.log(bestSeller);
-
-
             })
             .catch(err => console.log(err));
     };
@@ -60,8 +48,6 @@ function BestSellers() {
             console.log(apiResults.data.results);
             let books = apiResults.data.results.filter(book => book.isbns.length)
             setbestSellerAll(books)
-            console.log(tryitout);
-
         } catch (err) {
             console.log(err)
         }
@@ -74,12 +60,9 @@ function BestSellers() {
             // setbestSellerAll(books)
             setbestSellerElse(apiResults.data.results.books)
             // console.log(tryitout);
-
         } catch (err) {
             console.log(err)
         }
-
-
     };
 
     return (
