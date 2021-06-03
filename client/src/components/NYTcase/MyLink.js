@@ -3,7 +3,7 @@ import { Card } from "react-bootstrap";
 import API from "../../utils/API";
 
 function MyLink(props) {
-    const [key, setKey] = useState(props.isbn);
+    // const [key, setKey] = useState(props.isbn);
     const [img, setImg] = useState();
 
     useEffect(() => {
@@ -11,7 +11,7 @@ function MyLink(props) {
     }, [])
 
     function getCover() {
-        API.searchBooks(key)
+        API.searchBooks(props.isbn)
             .then(res => {
                 // console.log(res.data.items);
                 setImg(res.data.items[0].volumeInfo.imageLinks.thumbnail)

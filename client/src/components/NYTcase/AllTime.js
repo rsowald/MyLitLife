@@ -1,7 +1,7 @@
 import React from 'react'
 import Slider from 'react-slick'
 import { Card } from "react-bootstrap";
-import API from '../../utils/API'
+// import API from '../../utils/API'
 import MyLink from './MyLink'
 
 function Category(props) {
@@ -45,7 +45,7 @@ function Category(props) {
             {props.books.map(book => {
                 return (
                     <div key={book.isbns[0].isbn10}>
-                        <Card className="m-3 v-100" style={{ textAlign: 'left',  minHeight: "550px" }} >
+                        <Card className="m-3 v-100" style={{ textAlign: 'left', minHeight: "550px" }} >
                             <MyLink
                                 isbn={book.isbns[0].isbn10}
                             />

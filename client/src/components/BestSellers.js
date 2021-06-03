@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import API from "../utils/API";
-import { Row, Tabs, Tab, Card, CardDeck } from "react-bootstrap";
+import { Row, Tabs, Tab, Card } from "react-bootstrap";
 import Category from "./NYTcase/Category";
 import AllTime from "./NYTcase/AllTime";
 import "slick-carousel/slick/slick.css";

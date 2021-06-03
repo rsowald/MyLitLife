@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { Row, Col, Card, Form, Button, Alert, Spinner, Accordion } from "react-bootstrap";
+import { Row, Col, Card, Form, Button, Alert, Spinner } from "react-bootstrap";
 import API from "../utils/API";
 // import DictionaryResult from '../DictionaryResult'
 
@@ -17,7 +17,6 @@ function Glossary() {
             setBtnSpinner(true)
             setBtnLoading(true)
             await API.searchInMerriamDictionary(wordRef.current.value)
-
                 .then(results => {
                     console.log(results.data);
                     setsearchResult(results.data)
@@ -64,69 +63,21 @@ function Glossary() {
                         ? <Col className="d-flex justify-content-start">
                             <hr />
                             <Alert className="text-left " >
-                                < Alert.Heading >Definition: 
+                                < Alert.Heading >Definition:
                                  </Alert.Heading>
-                                {/* {searchResult[0].hwi.prs[0].sound} */}
                                 {searchResult[0].shortdef
-                                    ? searchResult[0].shortdef.map((def, index) => {
-                                        var index = index + 1
-
+                                    ? searchResult[0].shortdef.map((def, i) => {
+                                        var index = i + 1
                                         return (
-                                            <>
-                                                <p key={searchResult[0].meta.uuid}>
-                                                    {index}: {def}                                                 </p>
-
-                                            </>
+                                            <p key={`${searchResult[0].meta.uuid}${index}`}>
+                                                {index}: {def}
+                                            </p>
                                         )
                                     })
 
                                     : <p>No results found</p>
                                 }
-                                {searchResult[1].shortdef &&
-                                    <Accordion defaultActiveKey="0" >
-                                        <Card style={{ textAlign: "left" }}>
-                                            <Card.Header>
-                                                <Accordion.Toggle as={Card.Header} eventKey="1">
-                                                    More responses
-                                                        </Accordion.Toggle>
-                                            </Card.Header>
-                                            <Accordion.Collapse eventKey="1">
-                                                <Card.Body>
-                                                    {/* {searchResult.shift()} */}
-                                                    {searchResult[0].shortdef
-                                                        ? searchResult.map((definition, index) => {
-
-                                                            var index = index + 1;
-                                                            return (
-                                                                <>
-                                                                    <div key={definition.meta.uuid}>
-
-                                                                        <strong>Definition {index}: ({definition.fl})</strong>
-                                                                        <p key={definition.meta.uuid}>
-                                                                            {definition.shortdef.join(", ")}
-                                                                        </p>
-                                                                        <hr />
-                                                                    </div>
-                                                                </>
-
-                                                            )
-                                                        })
-                                                        : <p></p>
-                                                    }
-                                                </Card.Body>
-                                            </Accordion.Collapse>
-                                        </Card>
-                                    </Accordion>
-                                }
-                                {/* <p>
-                                    {searchResult[0].shortdef.join(" | ")}
-                                </p> */}
-
-
-
                             </Alert>
-                            {/* <DictionaryResult searchResult={searchResult} /> */}
-                            {/* : <p>No result found for {wordRef.current.value}</p>} */}
                         </Col>
                         : <p></p>}
                 </Row>

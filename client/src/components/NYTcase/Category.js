@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Slider from 'react-slick'
-import { Row, Card, CardDeck, Button, Alert, Spinner } from "react-bootstrap";
+import { Row, Card, Button, Alert } from "react-bootstrap";
 import API from '../../utils/API'
 import { useAuth } from '../authentication/context/AuthContext'
 
