@@ -32,6 +32,7 @@ function Glossary() {
     return (
         <>
             <Card className='my-3' style={{ textAlign: 'left', backgroundColor: "#f7d065" }}>
+                <Card className="def-body-results" style={{ backgroundColor: "#FAF9F6" }}>
                 <Container>
                     <Row className="no-gutters ">
                         <h3 className="text-center mb-4">Dictionary</h3>
@@ -83,9 +84,9 @@ function Glossary() {
                     </Row>
                 </Container>
             </Card>
+            </Card>
         </>
     )
 }
 
 export default Glossary;
-
