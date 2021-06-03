@@ -3,29 +3,37 @@ import { Form, Button, Toast } from 'react-bootstrap';
 import API from "../utils/API";
 import { useAuth } from "../components/authentication/context/AuthContext";
 
-function BookForm() {
+function CompletedBookForm(props) {
     const { currentUser } = useAuth();
     const titleRef = useRef();
     const authorRef = useRef();
 
-    const [showToast, setShowToast] = useState(false);
+    const [showErrorToast, setShowErrorToast] = useState("");
+    const [showSuccessToast, setShowSuccessToast] = useState(false);
 
-    const handleAddedBook = (event) => {
+    const handleAddedBook = async (event) => {
         event.preventDefault();
-        API.searchBooks(`intitle:${titleRef.current.value}+inauthor:${authorRef.current.value}`)
-            .then(res => {
-                if (res.data.items) {
-                    API.addToCompleted(res.data.items[0], currentUser.uid)
-                }
-                else {
-                    setShowToast(true);
-                }
-            })
-            .catch(err => {
-                console.log(err)
-            });
-        titleRef.current.value = "";
-        authorRef.current.value = "";
+        const searchResult = await API.searchBooks(`intitle:${titleRef.current.value}+inauthor:${authorRef.current.value}`);
+
+        if (searchResult.data.items) {
+            const book = searchResult.data.items[0];
+            try {
+                await API.addToCompleted(book, currentUser.uid);
+                setShowSuccessToast(true);
+                setShowErrorToast("");
+                props.onAdd();
+            } catch (error) {
+                setShowSuccessToast(false);
+                setShowErrorToast(`${book.volumeInfo.title} by ${book.volumeInfo.authors[0]} is already in your completed list.`);
+            }
+
+            titleRef.current.value = "";
+            authorRef.current.value = "";
+        }
+        else {
+            setShowSuccessToast(false);
+            setShowErrorToast("No book found by that title and author.");
+        }
     };
 
     return (
@@ -37,16 +45,22 @@ function BookForm() {
                 <Form.Group className="mb-3" id="author">
                     <Form.Control name="author" type="name" placeholder="Author" ref={authorRef} required />
                 </Form.Group>
-                <Button type="submit">Add Book!</Button>
+                <Button type="submit" variant="secondary">Add Book!</Button>
             </Form>
-            <Toast className="mt-3" show={showToast} onClose={() => setShowToast(false)}>
+            <Toast className="mt-3" show={showErrorToast} onClose={() => setShowErrorToast(false)}>
                 <Toast.Header>
                     <strong className="mr-auto">Oh No! Try again.</strong>
                 </Toast.Header>
-                <Toast.Body>We couldn't find a book by that title and author.</Toast.Body>
+                <Toast.Body>{showErrorToast}</Toast.Body>
+            </Toast>
+            <Toast className="mt-3" show={showSuccessToast} onClose={() => setShowSuccessToast(false)}>
+                <Toast.Header>
+                    <strong className="mr-auto">Success!</strong>
+                </Toast.Header>
+                <Toast.Body>This book has been added to your Completed Books list.</Toast.Body>
             </Toast>
         </>
     );
 };
 
-export default BookForm;
+export default CompletedBookForm;

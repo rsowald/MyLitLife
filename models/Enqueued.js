@@ -4,7 +4,12 @@ const { Schema } = mongoose;
 const BookSchema = new Schema({
   userId: { type: String, required: true },
   id: { type: String },
-  volumeInfo: {}
+  volumeInfo: {},
+  rating: { type: Number },
+  notes: { type: String },
+  synopsis: { type: String },
+  ending: { type: String },
+  updated: { type: Date, default: Date.now },
 });
 
 const Enqueued = mongoose.model("Enqueued", BookSchema);
