@@ -7,12 +7,13 @@ import { useAuth } from '../authentication/context/AuthContext'
 function Category(props) {
     const { currentUser } = useAuth()
     const [loading, setLoading] = useState(false)
-    // const [spin, setSpinner] = useState(false)
     const [apiError, setApiError] = useState('')
-    // const [mongoError, setMongoError] = useState('')
     const [showError, setShowError] = useState('')
-    const [addBookError, setAddBookError] = useState()
-    const [addBookSucces, setAddBookSucces] = useState()
+    const [addBookMessage, setAddBookMessage] = useState()
+
+    const [mongoError, setMongoError] = useState('')
+    // const [spin, setSpinner] = useState(false)
+    // const [addBookSucces, setAddBookSucces] = useState()
 
     let settings = {
         dots: true,
@@ -60,7 +61,7 @@ function Category(props) {
                             if (book.id === result.data.items[0].id) {
                                 console.log(book.id);
                                 var existingBook = book.id
-                                setAddBookError(`${book.volumeInfo.title} by ${book.volumeInfo.authors[0]} it's in your queue already!`)
+                                setAddBookMessage(`${book.volumeInfo.title} by ${book.volumeInfo.authors[0]} it's in your queue already!`)
                                 console.log(existingBook);
                                 return existingBook
                             } else {
@@ -74,9 +75,10 @@ function Category(props) {
                             API.addToQueue(result.data.items[0], currentUser.uid)
                                 .then(response => {
                                     console.log(response);
-                                    setAddBookSucces(`${response.data.volumeInfo.title} by ${response.data.volumeInfo.authors[0]} successfuly added`);
+                                    setAddBookMessage(`${response.data.volumeInfo.title} by ${response.data.volumeInfo.authors[0]} successfuly added`);
                                 })
                                 .catch(err => {
+                                    setShowError("We couldn't add the book in your queue")
                                     console.log(err)
                                 })
                         }
@@ -85,44 +87,46 @@ function Category(props) {
                     })
                     .catch(err => {
                         console.log(err)
-                        setShowError("We couldn't find the book")
+                        setMongoError(err)
+                        setShowError("We couldn't find the book in Book Queue to compare if exists already")
                         setLoading(false)
                     })
             })
             .catch(err => {
-                setShowError("We couldn't add the book")
+                setShowError("We couldn't find the book on Google: no response")
                 setApiError(err)
                 console.log(err)
             });
+        // setInterval(function () {
+        //     setAddBookMessage(null)
+        // }, 7000);
     };
     return (
         <>
-            {addBookError && <Row className="m-5">
-                <Alert variant="danger">{addBookError}</Alert>
-            </Row>
+            {addBookMessage &&
+                <Row className="m-3">
+                    {addBookMessage.includes("successfuly") ? (
+                        <Alert variant="success">{addBookMessage}</Alert>
+                    ) : (
+                        <Alert variant="danger">{addBookMessage}</Alert>
+                    )}
+                </Row>
             }
-            {addBookSucces && <Row className="m-5">
-                <Alert variant="success">{addBookSucces}</Alert>
-            </Row>
-            }
-            {showError && <Row className="m-5">
+            {showError && <Row className="m-3">
                 <Alert variant="danger">{showError}</Alert>
             </Row>
             }
+            {/* before presentaion remove it from here, for developing it helps if any errors... */}
+            {mongoError && <Row className="m-3">
+                <Alert variant="danger">{mongoError}</Alert>
+            </Row>
+            }
             <Slider {...settings}>
-
                 {props.books.map(book => {
                     return (
                         <div key={book.primary_isbn10}>
-
-
                             <Card className="m-3" style={{ textAlign: 'left', width: "250px", minHeight: "500px" }} >
-                                {apiError ? (
-                                    <Alert variant="danger">{apiError}</Alert>
-                                ) : (
-                                    <Card.Img className="d-block mx-auto img-fluid" variant="top" src={book.book_image} style={{ height: "250px" }} />
-                                )
-                                }
+                                <Card.Img className="d-block mx-auto img-fluid" variant="top" src={book.book_image} style={{ height: "250px" }} />
                                 <Card.Body>
                                     <Card.Title>{book.title}
                                         <br />
@@ -130,9 +134,7 @@ function Category(props) {
                                     {/* <Card.Text>
                                     {book.description}
                                 </Card.Text> */}
-
                                 </Card.Body>
-
                                 <Card.Footer>
                                     {book.weeks_on_list > 1 ? (
                                         <small className="text-muted">
@@ -142,16 +144,13 @@ function Category(props) {
                                         <small className="text-muted">
                                             New this week
                                         </small>
-                                    )
-                                    }
+                                    )}
                                 </Card.Footer>
                                 < Button disabled={loading} variant="primary" onClick={() => handleAddBook(book.title, book.author)}>Add to Book Queue</Button>
                                 {/* {!spin
                                     ? < Button disabled={loading} variant="primary" onClick={() => handleAddBook(book.title, book.author)}>Add to Book Queue</Button>
-
                                     : <Spinner className="mt-3" animation="border" variant="primary" />
                                 } */}
-
                             </Card>
                         </div>
                     )
@@ -160,5 +159,4 @@ function Category(props) {
         </>
     )
 }
-
 export default Category
