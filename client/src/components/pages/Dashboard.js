@@ -114,6 +114,8 @@ export default function Dashboard() {
                 </div> */}
               <Card.Title as="h2">Book Queue</Card.Title>
               <hr></hr>
+              </Row>
+            <Row>
           <Col md="6">
             <RecentlyCompleted refresher={(fn) => refresher = fn} />
           </Col>
