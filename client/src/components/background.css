@@ -1,0 +1,17 @@
+.image-gallery-content .image-gallery-slide .image-gallery-image {
+    max-height: 100vh;
+    min-height: 100vh;
+    min-width: 100vw;
+    padding: 10px;
+    margin-top: -5%;
+    top: 0px;
+    left: 0px;
+    overflow: hidden;
+}
+
+.image-gallery-slide {
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 100vw;
+}
