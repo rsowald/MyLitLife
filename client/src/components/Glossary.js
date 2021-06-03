@@ -33,6 +33,7 @@ function Glossary() {
     return (
         <>
             <Card className='my-3' style={{ textAlign: 'left', backgroundColor: "#f7d065" }}>
+                <Card className="def-body-results" style={{ backgroundColor: "#FAF9F6" }}>
                 <Row className="no-gutters ">
                     <h3 className="text-center mb-4">Glossary</h3>
                     <hr />
@@ -130,6 +131,7 @@ function Glossary() {
                         </Col>
                         : <p></p>}
                 </Row>
+                </Card>
             </Card>
         </>
     )
