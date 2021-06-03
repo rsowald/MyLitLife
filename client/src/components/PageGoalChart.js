@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { Bar } from 'react-chartjs-2';
+import { Card } from 'react-bootstrap';
 
 class PageGoalChart extends Component{
     constructor(props){
@@ -41,7 +42,8 @@ class PageGoalChart extends Component{
     }
     render(){
         return (
-            <div className="chart">
+            <Card>
+            <div className="chart" style={{ backgroundColor: "#FAF9F6" }} >
                 <Bar
                   data={this.state.chartData}
                   options={{
@@ -57,6 +59,7 @@ class PageGoalChart extends Component{
                   }}
                 />
             </div>
+            </Card>
         )
     }
 }
