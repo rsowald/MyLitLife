@@ -61,28 +61,33 @@ function Category(props) {
                                 console.log(book.id);
                                 var existingBook = book.id
                                 setAddBookError(`${book.volumeInfo.title} by ${book.volumeInfo.authors[0]} it's in your queue already!`)
-                                // return existingBook
+                                console.log(existingBook);
+                                return existingBook
+                            } else {
+                                return null
                             }
 
                         })
-                        // if (!checkExisting) {
-                        //     console.log("add to queue triggered")
-                        //     API.addToQueue(result.data.items[0], currentUser.uid)
-                        //         .then(response => {
-                        //             console.log(response);
-                        //             setAddBookSucces(`${response.data.volumeInfo.title} by ${response.data.volumeInfo.authors[0]} successfuly added`);
-                        //         })
-                        //         .catch(err => {
-                        //             console.log(err)
-                        //         })
-                        // }
+                        console.log(checkExisting.length);
+                        if (checkExisting.length <= 0) {
+                            console.log("add to queue triggered")
+                            API.addToQueue(result.data.items[0], currentUser.uid)
+                                .then(response => {
+                                    console.log(response);
+                                    setAddBookSucces(`${response.data.volumeInfo.title} by ${response.data.volumeInfo.authors[0]} successfuly added`);
+                                })
+                                .catch(err => {
+                                    console.log(err)
+                                })
+                        }
                         setLoading(false)
                         // setSpinner(false)
                     })
-                    .catch(err => console.log(err))
-                // if (res.data.items) {
-                //     return API.addToQueue(res.data.items[0], currentUser.uid)
-                // }
+                    .catch(err => {
+                        console.log(err)
+                        setShowError("We couldn't find the book")
+                        setLoading(false)
+                    })
             })
             .catch(err => {
                 setShowError("We couldn't add the book")
@@ -98,6 +103,10 @@ function Category(props) {
             }
             {addBookSucces && <Row className="m-5">
                 <Alert variant="success">{addBookSucces}</Alert>
+            </Row>
+            }
+            {showError && <Row className="m-5">
+                <Alert variant="danger">{showError}</Alert>
             </Row>
             }
             <Slider {...settings}>
@@ -142,7 +151,7 @@ function Category(props) {
 
                                     : <Spinner className="mt-3" animation="border" variant="primary" />
                                 } */}
-                                {showError && <Alert variant="danger">{showError}</Alert>}
+
                             </Card>
                         </div>
                     )
