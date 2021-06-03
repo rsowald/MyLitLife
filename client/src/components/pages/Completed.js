@@ -38,13 +38,20 @@ function CompletedBooks() {
         }}
       >
         {books.map( ({ volumeInfo }, index) => {
+            var image;
+            if (volumeInfo.imageLinks) {
+              image = volumeInfo.imageLinks.thumbnail;
+            } else {
+              image = `${process.env.PUBLIC_URL}/cover_placeholder.jpg`;
+            }
+          
             return(
               <CompletedCard
                 key={index}
-                thumbnail={volumeInfo.imageLinks.thumbnail}
+                thumbnail={image}
                 title={volumeInfo.title}
                 description={volumeInfo.description}
-                previewLink={volumeInfo.previewLink}
+                previewLink={volumeInfo.infoLink}
                 publishedDate={volumeInfo.publishedDate}
               />
             )
