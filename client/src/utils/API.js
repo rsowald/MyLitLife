@@ -27,6 +27,7 @@ export default {
         return axios.get(`${merriam_Collegiate_Dictionary_Base_URL}${query}?key=${REACT_APP_KEY_Merriam_Dictionary}`);
     },
     searchNYTByCategory: function (category) {
+        // console.log(`${NYT_Category_Base_URL}-${category}.json?api-key=${APP_KEY_NYT_Dictionary}`);
         return axios.get(`${NYT_Category_Base_URL}-${category}.json?api-key=${APP_KEY_NYT_Dictionary}`);
     },
     searchNYTBestAllTime: function (category) {

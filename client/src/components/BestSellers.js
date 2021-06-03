@@ -21,7 +21,7 @@ function BestSellers() {
     function searchNYT(category) {
 
         if (category === "fiction" || category === "nonfiction" || category === "advice" || category === "graphic-books") {
-            console.log("searching by category: " + category);
+            // console.log("searching by category: " + category);
             return searchNYTByCategory(category)
         }
         if (category === "history") {
@@ -37,7 +37,7 @@ function BestSellers() {
     function searchNYTByCategory(category) {
         API.searchNYTByCategory(category)
             .then(res => {
-                console.log(res.data.results);
+                // console.log(res.data.results);
                 setbestSeller(res.data.results.books)
             })
             .catch(err => console.log(err));
@@ -45,7 +45,7 @@ function BestSellers() {
     async function searchNYTBestAllTime() {
         try {
             const apiResults = await API.searchNYTBestAllTime()
-            console.log(apiResults.data.results);
+            // console.log(apiResults.data.results);
             let books = apiResults.data.results.filter(book => book.isbns.length)
             setbestSellerAll(books)
         } catch (err) {
@@ -55,7 +55,7 @@ function BestSellers() {
     async function searchNYTElse(query) {
         try {
             const apiResults = await API.searchNYTByElse(query)
-            console.log(apiResults.data.results.books);
+            // console.log(apiResults.data.results.books);
             // let books = apiResults.data.results.filter(book => book.isbns.length)
             // setbestSellerAll(books)
             setbestSellerElse(apiResults.data.results.books)
