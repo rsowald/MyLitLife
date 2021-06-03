@@ -17,8 +17,6 @@ export default function Login(props) {
 
   async function handleLogin(event) {
     event.preventDefault();
-    const { email, password } = event.target.elements;
-
     try {
       setLoading(true)
       await login(emailRef.current.value, passwordRef.current.value)
@@ -61,8 +59,9 @@ export default function Login(props) {
         </div>
       </Card.Body>
       <Card.Footer className="text-center mt-2"><h5>Don't have an account, yet?
-      <Button size="sm" className="mt-2" onClick={() => props.onClick()}> Sign Up!</Button>
-      </h5></Card.Footer>
+        <Button disabled={loading} size="sm" className="mt-2" onClick={() => props.onClick()}> Sign Up!</Button>
+      </h5>
+      </Card.Footer>
     </Card>
   );
 }

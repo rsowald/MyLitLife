@@ -33,7 +33,7 @@ module.exports = {
         Completed
             .create(newBook)
             .then(dbModel => res.json(dbModel))
-            .catch(err => console.log(err));
+            .catch(err => res.status(400).send('This book is already in your completed list'));
     },
     removeCompleted: function (req, res) {
         //  TODO: add userId to search criteria (done?)
@@ -52,15 +52,13 @@ module.exports = {
         const newBook = {
             //  --waiting to access currentUser
             userId: req.params.user,
-            //              title: req.body.volumeInfo.title,    // CHECK: see if others are using these fields -- these are inside volumeInfo
-            //              pageCount: req.body.volumeInfo.pageCount,
             id: req.body.id,
             volumeInfo: req.body.volumeInfo
         }
         Enqueued
             .create(newBook)
             .then(dbModel => res.json(dbModel))
-            .catch(err => console.log(err));
+            .catch(err => console.send('This book is already in your book queue.'));
     },
     //  TODO: add userId to search criteria (done?)
     removeEnqueued: function (req, res) {

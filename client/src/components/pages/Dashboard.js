@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from 'react';
 // react-bootstrap components
 import { Container, Card, Row, Col, Button, ButtonToolbar } from "react-bootstrap";
 import Title from '../Title';
@@ -6,14 +6,21 @@ import "./dashboard.css";
 import Glossary from "../Glossary";
 import DashboardQuoteCol from "../DashboardQuoteCol";
 import BestSellers from '../BestSellers';
-import BookForm from '../CompletedBookForm';
+import CompletedBookForm from '../CompletedBookForm';
 import History from '../History';
 import BookGoalChart from "../BookGoalChart";
 import PageGoalChart from "../PageGoalChart";
 import CurrentBook from "../CurrentBook";
+import RecentlyCompleted from "../RecentlyCompleted";
 
 export default function Dashboard() {
   // const bookGoals = useRef();
+
+  let refresher = null;
+
+  const onNewCompletedBook = () => {
+    refresher();
+  };
 
   return (
     <>
@@ -25,6 +32,8 @@ export default function Dashboard() {
               <hr></hr>
                   <Card.Title as="h2">Book Goals:</Card.Title>
                   <hr></hr>
+              <Card.Title as="h2">Book Goals</Card.Title>
+              <hr></hr>
               <Card.Body>
                 <Row>
                   <Card>
@@ -105,17 +114,17 @@ export default function Dashboard() {
                 </div> */}
               <Card.Title as="h2">Book Queue</Card.Title>
               <hr></hr>
+          <Col md="6">
+            <RecentlyCompleted refresher={(fn) => refresher = fn} />
+          </Col>
+          <Col md="6">
+            <Card style={{ backgroundColor: "#f7d065" }}>
               <Card.Body>
-                <ul>
-                  <li>Book 1</li>
-                  <li>Book 2</li>
-                  <li>Book 3</li>
-                  <li>Book 4</li>
-                </ul>
+                <Card.Title as="h2">Completed Book Form</Card.Title>
+                <h6 className="text-center mb-9">Add Your Book Below!</h6>
+                <hr></hr>
+                <CompletedBookForm onAdd={onNewCompletedBook} />
               </Card.Body>
-              <ButtonToolbar className="mt-3 justify-content-between" aria-label="Toolbar with Button groups">
-                <Button variant="secondary" type="submit">Find Books</Button>
-              </ButtonToolbar>
             </Card>
           </Col>
         </Row>

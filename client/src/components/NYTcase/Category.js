@@ -1,16 +1,16 @@
 import React, { useState } from 'react'
 import Slider from 'react-slick'
-import { Row, Card, CardDeck, Button, Alert, Spinner } from "react-bootstrap";
+import { Row, Card, Button, Alert } from "react-bootstrap";
+// import { Row, Card, Button, Alert, Toast } from "react-bootstrap";
 import API from '../../utils/API'
 import { useAuth } from '../authentication/context/AuthContext'
 
 function Category(props) {
     const { currentUser } = useAuth()
     const [loading, setLoading] = useState(false)
-    const [apiError, setApiError] = useState('')
     const [showError, setShowError] = useState('')
     const [addBookMessage, setAddBookMessage] = useState()
-
+    const [apiError, setApiError] = useState('')
     const [mongoError, setMongoError] = useState('')
     // const [spin, setSpinner] = useState(false)
     // const [addBookSucces, setAddBookSucces] = useState()
@@ -18,29 +18,29 @@ function Category(props) {
     let settings = {
         dots: true,
         infinite: true,
-        speed: 400,
-        slidesToShow: 4,
-        slidesToScroll: 3,
+        speed: 600,
+        slidesToShow: 6,
+        slidesToScroll: 5,
         cssEase: "linear",
         responsive: [
             {
                 breakpoint: 1200,
                 settings: {
-                    slidesToShow: 3,
-                    slidesToScroll: 2
+                    slidesToShow: 5,
+                    slidesToScroll: 4
                 }
             },
             {
                 breakpoint: 850,
                 settings: {
-                    slidesToShow: 2,
-                    slidesToScroll: 1,
+                    slidesToShow: 3.5,
+                    slidesToScroll: 3,
                 }
             },
             {
                 breakpoint: 480,
                 settings: {
-                    slidesToShow: 1,
+                    slidesToShow: 1.5,
                     slidesToScroll: 1
                 }
             }
@@ -94,19 +94,30 @@ function Category(props) {
             })
             .catch(err => {
                 setShowError("We couldn't find the book on Google: no response")
-                setApiError(err)
+                setLoading(false)
+                setApiError(err.message)
                 console.log(err)
             });
-        // setInterval(function () {
-        //     setAddBookMessage(null)
-        // }, 7000);
+        setInterval(function () {
+            setAddBookMessage(null)
+            setShowError(null)
+            setApiError(null)
+        }, 7000);
     };
     return (
         <>
             {addBookMessage &&
                 <Row className="m-3">
                     {addBookMessage.includes("successfuly") ? (
-                        <Alert variant="success">{addBookMessage}</Alert>
+                        <>
+                            {/* <Toast>
+                                <Toast.Header>
+                                {addBookMessage}
+                                </Toast.Header>
+    
+                            </Toast> */}
+                            <Alert variant="success">{addBookMessage}</Alert>
+                        </>
                     ) : (
                         <Alert variant="danger">{addBookMessage}</Alert>
                     )}
@@ -121,36 +132,32 @@ function Category(props) {
                 <Alert variant="danger">{mongoError}</Alert>
             </Row>
             }
+            {apiError && <Row className="m-3">
+                <Alert variant="danger">{apiError}</Alert>
+            </Row>
+            }
             <Slider {...settings}>
                 {props.books.map(book => {
                     return (
-                        <div key={book.primary_isbn10}>
-                            <Card className="m-3" style={{ textAlign: 'left', width: "250px", minHeight: "500px" }} >
-                                <Card.Img className="d-block mx-auto img-fluid" variant="top" src={book.book_image} style={{ height: "250px" }} />
+                        <div className="best-card" key={book.primary_isbn10}>
+                            <Card className="m-3" style={{ textAlign: 'left', width: "150px", height: "300px" }}>
+                                <a href={book.amazon_product_url} target="_blank" rel="noopener noreferrer">
+                                <Card.Img className="d-block mx-auto img-fluid" variant="top" src={book.book_image} style={{ height: "200px" }} />
                                 <Card.Body>
-                                    <Card.Title>{book.title}
-                                        <br />
-                                        <span style={{ fontSize: "12px" }}>by {book.author}</span></Card.Title>
-                                    {/* <Card.Text>
-                                    {book.description}
-                                </Card.Text> */}
+                                    <span className="title ml-1" style={{ fontSize: "14px", color: "black" }}>{book.title} </span>
+                                    <br />
+                                    <span className="author ml-1" style={{ fontSize: "10px" }}>by {book.author}</span>
+
                                 </Card.Body>
-                                <Card.Footer>
-                                    {book.weeks_on_list > 1 ? (
-                                        <small className="text-muted">
-                                            {book.weeks_on_list} Weeks on list as best selling
-                                        </small>
-                                    ) : (
-                                        <small className="text-muted">
-                                            New this week
-                                        </small>
-                                    )}
-                                </Card.Footer>
-                                < Button disabled={loading} variant="primary" onClick={() => handleAddBook(book.title, book.author)}>Add to Book Queue</Button>
-                                {/* {!spin
-                                    ? < Button disabled={loading} variant="primary" onClick={() => handleAddBook(book.title, book.author)}>Add to Book Queue</Button>
-                                    : <Spinner className="mt-3" animation="border" variant="primary" />
-                                } */}
+                                </a>
+
+                                <div className="text-center">
+                                    < Button className="mt-2" disabled={loading} size="sm" variant="primary" onClick={() => handleAddBook(book.title, book.author)}>
+                                        <span className="mx-2" style={{ fontSize: "10px" }}>
+                                            Add to Queue
+                                            </span>
+                                    </Button>
+                                </div>
                             </Card>
                         </div>
                     )
