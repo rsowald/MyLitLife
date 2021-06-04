@@ -46,17 +46,11 @@ export default {
     getQueue: function (user) {
         return axios.get(`/api/books/queue/${user}`)
     },
-    queue: function (user) {
-        return axios.get(`/api/books/queue/${user}`);
-    },
     addToQueue: function (item, user) {
         return axios.post(`/api/books/queue/${user}`, item);
     },
     removeFromQueue: function (id, user) {
         return axios.delete(`/api/books/queue/${user}/${id}`);
-    },
-    completed: function (user) {
-        return axios.get(`/api/books/completed/${user}`);
     },
     addToCompleted: function (item, user) {
         return axios.post(`/api/books/completed/${user}`, item);

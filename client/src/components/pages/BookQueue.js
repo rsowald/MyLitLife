@@ -96,12 +96,12 @@ function BookQueue() {
   function loadColumns(columns, setColumns) {
     var queue = [];
     var comp = [];
-    API.queue(user)
+    API.getQueue(user)
       .then(res => {
         queue = res.data;
       })
-        .then(() => {
-          API.getCompletedLimit(user)
+      .then(() => {
+        API.getCompletedLimit(user)
           .then(res => {
             comp = res.data;
             setColumns({
@@ -116,13 +116,13 @@ function BookQueue() {
               }
             })
           })
-        })
-        .catch(err => {
-          console.log(err);
       })
       .catch(err => {
         console.log(err);
-    });
+      })
+      .catch(err => {
+        console.log(err);
+      });
   }
 
   function handleOnDragEnd(result, columns, setColumns) {
@@ -221,7 +221,7 @@ function BookQueue() {
                             var title = volumeInfo.title;
 
                             return (
-                              <Draggable 
+                              <Draggable
                                 key={id}
                                 draggableId={id}
                                 index={index}
