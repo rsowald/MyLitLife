@@ -26,6 +26,7 @@ function History() {
                   pages.push(book.volumeInfo.pageCount);
                 
               }
+              return true;
           })
           setLabels(labels);
           setPages(pages); 
@@ -41,7 +42,7 @@ function History() {
                 labels: labels,
                 datasets:[
                     {
-                        data:pages,
+                        data: pages,
                         backgroundColor: ['#ff3d67', '#ff9f40', '#ffcd56', '#4bc0c0', '#999999', '#333fde'],
                     }
                 ],
