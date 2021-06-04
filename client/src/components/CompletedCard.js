@@ -4,7 +4,7 @@ import "./CompletedCard.css";
 
 function CompletedCard(props) {
   return (
-    <Card>
+    <Card className="CompletedCard">
       <Card.Img variant="top" src={props.thumbnail} />
       <Card.Body>
         <Card.Title>{props.title}</Card.Title>
