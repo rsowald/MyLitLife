@@ -2,6 +2,7 @@ import React, { useRef, useState } from "react";
 import { Link } from 'react-router-dom';
 import { useAuth } from './context/AuthContext';
 import { Container, Row, Col, Card, Form, Button, Alert } from "react-bootstrap";
+import "./auth.css";
 
 export default function ResetPassword() {
     const emailRef = useRef();
@@ -22,13 +23,14 @@ export default function ResetPassword() {
             setFirebaseError(error.message)
         }
         setLoading(false)
+        emailRef.current.value = "";
     };
 
     return (
         <Container className="my-5">
             <Row className="justify-content-md-center">
                 <Col lg={6} md={8} sm={12}>
-                    <Card>
+                    <Card className="forgot-pass-card">
                         <Card.Body>
                             <h3 className="text-center mb-4">Forgot password</h3>
                             {instructions && <Alert variant="success">{instructions}</Alert>}
@@ -36,10 +38,9 @@ export default function ResetPassword() {
 
                             <Form onSubmit={handleResetPassword}>
                                 <Form.Group id="email">
-                                    <Form.Label>Email</Form.Label>
-                                    <Form.Control name="email" type="email" ref={emailRef} placeholder="Email address" required />
+                                    <Form.Control name="email" type="email" ref={emailRef} placeholder="Email Address" required />
                                 </Form.Group>
-                                <Button disabled={loading} className="mt-3 w-100" variant="success" type="submit">Reset Password</Button>{' '}
+                                <Button disabled={loading} className="mt-3 w-100" variant="secondary" type="submit">Reset Password</Button>{' '}
                             </Form>
                             <div className="text-center mt-3">
                                 <Link to={{ pathname: "/", state: { defaultShowLogin: true } }}>Back to Login</Link>
