@@ -45,7 +45,8 @@ As a user, I aim to read a certain number of books per month and able to clearly
 * [React Router](https://reactrouter.com/web/api/withRouter)
 * [Firebase Tools](https://www.npmjs.com/package/firebase-tools)
 * [React Image Gallery](https://www.npmjs.com/package/react-image-gallery)
-* [Canva](https://www.canva.com/
+* [Canva](https://www.canva.com/)
+
 
 
 ## Contributers
