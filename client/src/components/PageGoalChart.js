@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Bar } from 'react-chartjs-2';
 import API from "../utils/API";
 import { useAuth } from "./authentication/context/AuthContext";
+import { Card } from 'react-bootstrap';
 
 function PageGoalChart() {
     const months = ['January', 'February','March','April','May','June','July','August','September','October','November','December'];
@@ -103,7 +104,8 @@ backgroundColor: '#ff9f40'
             }
 
         return (
-            <div className="chart">
+            <Card>
+            <div className="chart" style={{ backgroundColor: "#FAF9F6" }} >
                 <Bar
                   data={ chartData }
                   options={{
@@ -119,6 +121,7 @@ backgroundColor: '#ff9f40'
                   }}
                 />
             </div>
+            </Card>
         )
 }
 

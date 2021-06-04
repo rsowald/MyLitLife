@@ -7,10 +7,10 @@ import Glossary from "../Glossary";
 import DashboardQuoteCol from "../DashboardQuoteCol";
 import BestSellers from '../BestSellers';
 import CompletedBookForm from '../CompletedBookForm';
-import History from '../History';
-import BookGoalChart from "../BookGoalChart";
-import PageGoalChart from "../PageGoalChart";
+import CurrentBookDropdown from "../CurrentBookDropdown";
 import RecentlyCompleted from "../RecentlyCompleted";
+import HistoryCard from '../HistoryCard';
+import BookGoals from '../BookGoals';
 
 export default function Dashboard() {
   // const bookGoals = useRef();
@@ -25,64 +25,55 @@ export default function Dashboard() {
     <>
       <Title />
       <Container>
-        <Row className="justify-content-center">
+        <Row className="d-flex align-items-center mb-9">
+          <Col xs="6" md="6">
+            <BookGoals />
+          </Col>
+          <Col xs="12" md="2"></Col>
+          <Col xs="12" md="4">
+            <HistoryCard />
+            <br></br>
+            <br></br>
+            <Row>
+              <Card className="card-current-book" style={{ backgroundColor: "#f7d065" }}>
+                <Card.Title>
+                  <CurrentBookDropdown />
+                </Card.Title>
+                <Card.Body />
+              </Card>
+            </Row>
+          </Col>
+        </Row>
+        <br></br>
+        <Row className="row-eq-height d-flex align-items-center">
+          <Col sm="6" md="4">
+            <Card className="card-completed-form" style={{ backgroundColor: "#f7d065", height: "350px" }}>
+              <Card.Body>
+                <div className="icon-big text-left icon-warning">
+                  <i className="nc-icon nc-chart text-warning"></i>
+                </div>
+                <div className="numbers">
+                  <Card.Title as="h2">Completed Book Form</Card.Title>
+                  <hr></hr>
+                  <Card.Body>
+                    <CompletedBookForm onAdd={onNewCompletedBook} />
+                  </Card.Body>
+                </div>
+              </Card.Body>
+            </Card>
+          </Col>
+          <Col sm="3" md="2"></Col>
           <Col md="6">
             <DashboardQuoteCol />
           </Col>
         </Row>
-        <Row className="d-flex justify-content-center mb-3">
-          <Col>
-            <Card className="card-stats" style={{ backgroundColor: "#f7d065" }}>
-              <Card.Title as="h2">Book Goals</Card.Title>
-              <hr></hr>
-              <Card.Body>
-                <Row>
-                  <Col xs="2">
-                    <div className="icon-big text-left icon-warning">
-                      <i className="nc-icon nc-chart text-warning"></i>
-                    </div>
-                  </Col>
-                  <Col xs={4}>
-                    <History className="chart" />
-                  </Col>
-                  <Col xs={3}>
-                    <BookGoalChart className="chart" />
-                  </Col>
-                  <Col xs={3}>
-                    <PageGoalChart className="chart" />
-                  </Col>
-                  {/* {{ useRef }} */}
-                  <hr></hr>
-                  <Card.Body>
-                    Goal:
-                        {/* input */}
-                    <hr></hr>
-                        Currently Reading:
-                        {/* dropdown of book queue */}
-                  </Card.Body>
-                </Row>
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
-        <Row className="row-eq-height">
-          <Col md="6">
-            <RecentlyCompleted refresher={(fn) => refresher = fn} />
-          </Col>
-          <Col md="6">
-            <Card style={{ backgroundColor: "#f7d065" }}>
-              <Card.Body>
-                <Card.Title as="h2">Completed Book Form</Card.Title>
-                <h6 className="text-center mb-9">Add Your Book Below!</h6>
-                <hr></hr>
-                <CompletedBookForm onAdd={onNewCompletedBook} />
-              </Card.Body>
-            </Card>
-          </Col>
-        </Row>
-        <Row>
-          <Col >
+        <br></br>
+        <Row className="d-flex align-items-center">
+          <Col sm="12" md="8">
             <Glossary />
+          </Col>
+          <Col sm="12" md="4">
+            <RecentlyCompleted refresher={(fn) => refresher = fn} />
           </Col>
         </Row>
         <BestSellers />

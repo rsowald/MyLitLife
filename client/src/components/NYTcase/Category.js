@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Slider from 'react-slick'
 import { Row, Card, Button, Alert } from "react-bootstrap";
 // import { Row, Card, Button, Alert, Toast } from "react-bootstrap";
+import MyLink from './MyLink'
 import API from '../../utils/API'
 import { useAuth } from '../authentication/context/AuthContext'
 
@@ -12,8 +13,6 @@ function Category(props) {
     const [addBookMessage, setAddBookMessage] = useState()
     const [apiError, setApiError] = useState('')
     const [mongoError, setMongoError] = useState('')
-    // const [spin, setSpinner] = useState(false)
-    // const [addBookSucces, setAddBookSucces] = useState()
 
     let settings = {
         dots: true,
@@ -83,7 +82,6 @@ function Category(props) {
                                 })
                         }
                         setLoading(false)
-                        // setSpinner(false)
                     })
                     .catch(err => {
                         console.log(err)
@@ -98,11 +96,11 @@ function Category(props) {
                 setApiError(err.message)
                 console.log(err)
             });
-        setInterval(function () {
-            setAddBookMessage(null)
-            setShowError(null)
-            setApiError(null)
-        }, 7000);
+        // setInterval(function () {
+        //     setAddBookMessage(null)
+        //     setShowError(null)
+        //     setApiError(null)
+        // }, 7000);
     };
     return (
         <>
@@ -139,17 +137,35 @@ function Category(props) {
             <Slider {...settings}>
                 {props.books.map(book => {
                     return (
-                        <div className="best-card" key={book.primary_isbn10}>
-                            <Card className="m-3" style={{ textAlign: 'left', width: "150px", height: "300px" }}>
-                                <a href={book.amazon_product_url} target="_blank" rel="noopener noreferrer">
-                                <Card.Img className="d-block mx-auto img-fluid" variant="top" src={book.book_image} style={{ height: "200px" }} />
+                        // {
+                        //     book.primary_isbn10 ? (
+                        //         <div className="best-card" key={book.primary_isbn10}></div>
+                        //     ) : (
+                        //         <div className="best-card mb-5" key={book.isbns[0].isbn10} />
+                        //     )
+                        // }
+                        <div className="best-card" key={book.primary_isbn10 ? (
+                            book.primary_isbn10
+                        ) : (
+                            book.isbns[0].isbn10
+                        )}>
+                            < Card className="m-3" style={{ textAlign: 'left', width: "150px", height: "300px" }}>
+                                {book.book_image ? (
+                                    <a href={book.amazon_product_url} target="_blank" rel="noopener noreferrer">
+                                        <Card.Img className="d-block mx-auto img-fluid" variant="top" src={book.book_image} style={{ height: "200px" }} />
+                                    </a>
+                                ) : (
+                                    <MyLink
+                                        isbn={book.isbns[0].isbn10}
+                                    />
+                                )}
+                                {/* <Card.Img className="d-block mx-auto img-fluid" variant="top" src={book.book_image} style={{ height: "200px" }} /> */}
                                 <Card.Body>
                                     <span className="title ml-1" style={{ fontSize: "14px", color: "black" }}>{book.title} </span>
                                     <br />
                                     <span className="author ml-1" style={{ fontSize: "10px" }}>by {book.author}</span>
 
                                 </Card.Body>
-                                </a>
 
                                 <div className="text-center">
                                     < Button className="mt-2" disabled={loading} size="sm" variant="primary" onClick={() => handleAddBook(book.title, book.author)}>
@@ -162,7 +178,7 @@ function Category(props) {
                         </div>
                     )
                 })}
-            </Slider>
+            </Slider >
         </>
     )
 }
