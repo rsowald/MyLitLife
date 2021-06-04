@@ -26,7 +26,7 @@ export default function Dashboard() {
       <Title />
       <Container>
         <Row className="d-flex align-items-center mb-9">
-          <Col xs="6" md="6">
+          <Col xs="12" md="6" className="mb-2">
             <BookGoals />
           </Col>
           <Col xs="12" md="2"></Col>
@@ -34,7 +34,7 @@ export default function Dashboard() {
             <HistoryCard />
             <br></br>
             <br></br>
-            <Row>
+            <Row className="mx-1">
               <Card className="card-current-book" style={{ backgroundColor: "#f7d065" }}>
                 <Card.Title>
                   <CurrentBookDropdown />
@@ -76,7 +76,7 @@ export default function Dashboard() {
             <RecentlyCompleted refresher={(fn) => refresher = fn} />
           </Col>
         </Row>
-        <BestSellers />
+        <BestSellers className="mb-3" />
       </Container>
     </>
   )

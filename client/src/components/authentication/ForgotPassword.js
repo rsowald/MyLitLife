@@ -12,7 +12,6 @@ export default function ResetPassword() {
 
     async function handleResetPassword(event) {
         event.preventDefault();
-
         try {
             setLoading(true)
             await resetPassword(emailRef.current.value)

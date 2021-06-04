@@ -47,7 +47,7 @@ function CompletedBookForm(props) {
                 </Form.Group>
                 <Button type="submit" variant="secondary">Add Book!</Button>
             </Form>
-            <Toast className="mt-3" show={showErrorToast} onClose={() => setShowErrorToast(false)}>
+            <Toast style={{ zIndex: "2" }} animation={false} className="mt-3" show={showErrorToast} onClose={() => setShowErrorToast(false)}>
                 <Toast.Header>
                     <strong className="mr-auto">Oh No! Try again.</strong>
                 </Toast.Header>

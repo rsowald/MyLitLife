@@ -6,21 +6,24 @@ function MyLink(props) {
     // const [key, setKey] = useState(props.isbn);
     const [img, setImg] = useState();
     const [link, setLink] = useState();
+    const timer = ms => new Promise(res => setTimeout(res, ms))
 
     useEffect(() => {
         getCover()
     }, [])
 
-    function getCover() {
-        API.searchBooks(props.isbn)
-            .then(res => {
-                // console.log(res.data.items);
-                setLink(res.data.items[0].volumeInfo.infoLink)
-                setImg(res.data.items[0].volumeInfo.imageLinks.thumbnail)
-            })
-            .catch(err => {
-                console.log(err)
-            });
+    async function getCover() {
+        // API.searchBooks(props.isbn)
+        //     .then(res => {
+        //         // console.log(res.data.items);
+        //         setLink(res.data.items[0].volumeInfo.infoLink)
+        //         setImg(res.data.items[0].volumeInfo.imageLinks.thumbnail)
+        //     })
+        //     .catch(err => {
+        //         console.log(err)
+        //     });
+        console.log("time is working");
+        await timer(2000)
     }
     return (
         <a href={link} target="_blank" rel="noopener noreferrer">
