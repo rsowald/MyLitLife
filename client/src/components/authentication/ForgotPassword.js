@@ -23,6 +23,7 @@ export default function ResetPassword() {
             setFirebaseError(error.message)
         }
         setLoading(false)
+        emailRef.current.value = "";
     };
 
     return (
