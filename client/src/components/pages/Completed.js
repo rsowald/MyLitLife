@@ -1,14 +1,17 @@
-  
+
 import React, { useEffect, useState } from "react";
 import API from "../../utils/API";
 import { Container, CardDeck } from "react-bootstrap";
 import { useAuth } from "../authentication/context/AuthContext";
+import { useBookModal } from "../../context/ModalContext";
 import CompletedCard from "../CompletedCard";
 
 function CompletedBooks() {
   const { currentUser } = useAuth();
   const user = currentUser.uid;
 
+  //TODO - call this showModal and pass it true (for completed from this one) and book ID for the modal to know how to look it up
+  const { showModal } = useBookModal();
   const [books, setBooks] = useState([]);
 
   function loadBooks(setBooks) {
@@ -25,7 +28,6 @@ function CompletedBooks() {
     loadBooks(setBooks);
   }, []);
 
-
   return (
     <Container id="completedContainer">
       <CardDeck
@@ -37,25 +39,27 @@ function CompletedBooks() {
           gridGap: ".5rem",
         }}
       >
-        {books.map( ({ volumeInfo }, index) => {
-            var image;
-            if (volumeInfo.imageLinks) {
-              image = volumeInfo.imageLinks.thumbnail;
-            } else {
-              image = `${process.env.PUBLIC_URL}/cover_placeholder.jpg`;
-            }
-          
-            return(
-              <CompletedCard
-                key={index}
-                thumbnail={image}
-                title={volumeInfo.title}
-                description={volumeInfo.description}
-                previewLink={volumeInfo.infoLink}
-                publishedDate={volumeInfo.publishedDate}
-              />
-            )
+        {books.map((book, index) => {
+          const { volumeInfo } = book;
+
+          var image;
+          if (volumeInfo.imageLinks) {
+            image = volumeInfo.imageLinks.thumbnail;
+          } else {
+            image = `${process.env.PUBLIC_URL}/cover_placeholder.jpg`;
           }
+
+          return (
+            <CompletedCard
+              key={book.id}
+              thumbnail={image}
+              title={volumeInfo.title}
+              description={volumeInfo.description}
+              onClick={() => showModal(true, book.id)}
+              completedDate={book.createdAt}
+            />
+          )
+        }
         )}
       </CardDeck>
     </Container>

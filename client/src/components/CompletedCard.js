@@ -1,5 +1,5 @@
 import React from "react";
-import { Card } from "react-bootstrap";
+import { Card, Button } from "react-bootstrap";
 
 function CompletedCard(props) {
   return (
@@ -8,15 +8,11 @@ function CompletedCard(props) {
         variant="top"
         src={props.thumbnail}
       />
-      <Card.Body>
+      <Card.Body className="justify-content-center">
         <Card.Title>{props.title}</Card.Title>
-        <Card.Text>
-          <a href={props.previewLink} target="_blank" rel="noopener noreferrer">{props.title}</a>
-        </Card.Text>
+        <Button className="d-block" size="sm" variant="secondary" onClick={props.onClick}>See Details</Button>
+        <small className="text-muted">{props.completedDate}</small>
       </Card.Body>
-      <Card.Footer>
-        <small className="text-muted">{props.publishedDate}</small>
-      </Card.Footer>
     </Card>
   );
 }
