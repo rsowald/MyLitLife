@@ -13,16 +13,16 @@ function BookQueue() {
   const initColumns = {
     [1]: {
       name: "Results",
-      items: []
+      items: [],
     },
     [2]: {
       name: "Book Queue",
-      items: []
+      items: [],
     },
     [3]: {
       name: "Completed",
-      items: []
-    }
+      items: [],
+    },
   };
 
   const [columns, setColumns] = useState(initColumns);
@@ -30,64 +30,63 @@ function BookQueue() {
     title: "",
     author: "",
     genre: "",
-    isbn: ""
-  })
+    isbn: "",
+  });
 
   function handleChange(event) {
-    const inputValue = event.target.value.toLowerCase().trim()
+    const inputValue = event.target.value.toLowerCase().trim();
     setSearch({
       ...search,
-      [event.target.name]: inputValue
+      [event.target.name]: inputValue,
     });
   }
 
   function handleSearch(event) {
     event.preventDefault();
     var queryCount = 0;
-    var inputQuery = '';
+    var inputQuery = "";
     if (search.title) {
       inputQuery = `intitle:${search.title}`;
       queryCount++;
     }
     if (search.author) {
       if (queryCount > 0) {
-        inputQuery += '+';
+        inputQuery += "+";
       }
       inputQuery += `inauthor:${search.author}`;
       queryCount++;
     }
     if (search.genre) {
       if (queryCount > 0) {
-        inputQuery += '+';
+        inputQuery += "+";
       }
       inputQuery += `subject:${search.genre}`;
       queryCount++;
     }
     if (search.isbn) {
       if (queryCount > 0) {
-        inputQuery += '+';
+        inputQuery += "+";
       }
       inputQuery += `isbn:${search.isbn}`;
       queryCount++;
     }
     API.searchBooks(inputQuery)
-      .then(res => {
+      .then((res) => {
         console.log(res.data.items);
         if (res.data.items) {
           setColumns({
             ...columns,
             [1]: {
               name: "Results",
-              items: res.data.items
-            }
+              items: res.data.items,
+            },
           });
         }
       })
-      .catch(err => {
-        console.log(err)
+      .catch((err) => {
+        console.log(err);
       });
   }
-
 
   useEffect(() => {
     loadColumns(columns, setColumns);
@@ -97,30 +96,29 @@ function BookQueue() {
     var queue = [];
     var comp = [];
     API.getQueue(user)
-      .then(res => {
+      .then((res) => {
         queue = res.data;
       })
       .then(() => {
-        API.getCompletedLimit(user)
-          .then(res => {
-            comp = res.data;
-            setColumns({
-              ...columns,
-              [2]: {
-                name: "Book Queue",
-                items: queue
-              },
-              [3]: {
-                name: "Completed",
-                items: comp
-              }
-            })
-          })
+        API.getCompletedLimit(user).then((res) => {
+          comp = res.data;
+          setColumns({
+            ...columns,
+            [2]: {
+              name: "Book Queue",
+              items: queue,
+            },
+            [3]: {
+              name: "Completed",
+              items: comp,
+            },
+          });
+        });
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err);
       });
   }
@@ -137,15 +135,15 @@ function BookQueue() {
 
       const [movedItem] = sourceItems.splice(result.source.index, 1);
       destItems.splice(result.destination.index, 0, movedItem);
-      if (source.droppableId === '2') {
+      if (source.droppableId === "2") {
         API.removeFromQueue(movedItem.id, user);
-      } else if (source.droppableId === '3') {
+      } else if (source.droppableId === "3") {
         API.removeFromCompleted(movedItem.id, user);
       }
 
-      if (destination.droppableId === '2') {
+      if (destination.droppableId === "2") {
         API.addToQueue(movedItem, user);
-      } else if (destination.droppableId === '3') {
+      } else if (destination.droppableId === "3") {
         API.addToCompleted(movedItem, user);
       }
 
@@ -153,12 +151,12 @@ function BookQueue() {
         ...columns,
         [source.droppableId]: {
           ...sourceColumn,
-          items: sourceItems
+          items: sourceItems,
         },
         [destination.droppableId]: {
           ...destColumn,
-          items: destItems
-        }
+          items: destItems,
+        },
       });
     } else {
       const column = columns[source.droppableId];
@@ -169,17 +167,16 @@ function BookQueue() {
         ...columns,
         [source.droppableId]: {
           ...column,
-          items: copiedItems
-        }
+          items: copiedItems,
+        },
       });
     }
-
-
   }
   return (
     <Container>
       <Row>
-        <SearchForm className="card"
+        <SearchForm
+          className="card"
           handleChange={handleChange}
           handleSearch={handleSearch}
           title={search.title}
@@ -189,7 +186,9 @@ function BookQueue() {
         />
       </Row>
       <Row>
-        <DragDropContext onDragEnd={(result) => handleOnDragEnd(result, columns, setColumns)} >
+        <DragDropContext
+          onDragEnd={(result) => handleOnDragEnd(result, columns, setColumns)}
+        >
           {Object.entries(columns).map(([columnId, column]) => {
             return (
               <Col md={4} sm={12} key={columnId}>
@@ -200,14 +199,15 @@ function BookQueue() {
                   <Droppable droppableId={columnId} key={columnId}>
                     {(provided, snapshot) => {
                       return (
-                        <div className="book-queue-col"
+                        <div
+                          className="book-queue-col"
                           {...provided.droppableProps}
                           ref={provided.innerRef}
                           style={{
                             background: snapshot.isDraggingOver
                               ? "#eeeeee"
                               : "whitesmoke",
-                            minHeight: 200
+                            minHeight: 200,
                           }}
                         >
                           {column.items.map(({ volumeInfo, id }, index) => {
@@ -228,7 +228,8 @@ function BookQueue() {
                               >
                                 {(provided, snapshot) => {
                                   return (
-                                    <div className="book-item"
+                                    <div
+                                      className="book-item"
                                       ref={provided.innerRef}
                                       {...provided.draggableProps}
                                       {...provided.dragHandleProps}
@@ -239,10 +240,16 @@ function BookQueue() {
                                           ? "whitesmoke"
                                           : "#f7d065",
                                         color: "saddlebrown",
-                                        ...provided.draggableProps.style
+                                        ...provided.draggableProps.style,
                                       }}
                                     >
-                                      <a href={link} target="_blank" rel="noopener noreferrer"><img src={image} alt={title} /></a>
+                                      <a
+                                        href={link}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                      >
+                                        <img src={image} alt={title} />
+                                      </a>
                                       <p>{title}</p>
                                     </div>
                                   );
@@ -262,8 +269,7 @@ function BookQueue() {
         </DragDropContext>
       </Row>
     </Container>
-
-  )
+  );
 }
 
 export default BookQueue;
