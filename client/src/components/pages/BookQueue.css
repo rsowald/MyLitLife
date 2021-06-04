@@ -1,25 +1,32 @@
 .book-queue-col-header {
-    text-align: center;
-    margin-top: 10px;
-    padding-top: 20px;
-    padding-bottom: 20px;
+  text-align: center;
+  margin-top: 10px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
-  .book-queue-col {
-    margin-top: 2px;
-    max-height:600px;
-    overflow:scroll;
-    overflow-x:hidden;
+.book-queue-col {
+  margin-top: 2px;
+  max-height: 600px;
+  overflow: scroll;
+  overflow-x: hidden;
 }
 
 .book-item {
-    background-color: #f7d065;
-    color: saddlebrown;
-    padding: 10px;
-    text-align: center;
-    margin-bottom: 10px;
+  background-color: #f7d065;
+  color: saddlebrown;
+  padding: 10px;
+  text-align: center;
+  margin-bottom: 10px;
 }
 
 img {
-    max-width: 50%;
+  max-width: 50%;
+}
+
+* {
+  -ms-overflow-style: none;
+}
+::-webkit-scrollbar {
+  display: none;
 }
