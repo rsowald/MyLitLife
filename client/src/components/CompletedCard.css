@@ -1,3 +1,7 @@
-.CompletedCard {
+.CompletedCard.card {
   align-items: center;
+  text-align: center;
+  background-color: #f7d065;
+  color: saddlebrown;
+  padding-top: 10px;
 }

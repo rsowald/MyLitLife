@@ -25,7 +25,7 @@ function RecentlyCompleted(props) {
     }, []);
 
     return (
-        <Card style={{ backgroundColor: "#f7d065" }}>
+        <Card className="dashboard-card" style={{ backgroundColor: "#f7d065" }}>
             <Card.Body>
                 <Card.Title as="h2">Recently Completed</Card.Title>
                 <hr></hr>

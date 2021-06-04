@@ -8,6 +8,8 @@ function SearchForm(props) {
         style={{ margin: "5px", padding: "20px", backgroundColor: "#f7d065" }}
       >
         <Col size="md-4">
+          <h3 style={{ textAlign: "center" }}>Google Books Search</h3>
+
           <Form
             style={{
               padding: "10px",

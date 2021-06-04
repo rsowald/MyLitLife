@@ -5,15 +5,16 @@ import "./CompletedCard.css";
 
 function CompletedCard(props) {
   return (
-    <Card>
+    <Card className="CompletedCard">
       <Card.Img
         variant="top"
         src={props.thumbnail}
       />
       <Card.Body className="justify-content-center">
         <Card.Title>{props.title}</Card.Title>
-        <Button className="d-block" size="sm" variant="secondary" onClick={props.onClick}>See Details</Button>
-        <small className="text-muted">{props.completedDate}</small>
+        <p>by {props.author}</p>
+        <Button size="sm" variant="secondary" className="mb-2" onClick={props.onClick}>See Details</Button><br />
+        <small className="text-muted">Date Completed: {props.completedDate}</small>
       </Card.Body>
     </Card>
   );

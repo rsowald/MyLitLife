@@ -31,7 +31,7 @@ function Glossary() {
 
     return (
         <>
-            <Card className='my-3' style={{ textAlign: 'left', backgroundColor: "#f7d065" }}>
+            <Card className='my-3 dashboard-card' style={{ textAlign: 'left', backgroundColor: "#f7d065" }}>
                 <Card className="def-body-results" style={{ backgroundColor: "#FAF9F6" }}>
                     <Container>
                         <Row>

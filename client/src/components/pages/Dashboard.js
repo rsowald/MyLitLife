@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 // react-bootstrap components
-import { Container, Card, Row, Col, Button, ButtonToolbar } from "react-bootstrap";
+import { Container, Card, Row, Col } from "react-bootstrap";
 import Title from '../Title';
 import "./dashboard.css";
 import Glossary from "../Glossary";
@@ -35,7 +35,7 @@ export default function Dashboard() {
             <br></br>
             <br></br>
             <Row>
-              <Card className="card-current-book" style={{ backgroundColor: "#f7d065" }}>
+              <Card className="card-current-book dashboard-card" style={{ backgroundColor: "#f7d065" }}>
                 <Card.Title>
                   <CurrentBookDropdown />
                 </Card.Title>
@@ -47,7 +47,7 @@ export default function Dashboard() {
         <br></br>
         <Row className="row-eq-height d-flex align-items-center">
           <Col sm="6" md="4">
-            <Card className="card-completed-form" style={{ backgroundColor: "#f7d065", height: "350px" }}>
+            <Card className="card-completed-form dashboard-card" style={{ backgroundColor: "#f7d065", height: "350px" }}>
               <Card.Body>
                 <div className="icon-big text-left icon-warning">
                   <i className="nc-icon nc-chart text-warning"></i>

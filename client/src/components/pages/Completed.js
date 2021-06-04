@@ -29,7 +29,7 @@ function CompletedBooks() {
   }, []);
 
   return (
-    <Container id="completedContainer">
+    <Container id="completedContainer" className="mb-3">
       <CardDeck
         style={{
           marginTop: "10px",
@@ -41,6 +41,7 @@ function CompletedBooks() {
       >
         {books.map((book, index) => {
           const { volumeInfo } = book;
+          const date = new Date(book.createdAt).toLocaleDateString();
 
           var image;
           if (volumeInfo.imageLinks) {
@@ -54,9 +55,10 @@ function CompletedBooks() {
               key={book.id}
               thumbnail={image}
               title={volumeInfo.title}
+              author={volumeInfo.authors[0]}
               description={volumeInfo.description}
               onClick={() => showModal(true, book.id)}
-              completedDate={book.createdAt}
+              completedDate={date}
             />
           )
         }
