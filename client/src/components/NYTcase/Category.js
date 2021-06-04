@@ -168,7 +168,7 @@ function Category(props) {
                                 </Card.Body>
 
                                 <div className="text-center">
-                                    < Button className="mt-2" disabled={loading} size="sm" variant="primary" onClick={() => handleAddBook(book.title, book.author)}>
+                                    < Button className="mt-2" disabled={loading} size="sm" variant="secondary" onClick={() => handleAddBook(book.title, book.author)}>
                                         <span className="mx-2" style={{ fontSize: "10px" }}>
                                             Add to Queue
                                             </span>
