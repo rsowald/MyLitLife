@@ -19,15 +19,15 @@ export default function Signup(props) {
 
     async function handleSignUp(event) {
         event.preventDefault();
-        const { firstName, lastName, email, password, confirmPassword } = event.target.elements;
-        console.log("all values: ", firstName.value, lastName.value, email.value, password.value, confirmPassword.value)
-        console.log("values to create user: ", emailRef.current.value, passwordRef.current.value)
+        // const { firstName, lastName, email, password, confirmPassword } = event.target.elements;
+        // console.log("all values: ", firstName.value, lastName.value, email.value, password.value, confirmPassword.value)
+        // console.log("values to create user: ", emailRef.current.value, passwordRef.current.value)
 
         if (passwordRef.current.value !== passwordConfirmRef.current.value) {
-            return setPasswordError('Passwords do not match')
+            return setPasswordError('Passwords do not match.')
         }
         if (passwordRef.current.value.length < 8) {
-            return setPasswordError('Password required to be at least 8 characters long')
+            return setPasswordError('Password must be at least 8 characters long.')
         }
 
         try {

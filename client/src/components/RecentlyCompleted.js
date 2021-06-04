@@ -30,7 +30,10 @@ function RecentlyCompleted(props) {
                 <Card.Title as="h2">Recently Completed</Card.Title>
                 <hr></hr>
                 <ListGroup>
-                    {completed.map(book => <ListGroup.Item key={book.id}>{book.volumeInfo.title} by {book.volumeInfo.authors[0]} </ListGroup.Item>)}
+                    {completed.map(book =>
+                        <ListGroup.Item key={book.id}>
+                            {book.volumeInfo.title} by {book.volumeInfo.authors[0]}
+                        </ListGroup.Item>)}
                 </ListGroup>
                 <Link to="/completed"><Button className="mt-3" variant="secondary">See all completed Books</Button></Link>
             </Card.Body>

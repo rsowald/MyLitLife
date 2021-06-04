@@ -33,57 +33,55 @@ function Glossary() {
         <>
             <Card className='my-3' style={{ textAlign: 'left', backgroundColor: "#f7d065" }}>
                 <Card className="def-body-results" style={{ backgroundColor: "#FAF9F6" }}>
-                <Container>
-                    <Row className="no-gutters ">
-                        <h3 className="text-center mb-4">Dictionary</h3>
-                        <hr />
-                        <Col md="8" >
-                            <p className="d-flex justify-content-start">
-                                Get the most trusted, up-to-date definitions from Merriam Dictionary:
-                    </p>
-                        </Col>
-                        <Col className="border-start  border-dark" md="4">
-                            <Form onSubmit={handleSearch}>
-                                <Form.Group className="mb-3" id="word">
-                                    <Form.Label className="" >Search for a word:</Form.Label>
-                                    <Form.Control name="word" type="text" ref={wordRef} placeholder="Ex: exponential" required />
-                                </Form.Group>
-                                <Row className="d-flex justify-content">
-                                    <Col sm="12" md="2">
-                                        {!btnSpin
-                                            ? < Button disabled={btnLoading} className="mt-3" variant="success" type="submit">Search</Button>
-                                            : <Spinner className="mt-3" animation="border" variant="success" />
-                                        }
-                                    </Col>
-                                </Row>
-                            </Form>
-                        </Col>
-                    </Row>
-                    <Row className="mt-3 ">
-                        {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
-                        {searchResult.length
-                            ? <Col className="d-flex justify-content-start">
-                                <hr />
-                                <Alert className="text-left " >
-                                    < Alert.Heading >Definition:
-                                 </Alert.Heading>
-                                    {searchResult[0].shortdef
-                                        ? searchResult[0].shortdef.map((def, i) => {
-                                            var index = i + 1
-                                            return (
-                                                <p key={`${searchResult[0].meta.uuid}${index}`}>
-                                                    {index}: {def}
-                                                </p>
-                                            )
-                                        })
-                                        : <p>No results found</p>
-                                    }
-                                </Alert>
+                    <Container>
+                        <Row>
+                            <h3 className="mb-4">Dictionary</h3>
+                            <hr />
+                            <Col md="8" className="d-flex justify-content-start">
+                                <p > Get the most trusted, up-to-date definitions from Merriam-Webster Dictionary: </p>
                             </Col>
-                            : <p></p>}
-                    </Row>
-                </Container>
-            </Card>
+                            <Col className="border-start  border-dark" md="4">
+                                <Form onSubmit={handleSearch}>
+                                    <Form.Group className="mb-3" id="word">
+                                        <Form.Label className="" >Search for a word:</Form.Label>
+                                        <Form.Control name="word" type="text" ref={wordRef} placeholder="Ex: exponential" required />
+                                    </Form.Group>
+                                    <Row className="d-flex justify-content">
+                                        <Col sm="12" md="2">
+                                            {!btnSpin
+                                                ? < Button disabled={btnLoading} className="mt-3" variant="secondary" type="submit">Search</Button>
+                                                : <Spinner className="mt-3" animation="border" variant="success" />
+                                            }
+                                        </Col>
+                                    </Row>
+                                </Form>
+                            </Col>
+                        </Row>
+                        <Row className="mt-3 ">
+                            {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}
+                            {searchResult.length
+                                ? <Col className="d-flex justify-content-start">
+                                    <hr />
+                                    <Alert className="text-left " >
+                                        < Alert.Heading >Definition:
+                                 </Alert.Heading>
+                                        {searchResult[0].shortdef
+                                            ? searchResult[0].shortdef.map((def, i) => {
+                                                var index = i + 1
+                                                return (
+                                                    <p key={`${searchResult[0].meta.uuid}${index}`}>
+                                                        {index}: {def}
+                                                    </p>
+                                                )
+                                            })
+                                            : <p>No results found</p>
+                                        }
+                                    </Alert>
+                                </Col>
+                                : <p></p>}
+                        </Row>
+                    </Container>
+                </Card>
             </Card>
         </>
     )
