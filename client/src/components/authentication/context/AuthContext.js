@@ -42,14 +42,10 @@ export function AuthProvider({ children }) {
     }
 
     function googleSignInPopup(provider) {
-        console.log(provider);
-        console.log("started");
-        // var provider = new app.auth.GoogleAuthProvider();
         return app
             .auth()
             .signInWithPopup(provider)
             .then((result) => {
-                console.log(result.user);
                 return result
             }).catch((error) => {
                 console.log(error);

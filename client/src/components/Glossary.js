@@ -18,7 +18,6 @@ function Glossary() {
             setBtnLoading(true)
             await API.searchInMerriamDictionary(wordRef.current.value)
                 .then(results => {
-                    // console.log(results.data);
                     setsearchResult(results.data)
                 })
         } catch (error) {
