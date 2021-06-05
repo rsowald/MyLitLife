@@ -33,17 +33,15 @@ export default function Dashboard() {
           </Col>
           <Col xs="12" md="2"></Col>
           <Col xs="12" md="4">
+            <Card className="card-current-book dashboard-card" style={{ backgroundColor: "#f7d065" }}>
+              <Card.Title>
+                <CurrentBookDropdown />
+              </Card.Title>
+              <Card.Body />
+            </Card>
+            <br></br>
+            <br></br>
             <HistoryCard />
-            <br></br>
-            <br></br>
-            <Row>
-              <Card className="card-current-book dashboard-card" style={{ backgroundColor: "#f7d065" }}>
-                <Card.Title>
-                  <CurrentBookDropdown />
-                </Card.Title>
-                <Card.Body />
-              </Card>
-            </Row>
           </Col>
         </Row>
         <br></br>
