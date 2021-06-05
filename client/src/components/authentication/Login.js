@@ -1,8 +1,6 @@
 import React, { useRef, useState } from "react";
 import { Link, useHistory } from 'react-router-dom';
 import { useAuth } from './context/AuthContext'
-// import app from './fireBase'
-// import { provider } from './authProvider'
 import { provider } from './fireBase'
 import { Card, Form, Button, Alert } from "react-bootstrap";
 import "./auth.css";
@@ -50,7 +48,7 @@ export default function Login(props) {
           </Form.Group>
           <Button className="mt-3 w-100" variant="secondary" type="submit">Login</Button>
         </Form>
-        <Button className="mt-3 w-100" variant="secondary" type="submit" onClick={() => { googleSignin(provider) }}><i class="fab fa-google"></i>oogle</Button>
+        <Button className="mt-3 w-100" variant="secondary" type="submit" onClick={() => { googleSignin(provider) }}><i className="fab fa-google"></i>oogle</Button>
 
         <div className="text-center mt-3">
           <Link to="/forgot-password">Forgot Password?</Link>

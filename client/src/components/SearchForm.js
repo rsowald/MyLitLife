@@ -5,10 +5,12 @@ function SearchForm(props) {
   return (
     <Container>
       <Row
-        style={{ margin: "5px", padding: "20px", backgroundColor: "#f7d065" }}
+        style={{ margin: "5px", padding: "20px", backgroundColor: "#f7d065", boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)", borderRadius: "5px" }}
       >
         <Col size="md-4">
-          <Form
+          <h3 style={{ textAlign: "center" }}>Google Books Search</h3>
+
+          <Form onSubmit={props.handleSearch}
             style={{
               padding: "10px",
               color: "saddlebrown",
@@ -29,7 +31,6 @@ function SearchForm(props) {
                         </Form.Group> */}
 
             <Form.Group controlId="formBasicTitle">
-              <Form.Label></Form.Label>
               <Form.Control
                 onChange={props.handleChange}
                 type="text"
@@ -38,7 +39,6 @@ function SearchForm(props) {
               />
             </Form.Group>
             <Form.Group controlId="formBasicAuthor">
-              <Form.Label></Form.Label>
               <Form.Control
                 onChange={props.handleChange}
                 type="text"
@@ -47,7 +47,6 @@ function SearchForm(props) {
               />
             </Form.Group>
             <Form.Group controlId="formBasicGenre">
-              <Form.Label></Form.Label>
               <Form.Control
                 onChange={props.handleChange}
                 type="text"
@@ -56,7 +55,6 @@ function SearchForm(props) {
               />
             </Form.Group>
             <Form.Group controlId="formBasicIsbn">
-              <Form.Label></Form.Label>
               <Form.Control
                 onChange={props.handleChange}
                 type="text"
@@ -69,7 +67,8 @@ function SearchForm(props) {
             <Button
               variant="secondary"
               className="float-right mb-2"
-              onClick={props.handleSearch}
+              type="submit"
+
             >
               Search
             </Button>

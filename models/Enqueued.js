@@ -7,7 +7,7 @@ const BookSchema = new Schema({
   volumeInfo: {},
   rating: { type: Number },
   notes: { type: String },
-  synopsis: { type: String },
+  review: { type: String },
   ending: { type: String },
   updated: { type: Date, default: Date.now },
 });

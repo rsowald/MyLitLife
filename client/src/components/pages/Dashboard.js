@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 // react-bootstrap components
-import { Container, Card, Row, Col, Button, ButtonToolbar } from "react-bootstrap";
+import { Container, Card, Row, Col } from "react-bootstrap";
 import Title from '../Title';
 import "./dashboard.css";
 import Glossary from "../Glossary";
@@ -12,9 +12,8 @@ import RecentlyCompleted from "../RecentlyCompleted";
 import HistoryCard from '../HistoryCard';
 import BookGoals from '../BookGoals';
 
-export default function Dashboard() {
-  // const bookGoals = useRef();
 
+export default function Dashboard() {
   let refresher = null;
 
   const onNewCompletedBook = () => {
@@ -26,28 +25,21 @@ export default function Dashboard() {
       <Title />
       <Container>
         <Row className="d-flex align-items-center mb-9">
-          <Col xs="6" md="6">
+          <Col xs="12" md="6">
             <BookGoals />
           </Col>
           <Col xs="12" md="2"></Col>
           <Col xs="12" md="4">
+            <CurrentBookDropdown />
+            <br />
+            <br />
             <HistoryCard />
-            <br></br>
-            <br></br>
-            <Row>
-              <Card className="card-current-book" style={{ backgroundColor: "#f7d065" }}>
-                <Card.Title>
-                  <CurrentBookDropdown />
-                </Card.Title>
-                <Card.Body />
-              </Card>
-            </Row>
           </Col>
         </Row>
-        <br></br>
+        <br />
         <Row className="row-eq-height d-flex align-items-center">
           <Col sm="6" md="4">
-            <Card className="card-completed-form" style={{ backgroundColor: "#f7d065", height: "350px" }}>
+            <Card className="card-completed-form dashboard-card" style={{ backgroundColor: "#f7d065", height: "350px" }}>
               <Card.Body>
                 <div className="icon-big text-left icon-warning">
                   <i className="nc-icon nc-chart text-warning"></i>
@@ -67,7 +59,7 @@ export default function Dashboard() {
             <DashboardQuoteCol />
           </Col>
         </Row>
-        <br></br>
+        <br />
         <Row className="d-flex align-items-center">
           <Col sm="12" md="8">
             <Glossary />

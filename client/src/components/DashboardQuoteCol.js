@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container } from 'react-bootstrap';
 import quotesData from '../utils/bookQuotes';
 
 function DashboardQuoteCol() {
-    const quote = quotesData[Math.floor(Math.random() * quotesData.length)];
+    const [quote, setQuote] = useState({});
+
+    useEffect(() => {
+        setQuote(quotesData[Math.floor(Math.random() * quotesData.length)]);
+    }, []);
+
     return (
         <Container className="d-flex align-items-center">
             <article style={{ paddingTop: "20px", paddingBottom: "15px" }}>
