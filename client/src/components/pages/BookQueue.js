@@ -176,7 +176,7 @@ function BookQueue() {
     <Container>
       <Row>
         <SearchForm
-          className="card"
+          className="dashboard-card"
           handleChange={handleChange}
           handleSearch={handleSearch}
           title={search.title}
@@ -193,7 +193,7 @@ function BookQueue() {
             return (
               <Col md={4} sm={12} key={columnId}>
                 <div className="book-queue-col-header">
-                  <h2>{column.name}</h2>
+                  <h3>{column.name}</h3>
                 </div>
                 <div>
                   <Droppable droppableId={columnId} key={columnId}>
