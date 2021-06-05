@@ -1,32 +1,58 @@
 import React, { useState, useEffect } from "react";
-import { DropdownButton, Dropdown } from 'react-bootstrap';
+import { Button, Card, DropdownButton, Dropdown } from 'react-bootstrap';
 import API from "../utils/API";
 import { useAuth } from "../components/authentication/context/AuthContext"
+import { useBookModal } from "../context/ModalContext";
 
 function CurrentBookDropdown() {
-    const [completed, setCompleted] = useState([]);
+    const [books, setBooks] = useState([]);
+    const [currentBook, setCurrentBook] = useState();
 
     const { currentUser } = useAuth();
+    const { showModal } = useBookModal();
 
-    const user = currentUser.uid;
-
-    async function fetchCurrentBooks() {
-        const queuedBooks = await API.getQueue(user);
-        console.log(queuedBooks);
+    async function fetchBooks() {
+        const queuedBooks = await API.getQueue(currentUser.uid);
         if (queuedBooks.data.length) {
-            console.log(queuedBooks.data);
-            setCompleted(queuedBooks.data);
+            setBooks(queuedBooks.data);
         }
     };
 
     useEffect(() => {
-        fetchCurrentBooks();
+        fetchBooks();
     }, []);
 
+    if (books.length === 0) {
+        return null;
+    }
+
+    const displayCurrent = (id) => {
+        setCurrentBook(books.find(b => b.id === id));
+
+    }
+
     return (
-        <DropdownButton title="Choose Current Book">
-            {completed.map(book => <Dropdown.Item key={book.id} as="button">{book.volumeInfo.title}</Dropdown.Item>)}
-        </DropdownButton>
+        <Card className="card-current-book dashboard-card my-3" style={{ backgroundColor: "#f7d065" }}>
+            <Card.Body className="justify-content-center">
+                <DropdownButton variant="secondary" title="Set Current Book">
+                    {books.map(book => <Dropdown.Item key={book.id} as="button" onClick={() => displayCurrent(book.id)}>{book.volumeInfo.title}</Dropdown.Item>)}
+                </DropdownButton>
+
+                {
+                    currentBook && (
+                        <>
+                            <Card.Img
+                                variant="top"
+                                src={currentBook.volumeInfo.imageLinks.thumbnail}
+                            />
+
+                            <h3>{currentBook.volumeInfo.title}</h3>
+                            <p>by {currentBook.volumeInfo.authors[0]}</p>
+                            <Button variant="secondary" onClick={() => showModal(false, currentBook.id)}>See Details</Button>
+                        </>)
+                }
+            </Card.Body >
+        </Card>
     );
 };
 

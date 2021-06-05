@@ -66,7 +66,7 @@ function BestSellers() {
     };
 
     return (
-        <Card className='my-3' style={{ backgroundColor: "#f7d065" }}>
+        <Card className='my-3 dashboard-card' style={{ backgroundColor: "#f7d065" }}>
             <h2>
                 Best Sellers
                 </h2>

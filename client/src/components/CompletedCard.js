@@ -1,22 +1,21 @@
 import React from "react";
-import { Card } from "react-bootstrap";
+
+import { Card, Button } from "react-bootstrap";
 import "./CompletedCard.css";
 
 function CompletedCard(props) {
   return (
     <Card className="CompletedCard">
-      <Card.Img variant="top" src={props.thumbnail} />
-      <Card.Body>
+      <Card.Img
+        variant="top"
+        src={props.thumbnail}
+      />
+      <Card.Body className="justify-content-center">
         <Card.Title>{props.title}</Card.Title>
-        <Card.Text>
-          <a href={props.previewLink} target="_blank" rel="noopener noreferrer">
-            {props.title}
-          </a>
-        </Card.Text>
+        <p>by {props.author}</p>
+        <Button size="sm" variant="secondary" className="mb-2" onClick={props.onClick}>See Details</Button><br />
+        <small className="text-muted">Date Completed: {props.completedDate}</small>
       </Card.Body>
-      <Card.Footer>
-        <small className="text-muted">{props.publishedDate}</small>
-      </Card.Footer>
     </Card>
   );
 }

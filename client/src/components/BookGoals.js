@@ -5,8 +5,8 @@ import PageGoalChart from "./PageGoalChart";
 
 function BookGoals() {
     return (
-        <Card className="card-stats" style={{ backgroundColor: "#f7d065" }}>
-            <Card.Title as="h2">Book Goals</Card.Title>
+        <Card className="card-stats dashboard-card" style={{ backgroundColor: "#f7d065" }}>
+            <Card.Title as="h2">Reading Goals</Card.Title>
             <hr></hr>
             <Card.Body>
                 <Row>

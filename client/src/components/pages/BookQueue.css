@@ -17,16 +17,19 @@
   color: saddlebrown;
   padding: 10px;
   text-align: center;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
+  border-radius: 5px;
 }
 
 img {
   max-width: 50%;
+  margin-top: 5px;
 }
 
 * {
   -ms-overflow-style: none;
 }
+
 ::-webkit-scrollbar {
   display: none;
 }
