@@ -1,14 +1,39 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import { useBookModal } from "../context/ModalContext";
+import API from "../utils/API";
 import Rating from "./Rating";
+import { useAuth } from "./authentication/context/AuthContext";
 
 
-function DetailModal(props) {
+function DetailModal() {
+    const { currentUser } = useAuth();
     const [rating, setRating] = useState();
     const { bookModalInfo, hideModal } = useBookModal();
+    const [book, setBook] = useState();
 
-    //TODO - read book info from DB based on bookModalInfo properties, set into state for this modal and use below for things like title
+    useEffect(() => {
+        if (!bookModalInfo) {
+            setBook(undefined);
+            return;
+        }
+        async function fetchBook() {
+            const bookAPI = bookModalInfo.isCompleted ? API.getCompletedBook : API.getQueuedBook;
+            const book = await bookAPI(bookModalInfo.bookId, currentUser.uid);
+            setBook(book.data);
+        }
+        fetchBook();
+    }, [bookModalInfo]);
+
+
+    if (!book) {
+        return null;
+    }
+
+    // const onHide = () => {
+    //     hideModal();
+
+    // }
 
     return (
         <Modal
@@ -20,19 +45,19 @@ function DetailModal(props) {
         >
             <Modal.Header closeButton>
                 <Modal.Title id="contained-modal-title-vcenter">
-                    {props.title}
+                    <h2>{book.volumeInfo.title}</h2>
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
-                <p text="muted" className="">by {props.author}</p>
+                <p text="muted" className="">by {book.volumeInfo.author}</p>
                 <h4 className="mt-4">My Rating</h4>
                 <Rating onChange={setRating} rating={rating} />
                 <h4 className="mt-4">Reading Notes:</h4>
-                <textarea value={props.notes} />
+                <textarea value={book.volumeInfo.notes} />
                 <h4 className="mt-4">My Review:</h4>
-                <textarea value={props.review} />
+                <textarea value={book.volumeInfo.review} />
                 <h4 className="mt-4">How it Should have Ended:</h4>
-                <textarea value={props.ending} />
+                <textarea value={book.volumeInfo.ending} />
             </Modal.Body>
             <Modal.Footer>
                 <Button onClick={() => hideModal()}>Save &amp; Close</Button>

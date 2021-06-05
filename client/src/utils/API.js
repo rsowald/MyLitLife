@@ -17,7 +17,7 @@ const NYT_All_Time_Base_URL = "https://api.nytimes.com/svc/books/v3/lists/best-s
 
 export default {
     getBackground: function (width) {
-        return axios.get(`/api/unsplash/background/${width}`)
+        return axios.get(`/api/unsplash/background/${width}`);
     },
     searchBooks: function (query) {
         // console.log(`${bookSearchBaseURL}${query}&key=${API_KEY_Search_Book}`);
@@ -40,10 +40,22 @@ export default {
         return axios.get(`/api/books/completed/${user}`);
     },
     getCompletedLimit: function (user) {
-        return axios.get(`/api/books/recent/${user}`)
+        return axios.get(`/api/books/recent/${user}`);
+    },
+    updateCompleted: function (id, user) {
+        return axios.put(`api/books/completed/${user}/${id}`);
+    },
+    addToCompleted: function (item, user) {
+        return axios.post(`/api/books/completed/${user}`, item);
+    },
+    removeFromCompleted: function (id, user) {
+        return axios.delete(`/api/books/completed/${user}/${id}`);
+    },
+    getCompletedBook: function (id, user) {
+        return axios.get(`/api/books/completed/${user}/${id}`);
     },
     getQueue: function (user) {
-        return axios.get(`/api/books/queue/${user}`)
+        return axios.get(`/api/books/queue/${user}`);
     },
     addToQueue: function (item, user) {
         return axios.post(`/api/books/queue/${user}`, item);
@@ -51,11 +63,11 @@ export default {
     removeFromQueue: function (id, user) {
         return axios.delete(`/api/books/queue/${user}/${id}`);
     },
-    addToCompleted: function (item, user) {
-        return axios.post(`/api/books/completed/${user}`, item);
+    updateQueued: function (id, user) {
+        return axios.put(`api/books/queue/${user}/${id}`);
     },
-    removeFromCompleted: function (id, user) {
-        return axios.delete(`/api/books/completed/${user}/${id}`);
+    getQueuedBook: function (id, user) {
+        return axios.get(`/api/books/queue/${user}/${id}`);
     }
 
 };
