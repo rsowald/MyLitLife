@@ -1,6 +1,18 @@
 const Completed = require("../../models/Completed");
 const Enqueued = require("../../models/Enqueued");
 
+const update = (req, res, model) => {
+    const { id, user: userId } = req.params;
+    const { rating, notes, review, ending } = req.body;
+    model
+        .findOneAndUpdate(
+            { id, userId },
+            { rating, notes, review, ending }
+        )
+        .then(dbModel => res.json(dbModel))
+        .catch(err => res.status(422).json(err));
+};
+
 // Defining methods for the booksController
 module.exports = {
 
@@ -84,24 +96,11 @@ module.exports = {
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
+
     updateQueued: function (req, res) {
-        Enqueued
-            .findOne({
-                id: req.params.id,
-                userId: req.params.user
-            })
-            .then(dbModel => dbModel.update())
-            .then(dbModel => res.json(dbModel))
-            .catch(err => res.status(422).json(err));
+        update(req, res, Enqueued);
     },
     updateCompleted: function (req, res) {
-        Completed
-            .findOne({
-                id: req.params.id,
-                userId: req.params.user
-            })
-            .then(dbModel => dbModel.update())
-            .then(dbModel => res.json(dbModel))
-            .catch(err => res.status(422).json(err));
+        update(req, res, Completed);
     }
 };

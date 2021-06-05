@@ -6,28 +6,25 @@ import axios from 'axios';
 const bookSearchBaseURL = "https://www.googleapis.com/books/v1/volumes?q=";
 const API_KEY_Search_Book = process.env.REACT_APP_GOOGLE_API_KEY;
 
-
 const REACT_APP_KEY_Merriam_Dictionary = process.env.REACT_APP_KEY_MERRIAM_WEBSTER;
 const merriam_Collegiate_Dictionary_Base_URL = 'https://www.dictionaryapi.com/api/v3/references/collegiate/json/';
 
 const APP_KEY_NYT_Dictionary = process.env.REACT_APP_NYT_API_KEY;
-const NYT_Category_Base_URL = "https://api.nytimes.com/svc/books/v3/lists/current/hardcover"
-const NYT_Else_Base_URL = "https://api.nytimes.com/svc/books/v3/lists/current/"
-const NYT_All_Time_Base_URL = "https://api.nytimes.com/svc/books/v3/lists/best-sellers/history"
+const NYT_Category_Base_URL = "https://api.nytimes.com/svc/books/v3/lists/current/hardcover";
+const NYT_Else_Base_URL = "https://api.nytimes.com/svc/books/v3/lists/current/";
+const NYT_All_Time_Base_URL = "https://api.nytimes.com/svc/books/v3/lists/best-sellers/history";
 
 export default {
     getBackground: function (width) {
         return axios.get(`/api/unsplash/background/${width}`);
     },
     searchBooks: function (query) {
-        // console.log(`${bookSearchBaseURL}${query}&key=${API_KEY_Search_Book}`);
         return axios.get(`${bookSearchBaseURL}${query}&key=${API_KEY_Search_Book}`);
     },
     searchInMerriamDictionary: function (query) {
         return axios.get(`${merriam_Collegiate_Dictionary_Base_URL}${query}?key=${REACT_APP_KEY_Merriam_Dictionary}`);
     },
     searchNYTByCategory: function (category) {
-        // console.log(`${NYT_Category_Base_URL}-${category}.json?api-key=${APP_KEY_NYT_Dictionary}`);
         return axios.get(`${NYT_Category_Base_URL}-${category}.json?api-key=${APP_KEY_NYT_Dictionary}`);
     },
     searchNYTBestAllTime: function (category) {
@@ -42,11 +39,11 @@ export default {
     getCompletedLimit: function (user) {
         return axios.get(`/api/books/recent/${user}`);
     },
-    updateCompleted: function (id, user) {
-        return axios.put(`api/books/completed/${user}/${id}`);
+    updateCompletedBook: function (book, user) {
+        return axios.put(`api/books/completed/${user}/${book.id}`, book);
     },
-    addToCompleted: function (item, user) {
-        return axios.post(`/api/books/completed/${user}`, item);
+    addToCompleted: function (book, user) {
+        return axios.post(`/api/books/completed/${user}`, book);
     },
     removeFromCompleted: function (id, user) {
         return axios.delete(`/api/books/completed/${user}/${id}`);
@@ -57,17 +54,16 @@ export default {
     getQueue: function (user) {
         return axios.get(`/api/books/queue/${user}`);
     },
-    addToQueue: function (item, user) {
-        return axios.post(`/api/books/queue/${user}`, item);
+    addToQueue: function (book, user) {
+        return axios.post(`/api/books/queue/${user}`, book);
     },
     removeFromQueue: function (id, user) {
         return axios.delete(`/api/books/queue/${user}/${id}`);
     },
-    updateQueued: function (id, user) {
-        return axios.put(`api/books/queue/${user}/${id}`);
+    updateQueuedBook: function (book, user) {
+        return axios.put(`api/books/queue/${user}/${book.id}`, book);
     },
     getQueuedBook: function (id, user) {
         return axios.get(`/api/books/queue/${user}/${id}`);
     }
-
 };
