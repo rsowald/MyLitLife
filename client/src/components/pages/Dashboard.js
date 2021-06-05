@@ -11,9 +11,11 @@ import CurrentBookDropdown from "../CurrentBookDropdown";
 import RecentlyCompleted from "../RecentlyCompleted";
 import HistoryCard from '../HistoryCard';
 import BookGoals from '../BookGoals';
+import { useBookModal } from "../../context/ModalContext";
 
 export default function Dashboard() {
   // const bookGoals = useRef();
+  const { showModal } = useBookModal();
 
   let refresher = null;
 
