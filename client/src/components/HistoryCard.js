@@ -5,6 +5,7 @@ import History from './History';
 function HistoryCard() {
     return (
         <Card className="card-genre  dashboard-card" style={{ backgroundColor: "#f7d065" }}>
+            <Card.Title as="h2">Genre History</Card.Title>
             <Card className="card-genre-body" style={{ backgroundColor: "#FAF9F6" }}>
                 <Card.Body>
                     <Row>

@@ -11,12 +11,9 @@ import CurrentBookDropdown from "../CurrentBookDropdown";
 import RecentlyCompleted from "../RecentlyCompleted";
 import HistoryCard from '../HistoryCard';
 import BookGoals from '../BookGoals';
-import { useBookModal } from "../../context/ModalContext";
+
 
 export default function Dashboard() {
-  // const bookGoals = useRef();
-  const { showModal } = useBookModal();
-
   let refresher = null;
 
   const onNewCompletedBook = () => {
@@ -28,23 +25,18 @@ export default function Dashboard() {
       <Title />
       <Container>
         <Row className="d-flex align-items-center mb-9">
-          <Col xs="6" md="6">
+          <Col xs="12" md="6">
             <BookGoals />
           </Col>
           <Col xs="12" md="2"></Col>
           <Col xs="12" md="4">
-            <Card className="card-current-book dashboard-card" style={{ backgroundColor: "#f7d065" }}>
-              <Card.Title>
-                <CurrentBookDropdown />
-              </Card.Title>
-              <Card.Body />
-            </Card>
-            <br></br>
-            <br></br>
+            <CurrentBookDropdown />
+            <br />
+            <br />
             <HistoryCard />
           </Col>
         </Row>
-        <br></br>
+        <br />
         <Row className="row-eq-height d-flex align-items-center">
           <Col sm="6" md="4">
             <Card className="card-completed-form dashboard-card" style={{ backgroundColor: "#f7d065", height: "350px" }}>
@@ -67,7 +59,7 @@ export default function Dashboard() {
             <DashboardQuoteCol />
           </Col>
         </Row>
-        <br></br>
+        <br />
         <Row className="d-flex align-items-center">
           <Col sm="12" md="8">
             <Glossary />
