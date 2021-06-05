@@ -11,14 +11,17 @@ function BookQueue() {
 
   const user = currentUser.uid;
   const initColumns = {
+    // eslint-disable-next-line
     [1]: {
       name: "Results",
       items: [],
     },
+    // eslint-disable-next-line
     [2]: {
       name: "Book Queue",
       items: [],
     },
+    // eslint-disable-next-line
     [3]: {
       name: "Completed",
       items: [],
@@ -76,6 +79,7 @@ function BookQueue() {
         if (res.data.items) {
           setColumns({
             ...columns,
+            // eslint-disable-next-line
             [1]: {
               name: "Results",
               items: res.data.items,
@@ -104,10 +108,12 @@ function BookQueue() {
           comp = res.data;
           setColumns({
             ...columns,
+            // eslint-disable-next-line
             [2]: {
               name: "Book Queue",
               items: queue,
             },
+            // eslint-disable-next-line
             [3]: {
               name: "Completed",
               items: comp,
@@ -118,9 +124,6 @@ function BookQueue() {
       .catch((err) => {
         console.log(err);
       })
-      .catch((err) => {
-        console.log(err);
-      });
   }
 
   function handleOnDragEnd(result, columns, setColumns) {
