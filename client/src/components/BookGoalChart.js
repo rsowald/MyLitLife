@@ -14,6 +14,7 @@ function BookGoalChart() {
 
     const [labels, setLabels] = useState([]);
     const [books, setBooks] = useState([]);
+    const [goals, setGoals] = useState([]);
 
     function getLabels (count){
         var mos = [];
@@ -50,52 +51,55 @@ function BookGoalChart() {
         }
     }
 
-    function getBooks (max){
-        var bookTotals = [];
-        for (var i = 0; i < max; i++){
-            bookTotals.push(0);
+    function getGoals (max){
+        var goals = [];
+        for (let i = 0; i < max; i++){
+            goals.push(12);
         }
-        var list = {};
+          return goals;   
+    }
+
+
+    function getBooks (max){
+        var totals = [];
+        for (let i = 0; i < max; i++){
+            totals.push(0);
+        }
+
+        var list = [];
         API.getCompleted(user)
           .then(res => {
             list = res.data;
-            list.map((book) => {
+            totals = list.map((book) => {
                 const ma = monthsAgo(book.createdAt, max);
                 if(ma >= 0){
-                    bookTotals[ma] += 1;
+                    totals[ma] += 1;
                 }
             })
           })
           .catch((err) => console.log(err));
-          return bookTotals;   
+          return totals;   
     }
 
     useEffect(() => {
         const numberOfMonthsBack = 6;
         setLabels(getLabels (numberOfMonthsBack));
         setBooks(getBooks(numberOfMonthsBack));
+        setGoals(getGoals(numberOfMonthsBack));
     }, []);
   
-    const chartData = {
+    var chartData = {
                 labels: labels,
                 datasets:[
                     {
                         label: 'Books',
-                        data: [books],
-//data: [4567,5678,6789,6789,5678,4567],
+                        data: books,
 backgroundColor: '#ff9f40'
                 
                     },
                     {
                         label: 'Goal',
-                        data:[
-                            12,
-                            12,
-                            12,
-                            12,
-                            12,
-                            12
-                        ],
+                        data:goals,
                         backgroundColor:"saddlebrown"
                 
                     }
