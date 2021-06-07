@@ -81,7 +81,7 @@ function PageGoalChart() {
                 datasets:[
                     {
                         label: 'Pages',
-  //                      data: pages,
+//                        data: pages,
 data: [4567,5678,6789,6789,5678,4567],
 backgroundColor: '#ff9f40'
                 
@@ -111,7 +111,7 @@ backgroundColor: '#ff9f40'
                   options={{
                       title: {
                           display: true,
-                          text: "Page Count by Genre",
+                          text: "Page Count and Goal",
                           fontSize: 25
                       },
                       legend: {
