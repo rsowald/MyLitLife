@@ -75,6 +75,7 @@ function PageGoalChart() {
                 if(ma >= 0){
                     temp[ma] += book.volumeInfo.pageCount;
                 }
+                return 1;
             })
           })
           .catch((err) => console.log(err));

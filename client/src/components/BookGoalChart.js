@@ -75,6 +75,7 @@ function BookGoalChart() {
                 if(ma >= 0){
                     totals[ma] += 1;
                 }
+                return 1;
             })
           })
           .catch((err) => console.log(err));
