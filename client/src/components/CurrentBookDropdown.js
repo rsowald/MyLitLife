@@ -40,16 +40,16 @@ function CurrentBookDropdown() {
 
                 {
                     currentBook && (
-                        <>
+                        <Card className="d-flex align-items-center py-2">
                             <Card.Img
                                 variant="top"
                                 src={currentBook.volumeInfo.imageLinks.thumbnail}
                             />
 
-                            <h3>{currentBook.volumeInfo.title}</h3>
-                            <p>by {currentBook.volumeInfo.authors[0]}</p>
+                            <Card.Title>{currentBook.volumeInfo.title}</Card.Title>
+                            <Card.Body>by {currentBook.volumeInfo.authors[0]}</Card.Body>
                             <Button variant="secondary" onClick={() => showModal(false, currentBook.id)}>See Details</Button>
-                        </>)
+                        </Card>)
                 }
             </Card.Body >
         </Card>
