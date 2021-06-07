@@ -14,7 +14,6 @@ function MyLink(props) {
     function getCover() {
         API.searchBooks(props.isbn)
             .then(res => {
-                // console.log(res.data.items);
                 setLink(res.data.items[0].volumeInfo.infoLink)
                 setImg(res.data.items[0].volumeInfo.imageLinks.thumbnail)
             })

@@ -17,18 +17,6 @@ function SearchForm(props) {
               fontWeight: "bold",
             }}
           >
-            {/* <Form.Group controlId="searchForm.Input">
-                            <Form.Label>Search Terms</Form.Label>
-                            <Form.Control type="text" onChange={() => console.log("handleInputChange")} placeholder="Keyword? Title? Author? Whatever." />
-                        </Form.Group>
-                        <Form.Group controlId="searchForm.Select">
-                            <Form.Label>Search By</Form.Label>
-                            <Form.Control as="select">
-                                <option value="title" >Title</option>
-                                <option value="author" >Author</option>
-                                <option value="genre" >Genre</option>
-                            </Form.Control>
-                        </Form.Group> */}
 
             <Form.Group controlId="formBasicTitle">
               <Form.Control
@@ -63,7 +51,6 @@ function SearchForm(props) {
               />
             </Form.Group>
 
-            {/* <Button variant="primary" className="float-right mb-2" onClick={() => console.log("handleSearch")}>Search</Button> */}
             <Button
               variant="secondary"
               className="float-right mb-2"

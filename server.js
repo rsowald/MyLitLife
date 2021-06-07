@@ -18,7 +18,11 @@ if (process.env.NODE_ENV === "production") {
 
 //port
 const PORT = process.env.PORT || 3001;
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/MyLitLife", { useNewUrlParser: true });
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/MyLitLife", {
+  useNewUrlParser: true,
+  useFindAndModify: false,
+  useCreateIndex: true
+});
 app.use(router);
 
 app.use(

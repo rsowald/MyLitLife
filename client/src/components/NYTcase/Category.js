@@ -51,29 +51,21 @@ function Category(props) {
         // setSpinner(true)
         API.searchBooks(`intitle:${title}+inauthor:${author}`)
             .then(result => {
-                console.log(result.data.items)
                 API.getQueue(currentUser.uid)
                     .then(res => {
-                        console.log(res.data);
-                        console.log(result.data.items[0].id);
                         let checkExisting = res.data.filter(book => {
                             if (book.id === result.data.items[0].id) {
-                                console.log(book.id);
                                 var existingBook = book.id
                                 setAddBookMessage(`${book.volumeInfo.title} by ${book.volumeInfo.authors[0]} it's in your queue already!`)
-                                console.log(existingBook);
                                 return existingBook
                             } else {
                                 return null
                             }
 
                         })
-                        console.log(checkExisting.length);
                         if (checkExisting.length <= 0) {
-                            console.log("add to queue triggered")
                             API.addToQueue(result.data.items[0], currentUser.uid)
                                 .then(response => {
-                                    console.log(response);
                                     setAddBookMessage(`${response.data.volumeInfo.title} by ${response.data.volumeInfo.authors[0]} successfuly added`);
                                 })
                                 .catch(err => {
@@ -96,11 +88,7 @@ function Category(props) {
                 setApiError(err.message)
                 console.log(err)
             });
-        // setInterval(function () {
-        //     setAddBookMessage(null)
-        //     setShowError(null)
-        //     setApiError(null)
-        // }, 7000);
+
     };
     return (
         <>
