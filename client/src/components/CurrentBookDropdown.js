@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Button, Card, DropdownButton, Dropdown } from 'react-bootstrap';
 import API from "../utils/API";
-import { useAuth } from "../components/authentication/context/AuthContext"
+import { useAuth } from "../components/authentication/context/AuthContext";
 import { useBookModal } from "../context/ModalContext";
 
 function CurrentBookDropdown() {
@@ -34,7 +34,7 @@ function CurrentBookDropdown() {
     return (
         <Card className="card-current-book dashboard-card my-3" style={{ backgroundColor: "#f7d065" }}>
             <Card.Body className="justify-content-center">
-                <DropdownButton variant="secondary" title="Set Current Book">
+                <DropdownButton variant="secondary" title="Set Current Book" className="mb-3">
                     {books.map(book => <Dropdown.Item key={book.id} as="button" onClick={() => displayCurrent(book.id)}>{book.volumeInfo.title}</Dropdown.Item>)}
                 </DropdownButton>
 

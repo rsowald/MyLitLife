@@ -33,37 +33,43 @@ export default {
     searchNYTByElse: function (query) {
         return axios.get(`${NYT_Else_Base_URL}${query}.json?api-key=${APP_KEY_NYT_Dictionary}`);
     },
-    getCompleted: function (user) {
-        return axios.get(`/api/books/completed/${user}`);
+    getCompleted: function (userId) {
+        return axios.get(`/api/books/completed/${userId}`);
     },
-    getCompletedLimit: function (user) {
-        return axios.get(`/api/books/recent/${user}`);
+    getCompletedLimit: function (userId) {
+        return axios.get(`/api/books/recent/${userId}`);
     },
-    updateCompletedBook: function (book, user) {
-        return axios.put(`api/books/completed/${user}/${book.id}`, book);
+    updateCompletedBook: function (book, userId) {
+        return axios.put(`/api/books/completed/${userId}/${book.id}`, book);
     },
-    addToCompleted: function (book, user) {
-        return axios.post(`/api/books/completed/${user}`, book);
+    addToCompleted: function (book, userId) {
+        return axios.post(`/api/books/completed/${userId}`, book);
     },
-    removeFromCompleted: function (id, user) {
-        return axios.delete(`/api/books/completed/${user}/${id}`);
+    removeFromCompleted: function (id, userId) {
+        return axios.delete(`/api/books/completed/${userId}/${id}`);
     },
-    getCompletedBook: function (id, user) {
-        return axios.get(`/api/books/completed/${user}/${id}`);
+    getCompletedBook: function (id, userId) {
+        return axios.get(`/api/books/completed/${userId}/${id}`);
     },
-    getQueue: function (user) {
-        return axios.get(`/api/books/queue/${user}`);
+    getQueue: function (userId) {
+        return axios.get(`/api/books/queue/${userId}`);
     },
-    addToQueue: function (book, user) {
-        return axios.post(`/api/books/queue/${user}`, book);
+    addToQueue: function (book, userId) {
+        return axios.post(`/api/books/queue/${userId}`, book);
     },
-    removeFromQueue: function (id, user) {
-        return axios.delete(`/api/books/queue/${user}/${id}`);
+    removeFromQueue: function (id, userId) {
+        return axios.delete(`/api/books/queue/${userId}/${id}`);
     },
-    updateQueuedBook: function (book, user) {
-        return axios.put(`api/books/queue/${user}/${book.id}`, book);
+    updateQueuedBook: function (book, userId) {
+        return axios.put(`/api/books/queue/${userId}/${book.id}`, book);
     },
-    getQueuedBook: function (id, user) {
-        return axios.get(`/api/books/queue/${user}/${id}`);
+    getQueuedBook: function (id, userId) {
+        return axios.get(`/api/books/queue/${userId}/${id}`);
+    },
+    getUser: function (userId) {
+        return axios.get(`/api/user/${userId}`);
+    },
+    upsertUser: function (user) {
+        return axios.post(`/api/user/${user.userId}`, user);
     }
 };
