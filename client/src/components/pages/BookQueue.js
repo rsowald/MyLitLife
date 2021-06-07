@@ -187,7 +187,7 @@ function BookQueue() {
           isbn={search.isbn}
         />
       </Row>
-      <Row>
+      <Row className="queue-container">
         <DragDropContext
           onDragEnd={(result) => handleOnDragEnd(result, columns, setColumns)}
         >

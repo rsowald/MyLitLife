@@ -30,6 +30,6 @@ img {
   -ms-overflow-style: none;
 }
 
-::-webkit-scrollbar {
+.queue-container ::-webkit-scrollbar {
   display: none;
 }
