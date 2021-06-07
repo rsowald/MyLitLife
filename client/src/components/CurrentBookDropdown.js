@@ -3,9 +3,11 @@ import { Button, Card, DropdownButton, Dropdown } from 'react-bootstrap';
 import API from "../utils/API";
 import { useAuth } from "../components/authentication/context/AuthContext";
 import { useBookModal } from "../context/ModalContext";
+import { useUser } from "../context/UserContext";
 
 function CurrentBookDropdown() {
-    const [books, setBooks] = useState([]);
+    const { getUser, upsertUser, user } = useUser();
+    const [books, setBooks] = useState();
     const [currentBook, setCurrentBook] = useState();
 
     const { currentUser } = useAuth();
@@ -19,23 +21,32 @@ function CurrentBookDropdown() {
     };
 
     useEffect(() => {
+        getUser();
         fetchBooks();
     }, []);
 
-    if (books.length === 0) {
+    useEffect(() => {
+        if (!user.currentBook || !books || (currentBook && currentBook.id === user.currentBook)) {
+            return;
+        }
+        setCurrentBook(books.find(b => b.id === user.currentBook));
+    }, [user, books]);
+
+    if (!books) {
         return null;
     }
 
-    const displayCurrent = (id) => {
-        setCurrentBook(books.find(b => b.id === id));
-
-    }
+    const setCurrent = (id) => {
+        upsertUser({
+            currentBook: id
+        });
+    };
 
     return (
         <Card className="card-current-book dashboard-card my-3" style={{ backgroundColor: "#f7d065" }}>
             <Card.Body className="justify-content-center">
                 <DropdownButton variant="secondary" title="Set Current Book" className="mb-3">
-                    {books.map(book => <Dropdown.Item key={book.id} as="button" onClick={() => displayCurrent(book.id)}>{book.volumeInfo.title}</Dropdown.Item>)}
+                    {books.map(book => <Dropdown.Item key={book.id} as="button" onClick={() => setCurrent(book.id)}>{book.volumeInfo.title}</Dropdown.Item>)}
                 </DropdownButton>
 
                 {

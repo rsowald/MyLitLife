@@ -1,4 +1,5 @@
 import React, { useState, useContext } from "react";
+import API from "../utils/API";
 import { useAuth } from "../components/authentication/context/AuthContext";
 
 const UserContext = React.createContext();
@@ -9,7 +10,7 @@ export function useUser() {
 
 export function UserProvider({ children }) {
     const { currentUser } = useAuth();
-    const [user, setUser] = useState();
+    const [user, setUser] = useState({});
 
     const getUser = async () => {
         try {
@@ -27,7 +28,7 @@ export function UserProvider({ children }) {
             pageGoal: pageGoal || user.pageGoal,
             currentBook: currentBook || user.currentBook
         });
-        setUser(updatedUser);
+        setUser(updatedUser.data);
     };
 
     return (
