@@ -11,6 +11,7 @@ import CurrentBookDropdown from "../CurrentBookDropdown";
 import RecentlyCompleted from "../RecentlyCompleted";
 import HistoryCard from '../HistoryCard';
 import BookGoals from '../BookGoals';
+import { UserProvider } from '../../context/UserContext';
 
 
 export default function Dashboard() {
@@ -21,7 +22,7 @@ export default function Dashboard() {
   };
 
   return (
-    <>
+    <UserProvider>
       <Title />
       <Container>
         <Row className="d-flex align-items-center mb-9">
@@ -70,6 +71,6 @@ export default function Dashboard() {
         </Row>
         <BestSellers />
       </Container>
-    </>
+    </UserProvider>
   )
 }
