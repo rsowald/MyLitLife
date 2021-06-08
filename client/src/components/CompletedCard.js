@@ -6,7 +6,7 @@ import "./CompletedCard.css";
 function CompletedCard(props) {
   return (
     <Card className="CompletedCard">
-      <Card className="d-flex align-items-center mt-1">
+      <Card className="align-items-center mt-1" style={{ width: "90%" }}>
         <Card.Img
           variant="top"
           src={props.thumbnail}
