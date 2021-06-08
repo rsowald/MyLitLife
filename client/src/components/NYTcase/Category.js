@@ -137,7 +137,7 @@ function Category(props) {
                         ) : (
                             book.isbns[0].isbn10
                         )}>
-                            < Card className="m-3" style={{ textAlign: 'left', width: "150px", height: "300px" }}>
+                            < Card className="m-2" style={{ textAlign: 'left', width: "150px", height: "300px", padding: "5px" }}>
                                 {book.book_image ? (
                                     <a href={book.amazon_product_url} target="_blank" rel="noopener noreferrer">
                                         <Card.Img className="d-block mx-auto img-fluid" variant="top" src={book.book_image} style={{ height: "200px" }} />

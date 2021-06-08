@@ -1,42 +1,30 @@
-import React, { useRef, useEffect, useState } from "react";
-import { useAuth } from "../components/authentication/context/AuthContext";
+import React, { useRef, useEffect } from "react";
 import { Button, Card, Col, Form, Row } from "react-bootstrap";
-import API from "../utils/API";
+import { useUser } from "../context/UserContext";
 import BookGoalChart from "./BookGoalChart";
 import PageGoalChart from "./PageGoalChart";
 
 function BookGoals() {
-    const { currentUser } = useAuth();
-    const [user, setUser] = useState({});
+    const { getUser, upsertUser, user } = useUser();
     const booksRef = useRef();
     const pagesRef = useRef();
 
     useEffect(() => {
-        async function fetchUser() {
-            try {
-                const userRes = await API.getUser(currentUser.uid);
-                const user = userRes.data;
-                setUser(user);
-
-                booksRef.current.value = user.bookGoal || '';
-                pagesRef.current.value = user.pageGoal || '';
-            } catch (error) {
-                //User hasn't been saved before
-            }
-        }
-        fetchUser();
+        getUser();
     }, []);
 
-    const saveGoals = async (e) => {
+    useEffect(() => {
+        booksRef.current.value = user.bookGoal || '';
+        pagesRef.current.value = user.pageGoal || '';
+    }, [user]);
+
+    const saveGoals = (e) => {
         e.preventDefault();
 
-        const updated = await API.upsertUser({
-            userId: currentUser.uid,
+        upsertUser({
             bookGoal: booksRef.current.value,
-            pageGoal: pagesRef.current.value,
-            currentBook: user ? user.currentBook : undefined
+            pageGoal: pagesRef.current.value
         });
-        setUser(updated);
     };
 
     return (
@@ -66,7 +54,7 @@ function BookGoals() {
                             <Form.Control placeholder="# pages" required type="number" ref={pagesRef} />
                         </Col>
                         <Col>
-                            <Button type="submit">Set</Button>
+                            <Button variant="secondary" type="submit">Set</Button>
                         </Col>
                     </Form.Row>
                 </Form>

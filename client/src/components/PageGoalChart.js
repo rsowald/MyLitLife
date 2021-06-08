@@ -2,30 +2,32 @@ import React, { useState, useEffect } from 'react';
 import { Bar } from 'react-chartjs-2';
 import API from "../utils/API";
 import { useAuth } from "./authentication/context/AuthContext";
+import { useUser } from "../context/UserContext";
 import { Card } from 'react-bootstrap';
 
 function PageGoalChart() {
-    const months = ['January', 'February','March','April','May','June','July','August','September','October','November','December'];
+    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     var date = new Date();
     const { currentUser } = useAuth();
-    const user = currentUser.uid;
+    const firebaseUser = currentUser.uid;
     const currentMonth = date.getMonth();
     const currentYear = date.getFullYear();
 
     const [labels, setLabels] = useState([]);
     const [pages, setPages] = useState([]);
-    const [goals, setGoals] = useState([]);
+    const [pageGoal, setPageGoal] = useState(0);
+    const { getUser, user } = useUser();
 
-    function getLabels (count){
+    function getLabels(count) {
         var mos = [];
-        for (var i = 0; i < count; i++){
+        for (var i = 0; i < count; i++) {
             let mo = currentMonth - i;
-            if (mo < 0){
+            if (mo < 0) {
                 mo += 12;
             }
             mos.push(months[mo])
         }
-        return mos;   
+        return mos;
     }
 
     function monthsAgo(date, max) {
@@ -51,83 +53,87 @@ function PageGoalChart() {
         }
     }
 
-    function getGoals (max){
-        var goals = [];
-        for (let i = 0; i < max; i++){
-            goals.push(5000);
-        }
-          return goals;   
-    }
-
-
-    function getPages (max){
+    async function getPages(max) {
         var temp = [];
-        for (let i = 0; i < max; i++){
+        for (let i = 0; i < max; i++) {
             temp.push(0);
         }
 
-        var list = [];
-        API.getCompleted(user)
-          .then(res => {
-            list = res.data;
-            temp = list.map((book) => {
+        try {
+            const books = await API.getCompleted(firebaseUser);
+            books.data.forEach(book => {
                 const ma = monthsAgo(book.createdAt, max);
-                if(ma >= 0){
-                    temp[ma] += book.volumeInfo.pageCount;
+                if (ma >= 0) {
+                    temp[ma] += book.volumeInfo.pageCount || 0;
                 }
-                return 1;
-            })
-          })
-          .catch((err) => console.log(err));
-          return temp;   
+            });
+        } catch (err) {
+            console.log(err)
+        }
+        return temp;
     }
 
+    const numberOfMonthsBack = 6;
+
     useEffect(() => {
-        const numberOfMonthsBack = 6;
-        setLabels(getLabels (numberOfMonthsBack));
-        setPages(getPages(numberOfMonthsBack));
-        setGoals(getGoals(numberOfMonthsBack));
+        const load = async () => {
+            setLabels(getLabels(numberOfMonthsBack));
+            const pagesArr = await getPages(numberOfMonthsBack);
+            getUser();
+            setPages(pagesArr);
+            setPageGoal(user.pageGoal);
+        }
+        load();
     }, []);
-  
+
+    useEffect(() => {
+        let goal = [];
+        const pagesPerMonth = user.pageGoal / 12;
+        for (var i = 0; i < numberOfMonthsBack; i++) {
+            goal.push(pagesPerMonth)
+        }
+        setPageGoal(goal);
+    }, [user]);
+
     var chartData = {
-                labels: labels,
-                datasets:[
-                    {
-                        label: 'Pages',
-                        data: pages,
-backgroundColor: '#ff9f40'
-                
-                    },
-                    {
-                        label: 'Goal',
-                        data:goals,
-                        backgroundColor:"saddlebrown"
-                
-                    }
+        labels: labels,
+        datasets: [
+            {
+                label: 'Pages',
+                data: pages,
+                backgroundColor: '#ff9f40'
 
-                ]
+            },
+            {
+                label: 'Goal',
+                data: pageGoal,
+                backgroundColor: "saddlebrown"
+
             }
+        ]
+    }
 
-        return (
-            <Card>
+
+    return (
+        <Card>
             <div className="chart" style={{ backgroundColor: "#FAF9F6" }} >
                 <Bar
-                  data={ chartData }
-                  options={{
-                      title: {
-                          display: true,
-                          text: "Page Count and Goal",
-                          fontSize: 25
-                      },
-                      legend: {
-                          display: true,
-                          position: "right"
-                      }
-                  }}
+                    data={chartData}
+                    options={{
+                        title: {
+                            display: true,
+                            text: "Page Count and Goal",
+                            fontSize: 25
+                        },
+                        legend: {
+                            display: true,
+                            position: "right"
+                        }
+                    }}
                 />
             </div>
-            </Card>
-        )
+        </Card>
+    )
 }
 
 export default PageGoalChart;
