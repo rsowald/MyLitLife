@@ -53,35 +53,37 @@ function PageGoalChart() {
         }
     }
 
-    function getPages(max) {
+    async function getPages(max) {
         var temp = [];
         for (let i = 0; i < max; i++) {
             temp.push(0);
         }
 
-        var list = [];
-        API.getCompleted(firebaseUser)
-            .then(res => {
-                list = res.data;
-                temp = list.map((book) => {
-                    const ma = monthsAgo(book.createdAt, max);
-                    if (ma >= 0) {
-                        temp[ma] += book.volumeInfo.pageCount;
-                    }
-                    return 1;
-                })
-            })
-            .catch((err) => console.log(err));
+        try {
+            const books = await API.getCompleted(firebaseUser);
+            books.data.forEach(book => {
+                const ma = monthsAgo(book.createdAt, max);
+                if (ma >= 0) {
+                    temp[ma] += book.volumeInfo.pageCount || 0;
+                }
+            });
+        } catch (err) {
+            console.log(err)
+        }
         return temp;
     }
 
     const numberOfMonthsBack = 6;
 
     useEffect(() => {
-        setLabels(getLabels(numberOfMonthsBack));
-        setPages(getPages(numberOfMonthsBack));
-        getUser();
-        setPageGoal(user.pageGoal);
+        const load = async () => {
+            setLabels(getLabels(numberOfMonthsBack));
+            const pagesArr = await getPages(numberOfMonthsBack);
+            getUser();
+            setPages(pagesArr);
+            setPageGoal(user.pageGoal);
+        }
+        load();
     }, []);
 
     useEffect(() => {

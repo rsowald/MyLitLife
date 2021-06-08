@@ -3,8 +3,6 @@ import { Bar } from 'react-chartjs-2';
 import API from "../utils/API";
 import { useAuth } from "./authentication/context/AuthContext";
 import { Card } from 'react-bootstrap';
-import API from "../utils/API";
-import { useAuth } from "./authentication/context/AuthContext";
 import { useUser } from "../context/UserContext";
 
 function BookGoalChart() {
@@ -55,37 +53,43 @@ function BookGoalChart() {
         }
     }
 
-    function getBooks(max) {
+    async function getBooks(max) {
         var totals = [];
         for (let i = 0; i < max; i++) {
             totals.push(0);
         }
 
-        var list = [];
-        API.getCompleted(firebaseUser)
-            .then(res => {
-                list = res.data;
-                totals = list.map((book) => {
-                    const ma = monthsAgo(book.createdAt, max);
-                    if (ma >= 0) {
-                        totals[ma] += 1;
-                    }
-                    return 1;
-                })
-            })
-            .catch((err) => console.log(err));
+        try {
+            const books = await API.getCompleted(firebaseUser);
+            books.data.forEach((book) => {
+                const ma = monthsAgo(book.createdAt, max);
+                if (ma >= 0) {
+                    totals[ma] += 1;
+                }
+            });
+        } catch (err) {
+            console.log(err)
+        }
         return totals;
     }
 
+    const numberOfMonthsBack = 6;
+
     useEffect(() => {
-        const numberOfMonthsBack = 6;
-        setLabels(getLabels(numberOfMonthsBack));
-        setBooks(getBooks(numberOfMonthsBack));
-        getUser();
-        setGoals(user.bookGoal);
+        const load = async () => {
+            setLabels(getLabels(numberOfMonthsBack));
+            const booksArr = await getBooks(numberOfMonthsBack);
+            getUser();
+            setBooks(booksArr);
+            setGoals(user.bookGoal);
+        }
+        load();
     }, []);
 
     useEffect(() => {
+        if (!user.bookGoal || !books || (goals && goals === user.bookGoal)) {
+            return;
+        }
         let goal = [];
         const booksPerMonth = user.bookGoal / 12;
         for (var i = 0; i < numberOfMonthsBack; i++) {
