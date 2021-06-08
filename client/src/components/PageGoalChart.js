@@ -16,7 +16,7 @@ function PageGoalChart() {
     const [labels, setLabels] = useState([]);
     const [pages, setPages] = useState([]);
     const [pageGoal, setPageGoal] = useState(0);
-    const { user } = useUser();
+    const { getUser, user } = useUser();
 
     function getLabels(count) {
         var mos = [];
@@ -54,23 +54,25 @@ function PageGoalChart() {
     }
 
     function getPages(max) {
-        var pageTotals = [];
-        for (var i = 0; i < max; i++) {
-            pageTotals.push(0);
+        var temp = [];
+        for (let i = 0; i < max; i++) {
+            temp.push(0);
         }
-        var list = {};
+
+        var list = [];
         API.getCompleted(firebaseUser)
             .then(res => {
                 list = res.data;
-                return list.map((book) => {
+                temp = list.map((book) => {
                     const ma = monthsAgo(book.createdAt, max);
                     if (ma >= 0) {
-                        pageTotals[ma] += book.volumeInfo.pageCount;
+                        temp[ma] += book.volumeInfo.pageCount;
                     }
+                    return 1;
                 })
             })
             .catch((err) => console.log(err));
-        return pageTotals;
+        return temp;
     }
 
     const numberOfMonthsBack = 6;
@@ -78,6 +80,8 @@ function PageGoalChart() {
     useEffect(() => {
         setLabels(getLabels(numberOfMonthsBack));
         setPages(getPages(numberOfMonthsBack));
+        getUser();
+        setPageGoal(user.pageGoal);
     }, []);
 
     useEffect(() => {
@@ -89,33 +93,24 @@ function PageGoalChart() {
         setPageGoal(goal);
     }, [user]);
 
-    const chartData = {
+    var chartData = {
         labels: labels,
         datasets: [
             {
                 label: 'Pages',
                 data: pages,
-                // data: [4567, 5678, 6789, 6789, 5678, 4567],
                 backgroundColor: '#ff9f40'
 
             },
             {
                 label: 'Goal',
                 data: pageGoal,
-                // data: [
-                //     5000,
-                //     5000,
-                //     5000,
-                //     5000,
-                //     5000,
-                //     5000
-                // ],
                 backgroundColor: "saddlebrown"
 
             }
-
         ]
     }
+
 
     return (
         <Card>
@@ -125,7 +120,7 @@ function PageGoalChart() {
                     options={{
                         title: {
                             display: true,
-                            text: "Pages to Read",
+                            text: "Page Count and Goal",
                             fontSize: 25
                         },
                         legend: {

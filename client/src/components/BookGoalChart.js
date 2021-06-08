@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Bar } from 'react-chartjs-2';
+import API from "../utils/API";
+import { useAuth } from "./authentication/context/AuthContext";
 import { Card } from 'react-bootstrap';
 import API from "../utils/API";
 import { useAuth } from "./authentication/context/AuthContext";
 import { useUser } from "../context/UserContext";
 
-
-function BookGoalChart(props) {
+function BookGoalChart() {
     const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     var date = new Date();
     const { currentUser } = useAuth();
@@ -16,8 +17,8 @@ function BookGoalChart(props) {
 
     const [labels, setLabels] = useState([]);
     const [books, setBooks] = useState([]);
-    const [bookGoal, setBookGoal] = useState(0);
-    const { user } = useUser();
+    const [goals, setGoals] = useState([]);
+    const { user, getUser } = useUser();
 
     function getLabels(count) {
         var mos = [];
@@ -29,7 +30,7 @@ function BookGoalChart(props) {
             mos.push(months[mo])
         }
         return mos;
-    };
+    }
 
     function monthsAgo(date, max) {
         const timestamp = new Date(date);
@@ -52,16 +53,36 @@ function BookGoalChart(props) {
             default:
                 return false;
         }
-    };
-
-    function getBooks(max) {
-        let BookTotals = [];
     }
 
-    const numberOfMonthsBack = 6;
+    function getBooks(max) {
+        var totals = [];
+        for (let i = 0; i < max; i++) {
+            totals.push(0);
+        }
+
+        var list = [];
+        API.getCompleted(firebaseUser)
+            .then(res => {
+                list = res.data;
+                totals = list.map((book) => {
+                    const ma = monthsAgo(book.createdAt, max);
+                    if (ma >= 0) {
+                        totals[ma] += 1;
+                    }
+                    return 1;
+                })
+            })
+            .catch((err) => console.log(err));
+        return totals;
+    }
 
     useEffect(() => {
+        const numberOfMonthsBack = 6;
         setLabels(getLabels(numberOfMonthsBack));
+        setBooks(getBooks(numberOfMonthsBack));
+        getUser();
+        setGoals(user.bookGoal);
     }, []);
 
     useEffect(() => {
@@ -70,44 +91,27 @@ function BookGoalChart(props) {
         for (var i = 0; i < numberOfMonthsBack; i++) {
             goal.push(booksPerMonth)
         }
-        setBookGoal(goal);
+        setGoals(goal);
     }, [user]);
 
-    const chartData = {
+    var chartData = {
         labels: labels,
         datasets: [
             {
                 label: 'Books',
-                data: [
-                    3,
-                    3,
-                    4,
-                    2,
-                    2,
-                    0
-                ],
+                data: books,
                 backgroundColor: '#ff9f40'
 
             },
             {
                 label: 'Goal',
-                data: bookGoal,
-                // data: [
-                //     12,
-                //     12,
-                //     12,
-                //     12,
-                //     12,
-                //     12
-                // ],
+                data: goals,
                 backgroundColor: "saddlebrown"
 
             }
 
         ]
     }
-
-
 
     return (
         <Card>
@@ -117,7 +121,7 @@ function BookGoalChart(props) {
                     options={{
                         title: {
                             display: true,
-                            text: "Books to Read",
+                            text: "Book Count and Goal",
                             fontSize: 25
                         },
                         legend: {
@@ -129,7 +133,6 @@ function BookGoalChart(props) {
             </div>
         </Card>
     )
-
 }
 
 export default BookGoalChart;
