@@ -6,7 +6,7 @@ import { useBookModal } from "../context/ModalContext";
 import { useUser } from "../context/UserContext";
 
 function CurrentBookDropdown() {
-    const { getUser, upsertUser, user } = useUser();
+    const { upsertUser, user } = useUser();
     const [books, setBooks] = useState();
     const [currentBook, setCurrentBook] = useState();
 
@@ -21,7 +21,6 @@ function CurrentBookDropdown() {
     };
 
     useEffect(() => {
-        getUser();
         fetchBooks();
     }, []);
 

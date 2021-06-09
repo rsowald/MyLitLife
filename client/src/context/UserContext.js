@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import API from "../utils/API";
 import { useAuth } from "../components/authentication/context/AuthContext";
 
@@ -15,7 +15,7 @@ export function UserProvider({ children }) {
     const getUser = async () => {
         try {
             const userRes = await API.getUser(currentUser.uid);
-            setUser(userRes.data);
+            setUser(userRes.data || {});
         } catch (error) {
             //User hasn't been saved before
         }
@@ -28,8 +28,15 @@ export function UserProvider({ children }) {
             pageGoal: pageGoal || user.pageGoal,
             currentBook: currentBook || user.currentBook
         });
-        setUser(updatedUser.data);
+        setUser(updatedUser.data || {});
     };
+
+    useEffect(() => {
+        const load = async () => {
+            await getUser();
+        }
+        load();
+    }, []);
 
     return (
         <UserContext.Provider value={{

@@ -16,7 +16,7 @@ function PageGoalChart() {
     const [labels, setLabels] = useState([]);
     const [pages, setPages] = useState([]);
     const [pageGoal, setPageGoal] = useState(0);
-    const { getUser, user } = useUser();
+    const { user } = useUser();
 
     function getLabels(count) {
         var mos = [];
@@ -79,14 +79,15 @@ function PageGoalChart() {
         const load = async () => {
             setLabels(getLabels(numberOfMonthsBack));
             const pagesArr = await getPages(numberOfMonthsBack);
-            getUser();
             setPages(pagesArr);
-            setPageGoal(user.pageGoal);
         }
         load();
     }, []);
 
     useEffect(() => {
+        if (!user.pageGoal) {
+            return;
+        }
         let goal = [];
         const pagesPerMonth = user.pageGoal / 12;
         for (var i = 0; i < numberOfMonthsBack; i++) {
