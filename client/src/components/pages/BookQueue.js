@@ -100,7 +100,7 @@ function BookQueue() {
     var comp = [];
     API.getQueue(user)
       .then((res) => {
-        queue = res.data;
+        queue = res.data.sort((a, b) => new Date(b.updated) - new Date(a.updated));
       })
       .then(() => {
         API.getCompletedLimit(user).then((res) => {
