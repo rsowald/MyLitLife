@@ -18,8 +18,13 @@ export default {
     getBackground: function (width) {
         return axios.get(`/api/unsplash/background/${width}`);
     },
-    searchBooks: function (query) {
-        return axios.get(`${bookSearchBaseURL}${query}&key=${API_KEY_Search_Book}`);
+    searchBooks: async function (query) {
+        const res = await axios.get(`${bookSearchBaseURL}${query}&key=${API_KEY_Search_Book}`);
+        if (res.status === 200 && res.data.totalItems > 0) {
+            //some book data did not have authors. We prefer not to show these results at all.
+            res.data.items = res.data.items.filter(b => b.volumeInfo.authors);
+        }
+        return res;
     },
     searchInMerriamDictionary: function (query) {
         return axios.get(`${merriam_Collegiate_Dictionary_Base_URL}${query}?key=${REACT_APP_KEY_Merriam_Dictionary}`);
