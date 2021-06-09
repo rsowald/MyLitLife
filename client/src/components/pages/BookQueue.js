@@ -95,35 +95,30 @@ function BookQueue() {
     loadColumns(columns, setColumns);
   }, []);
 
-  function loadColumns(columns, setColumns) {
-    var queue = [];
-    var comp = [];
-    API.getQueue(user)
-      .then((res) => {
-        queue = res.data;
-      })
-      .then(() => {
-        API.getCompletedLimit(user).then((res) => {
-          comp = res.data;
-          setColumns({
-            ...columns,
-            // eslint-disable-next-line
-            [2]: {
-              name: "Book Queue",
-              items: queue,
-            },
-            // eslint-disable-next-line
-            [3]: {
-              name: "Completed",
-              items: comp,
-            },
-          });
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      })
-  }
+  async function loadColumns(columns, setColumns) {
+    try {
+      const queuePromise = API.getQueue(user);
+      const completed = await API.getCompletedLimit(user);
+      const queue = await queuePromise;
+      const sortedQueue = queue.data.sort((a, b) => new Date(b.updated) - new Date(a.updated));
+
+      setColumns({
+        ...columns,
+        // eslint-disable-next-line
+        [2]: {
+          name: "Book Queue",
+          items: sortedQueue,
+        },
+        // eslint-disable-next-line
+        [3]: {
+          name: "Completed",
+          items: completed.data,
+        },
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   function handleOnDragEnd(result, columns, setColumns) {
     if (!result.destination) return;

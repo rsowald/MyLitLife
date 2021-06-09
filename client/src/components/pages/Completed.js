@@ -10,22 +10,20 @@ function CompletedBooks() {
   const { currentUser } = useAuth();
   const user = currentUser.uid;
 
-  //TODO - call this showModal and pass it true (for completed from this one) and book ID for the modal to know how to look it up
   const { showModal } = useBookModal();
   const [books, setBooks] = useState([]);
 
-  function loadBooks(setBooks) {
-    var list = {};
+  function loadBooks() {
     API.getCompleted(user)
       .then(res => {
-        list = res.data;
-        setBooks(list);
+        const books = res.data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+        setBooks(books);
       })
       .catch((err) => console.log(err));
   }
 
   useEffect(() => {
-    loadBooks(setBooks);
+    loadBooks();
   }, []);
 
   return (
@@ -39,7 +37,7 @@ function CompletedBooks() {
           gridGap: ".5rem",
         }}
       >
-        {books.map((book, index) => {
+        {books.map((book) => {
           const { volumeInfo } = book;
           const date = new Date(book.createdAt).toLocaleDateString();
 

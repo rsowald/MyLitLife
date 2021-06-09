@@ -5,13 +5,9 @@ import BookGoalChart from "./BookGoalChart";
 import PageGoalChart from "./PageGoalChart";
 
 function BookGoals() {
-    const { getUser, upsertUser, user } = useUser();
+    const { upsertUser, user } = useUser();
     const booksRef = useRef();
     const pagesRef = useRef();
-
-    useEffect(() => {
-        getUser();
-    }, []);
 
     useEffect(() => {
         booksRef.current.value = user.bookGoal || '';

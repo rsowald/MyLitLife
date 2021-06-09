@@ -16,7 +16,7 @@ function BookGoalChart() {
     const [labels, setLabels] = useState([]);
     const [books, setBooks] = useState([]);
     const [goals, setGoals] = useState([]);
-    const { user, getUser } = useUser();
+    const { user } = useUser();
 
     function getLabels(count) {
         var mos = [];
@@ -79,15 +79,13 @@ function BookGoalChart() {
         const load = async () => {
             setLabels(getLabels(numberOfMonthsBack));
             const booksArr = await getBooks(numberOfMonthsBack);
-            getUser();
             setBooks(booksArr);
-            setGoals(user.bookGoal);
         }
         load();
     }, []);
 
     useEffect(() => {
-        if (!user.bookGoal || !books || (goals && goals === user.bookGoal)) {
+        if (!user.bookGoal) {
             return;
         }
         let goal = [];
@@ -105,17 +103,14 @@ function BookGoalChart() {
                 label: 'Books',
                 data: books,
                 backgroundColor: '#ff9f40'
-
             },
             {
                 label: 'Goal',
                 data: goals,
                 backgroundColor: "saddlebrown"
-
             }
-
         ]
-    }
+    };
 
     return (
         <Card>
